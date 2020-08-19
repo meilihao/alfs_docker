@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-echo "--- start version-check.sh ---"
-/scripts/version-check.sh
-echo "--- done version-check.sh ---"
-
 echo "--- print env ---"
 env
 echo "--- print env done---"
