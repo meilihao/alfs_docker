@@ -1,5 +1,5 @@
-#!/bin/bash
-# from LFS#2.2. Host System Requirements
+#!/usr/bin/env bash
+# from LFS#2.2. Host System Requirements, only use when debug Dockerfile
 # Simple script to list version numbers of critical development tools
 export LC_ALL=C
 bash --version | head -n1 | cut -d" " -f2-4

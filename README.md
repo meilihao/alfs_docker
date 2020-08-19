@@ -1,14 +1,16 @@
-# alfs_go
+# alfs_docker
+参考:
+- [reinterpretcat/lfs](https://github.com/reinterpretcat/lfs)
 
-ALFS (Automated Linux From Scratch) with go.
+ALFS (Automated Linux From Scratch) with docker.
 
-alfs_go is based on [LFS-10.0-systemd](http://www.linuxfromscratch.org/lfs/download.html) for x86_64 only.
+alfs_docker is based on [LFS-10.0-systemd](http://www.linuxfromscratch.org/lfs/download.html) for x86_64 only.
 
 lfs version: LFS-10.0-systemd-rc1
 
 env:
 - ubuntu20.04/deepin v20/debian 10
-- go 1.15
+- docker 19.03.8
 
 ## [linux standards followed by LFS](https://lctt.github.io/LFS-BOOK/lfs-systemd/LFS-SYSD-BOOK.html#pre-standards)
 
@@ -36,3 +38,6 @@ $ cd ..
 ```
 
 > or mirror: http://mirrors.ustc.edu.cn/lfs/lfs-packages/lfs-packages-10.0-rc1.tar
+
+### 1. build docker
+> docker debug cmd: sudo docker run --rm -it ubuntu:20.04 bash
