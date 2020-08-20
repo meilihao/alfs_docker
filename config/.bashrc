@@ -14,4 +14,4 @@ alias la='ls -A'
 alias l='ls -CF'
 alias grep='grep --color=auto'
 
-/scripts/run-all.sh
+/lfs/scripts/run-all.sh

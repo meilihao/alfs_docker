@@ -35,4 +35,4 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/source
     rm /etc/bash.bashrc && \
     find /scripts -name "*.sh" -exec chmod +x {} \;
 
-ENTRYPOINT [ "/scripts/run-in-env.sh" ]
+ENTRYPOINT [ "/lfs/scripts/run-in-env.sh" ]
