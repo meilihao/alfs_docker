@@ -52,9 +52,11 @@ $ cd ..
 
 ```bash
 $ sudo docker build . -t "lfs_builder"
-$ sudo docker run --rm -it -v ${PWD}/scripts:/lfs/scripts -v ${PWD}/iso:/lfs/iso -v ${PWD}/sources:/lfs/sources --entrypoint /bin/bash lfs_builder
+$ sudo docker run --privileged --rm -it -v ${PWD}/scripts:/lfs/scripts -v ${PWD}/iso:/lfs/iso -v ${PWD}/sources:/lfs/sources --entrypoint /bin/bash lfs_builder
 root:~# /lfs/scripts/run-all.sh # in container
 ```
+
+**note**, that extended privileges are required by docker container in order to execute some commands (e.g. mount, `mount -v --bind /dev $LFS/dev`).
 
 ## useful tools
 1. tar -tvf gcc-*.tar.xz # list files in tar.xz
