@@ -22,6 +22,7 @@ ${LFS_Script_Prepare}/grep.sh
 ${LFS_Script_Prepare}/gzip.sh
 ${LFS_Script_Prepare}/make.sh
 ${LFS_Script_Prepare}/patch.sh
+${LFS_Script_Prepare}/sed.sh
 
 unset LFS_Script_Prepare
 
