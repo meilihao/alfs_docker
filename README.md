@@ -38,11 +38,17 @@ $ cd ..
 
 > or mirror: http://mirrors.ustc.edu.cn/lfs/lfs-packages/lfs-packages-10.0-rc1.tar
 
-### 1. build docker
+### 1. update args
+1. glibc compatible : use host's glibc version
+
+    1. scripts/prepare/gcc.sh : --with-glibc-version=2.28 # my debian 10's glibc version
+
+### 1. build docker image and run it
 > docker debug cmd: sudo docker run --rm -it ubuntu:20.04 bash
 
 ```bash
-$ sudo docker run --rm -it [-v ${PWD}/scripts:/lfs/scripts -v ${PWD}/iso:/lfs/iso -v ${PWD}/sources:/lfs/sources] --entrypoint /bin/bash lfs_builder
+$ sudo docker build . -t "lfs_builder"
+$ sudo docker run --rm -it -v ${PWD}/scripts:/lfs/scripts -v ${PWD}/iso:/lfs/iso -v ${PWD}/sources:/lfs/sources --entrypoint /bin/bash lfs_builder
 root:~# /lfs/scripts/run-all.sh # in container
 ```
 

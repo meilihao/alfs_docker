@@ -1,5 +1,4 @@
 # docker build . -t "lfs_builder"
-# sudo docker run --rm -it [-v ${PWD}/scripts:/lfs/scripts -v ${PWD}/iso:/lfs/iso -v ${PWD}/sources:/lfs/sources] --entrypoint /bin/bash lfs_builder # for debug, 挂载时本地目录必须是绝对路径
 FROM ubuntu:20.04
 
 LABEL Description="Automated LFS build" Version="LFS-10.0-systemd"
