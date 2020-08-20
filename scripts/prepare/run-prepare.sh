@@ -14,6 +14,7 @@ ${LFS_Script_Prepare}/m4.sh
 ${LFS_Script_Prepare}/ncurses.sh
 ${LFS_Script_Prepare}/bash.sh
 ${LFS_Script_Prepare}/coreutils.sh
+${LFS_Script_Prepare}/diffutils.sh
 
 unset LFS_Script_Prepare
 
