@@ -26,6 +26,7 @@ ${LFS_Script_Prepare}/sed.sh
 ${LFS_Script_Prepare}/tar.sh
 ${LFS_Script_Prepare}/xz.sh
 ${LFS_Script_Prepare}/binutils2.sh
+${LFS_Script_Prepare}/gcc2.sh
 
 unset LFS_Script_Prepare
 
