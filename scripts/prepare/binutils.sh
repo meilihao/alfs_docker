@@ -3,6 +3,8 @@ set -e
 
 echo -e "\n\n+++ start binutils.sh +++\n\n"
 
+# put LFS_Sources_Root here to allow running build script directly
+LFS_Sources_Root=/lfs/sources
 BuildDir=`mktemp -d --suffix ".binutils"`
 
 echo -e "+++ build path: ${BuildDir}\n"
@@ -20,8 +22,9 @@ cd build       && \
 make           && \
 make install   && \
 popd           && \
-rm  -rf ${BuildDir}
+rm -rf ${BuildDir}
+
+unset LFS_Sources_Root
+unset BuildDir
 
 echo -e "+++ done binutils.sh +++\n\n"
-
-unset BuildDir
