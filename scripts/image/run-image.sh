@@ -4,4 +4,4 @@ echo "--- start run-image.sh ---"
 
 
 
-echo "--- done run-image.sh ---"
+echo -e "--- done run-image.sh ---\n\n"

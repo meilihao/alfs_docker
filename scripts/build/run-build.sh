@@ -4,4 +4,4 @@ echo "--- start run-build.sh ---"
 
 
 
-echo "--- done run-build.sh ---"
+echo -e "--- done run-build.sh ---\n\n"

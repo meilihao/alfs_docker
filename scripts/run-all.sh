@@ -3,7 +3,7 @@ set -e
 
 echo "--- print env ---"
 env
-echo "--- print env done---"
+echo -e "--- print env done---\n\n"
 
 echo "--- start build lfs ---"
 
@@ -12,4 +12,4 @@ echo "--- start build lfs ---"
 /scripts/build/run-build.sh
 /scripts/image/run-image.sh
 
-echo "--- done build lfs ---"
+echo -e "--- done build lfs ---\n\n"
