@@ -42,5 +42,6 @@ $ cd ..
 > docker debug cmd: sudo docker run --rm -it ubuntu:20.04 bash
 
 ```bash
-$ sudo docker run --rm -it [-v ${PWD}/iso:/lfs/iso -v ${PWD}/sources:/lfs/sources] lfs_builder
+$ sudo docker run --rm -it [-v ${PWD}/scripts:/lfs/scripts -v ${PWD}/iso:/lfs/iso -v ${PWD}/sources:/lfs/sources] --entrypoint /bin/bash lfs_builder
+root:~# /lfs/scripts/run-all.sh # in container
 ```

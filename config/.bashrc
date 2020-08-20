@@ -14,4 +14,5 @@ alias la='ls -A'
 alias l='ls -CF'
 alias grep='grep --color=auto'
 
-/lfs/scripts/run-all.sh
+# not auto to build lfs
+#/lfs/scripts/run-all.sh
