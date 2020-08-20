@@ -18,6 +18,8 @@ ${LFS_Script_Prepare}/diffutils.sh
 ${LFS_Script_Prepare}/file.sh
 ${LFS_Script_Prepare}/findutils.sh
 ${LFS_Script_Prepare}/gawk.sh
+${LFS_Script_Prepare}/grep.sh
+${LFS_Script_Prepare}/gzip.sh
 
 unset LFS_Script_Prepare
 
