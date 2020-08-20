@@ -16,6 +16,7 @@ ${LFS_Script_Prepare}/bash.sh
 ${LFS_Script_Prepare}/coreutils.sh
 ${LFS_Script_Prepare}/diffutils.sh
 ${LFS_Script_Prepare}/file.sh
+${LFS_Script_Prepare}/findutils.sh
 
 unset LFS_Script_Prepare
 
