@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+# now no path: /tools
+
 echo -e "\n\n+++ start libstdc++.sh +++\n\n"
 
 LFS_Sources_Root=/lfs/sources
