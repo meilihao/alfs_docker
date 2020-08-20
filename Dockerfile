@@ -32,7 +32,6 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/source
     update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 2 && \
     ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     dpkg-reconfigure -f noninteractive tzdata && \
-    rm /etc/bash.bashrc && \
-    find /scripts -name "*.sh" -exec chmod +x {} \;
+    rm /etc/bash.bashrc
 
 ENTRYPOINT [ "/lfs/scripts/run-in-env.sh" ]

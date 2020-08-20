@@ -30,6 +30,8 @@ if [ ! -d ${LFS} ]; then
 	mkdir -pv $LFS/{bin,etc,lib,lib64,sbin,usr,var,tools}
 fi
 
+find /lfs/scripts -name "*.sh" -exec chmod +x {} \;
+
 # prepare to build
 /lfs/scripts/prepare/run-prepare.sh
 /lfs/scripts/build/run-build.sh
