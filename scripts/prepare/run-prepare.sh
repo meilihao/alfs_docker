@@ -20,6 +20,7 @@ ${LFS_Script_Prepare}/findutils.sh
 ${LFS_Script_Prepare}/gawk.sh
 ${LFS_Script_Prepare}/grep.sh
 ${LFS_Script_Prepare}/gzip.sh
+${LFS_Script_Prepare}/make.sh
 
 unset LFS_Script_Prepare
 
