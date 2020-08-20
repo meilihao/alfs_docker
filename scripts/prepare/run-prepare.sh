@@ -13,6 +13,7 @@ ${LFS_Script_Prepare}/libstdc++.sh
 ${LFS_Script_Prepare}/m4.sh
 ${LFS_Script_Prepare}/ncurses.sh
 ${LFS_Script_Prepare}/bash.sh
+${LFS_Script_Prepare}/coreutils.sh
 
 unset LFS_Script_Prepare
 
