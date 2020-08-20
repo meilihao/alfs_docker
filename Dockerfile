@@ -23,7 +23,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/source
     sed -i 's/security.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list && \
     apt update && \
     apt upgrade -y && \
-    apt install -y vim tree && \
+    apt install -y vim tree locate && \
     apt install -y binutils bison gawk gcc-10 g++-10 python3.8 make patch texinfo && \
     rm -rf /var/lib/apt/lists/* && \
     ln -s -f /usr/bin/bash /bin/sh && \
