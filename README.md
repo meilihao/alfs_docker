@@ -59,4 +59,5 @@ root:~# /lfs/scripts/run-all.sh # in container
 **note**, that extended privileges are required by docker container in order to execute some commands (e.g. mount, `mount -v --bind /dev $LFS/dev`).
 
 ## useful tools
-1. tar -tvf gcc-*.tar.xz # list files in tar.xz
+1. `tar -tvf gcc-*.tar.xz` # list files in tar.xz
+1. `watch -n 10 "ps -ef |grep bash"` # watch processing when lost direct log with ssh broken
