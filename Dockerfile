@@ -1,5 +1,5 @@
 # docker build . -t "lfs_builder"
-# sudo docker run --rm -it [-v ${PWD}/iso:/lfs/iso -v ${PWD}/sources:/lfs/sources] --entrypoint /bin/bash lfs_builder # for debug, 挂载时本地目录必须是绝对路径
+# sudo docker run --rm -it [-v ${PWD}/scripts:/lfs/scripts -v ${PWD}/iso:/lfs/iso -v ${PWD}/sources:/lfs/sources] --entrypoint /bin/bash lfs_builder # for debug, 挂载时本地目录必须是绝对路径
 FROM ubuntu:20.04
 
 LABEL Description="Automated LFS build" Version="LFS-10.0-systemd"
@@ -10,7 +10,8 @@ MAINTAINER meilihao <563278383@qq.com>
 ENV DEBIAN_FRONTEND noninteractive
 
 # 保留scripts的层次结构
-COPY scripts/ /scripts/
+# 使用docker mount便于调试
+#COPY scripts/ /lfs/scripts/
 COPY [ "config/.bash_profile", "config/.bashrc", "/root/" ]
 
 # 2.2. Host System Requirements
