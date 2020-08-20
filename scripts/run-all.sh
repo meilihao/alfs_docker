@@ -25,6 +25,11 @@ echo -e "--- print env done---\n\n"
 
 echo -e "--- start build lfs ---\n\n"
 
+if [ ! -d ${LFS} ]; then
+	mkdir -p ${LFS}
+	mkdir -pv $LFS/{bin,etc,lib,lib64,sbin,usr,var,tools}
+fi
+
 # prepare to build
 /lfs/scripts/prepare/run-prepare.sh
 /lfs/scripts/build/run-build.sh
