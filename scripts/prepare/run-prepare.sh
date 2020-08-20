@@ -10,6 +10,7 @@ ${LFS_Script_Prepare}/gcc.sh
 ${LFS_Script_Prepare}/linux-api-header.sh
 ${LFS_Script_Prepare}/glibc.sh
 ${LFS_Script_Prepare}/libstdc++.sh
+${LFS_Script_Prepare}/m4.sh
 
 unset LFS_Script_Prepare
 
