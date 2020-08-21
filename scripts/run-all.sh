@@ -16,7 +16,7 @@ fi
 echo `date` > ${LFS_Build_Done}
 
 echo "--- start version-check.sh ---"
-/lfs/scripts/version-check.sh
+${LFSRoot}/scripts/version-check.sh
 echo -e "--- done version-check.sh ---\n\n"
 
 echo "--- print env ---"
