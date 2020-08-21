@@ -1,2 +1,2 @@
 # 4.4. Setting Up the Environment
-exec env -i HOME=$HOME TERM=$TERM PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ ' /bin/bash
+exec env -i HOME=$HOME TERM=$TERM LFSRoot=$LFSRoot PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ ' /bin/bash
