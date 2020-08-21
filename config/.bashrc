@@ -18,4 +18,4 @@ alias l='ls -CF'
 alias grep='grep --color=auto'
 
 # not auto to build lfs
-#$LFSRoot/scripts/run-all.sh
+#${LFSRoot}/scripts/run-all.sh
