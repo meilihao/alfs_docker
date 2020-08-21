@@ -25,16 +25,13 @@ echo -e "--- print env done---\n\n"
 
 echo -e "--- start build lfs ---\n\n"
 
-if [ ! -d ${LFS} ]; then
-	mkdir -p ${LFS}
-	mkdir -pv $LFS/{bin,etc,lib,lib64,sbin,usr,var,tools}
-fi
+mkdir -pv $LFS/{bin,etc,lib,lib64,sbin,usr,var,tools}
 
-find /lfs/scripts -name "*.sh" -exec chmod +x {} \;
+find $LFSRoot/scripts -name "*.sh" -exec chmod +x {} \;
 
 # prepare to build
-/lfs/scripts/prepare/run-prepare.sh
-/lfs/scripts/build/run-build.sh
-/lfs/scripts/image/run-image.sh
+$LFSRoot/scripts/prepare/run-prepare.sh
+$LFSRoot/scripts/build/run-build.sh
+$LFSRoot/scripts/image/run-image.sh
 
 echo -e "--- done build lfs ---\n\n"

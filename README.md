@@ -52,7 +52,7 @@ $ cd ..
 
 ```bash
 $ sudo docker build . -t "lfs_builder"
-$ sudo docker run --privileged -d -it -v ${PWD}/scripts:/lfs/scripts -v ${PWD}/iso:/lfs/iso -v ${PWD}/sources:/lfs/sources --entrypoint /bin/bash lfs_builder
+$ sudo docker run --privileged -d -it -v ${PWD}/scripts:/mnt/lfs/lfs_root/scripts -v ${PWD}/iso:/mnt/lfs/lfs_root/iso -v ${PWD}/sources:/mnt/lfs/lfs_root/sources --entrypoint /bin/bash lfs_builder
 root:~# /lfs/scripts/run-all.sh # in container
 ```
 

@@ -3,7 +3,7 @@ set -e
 
 echo -e "\n\n+++ start file.sh +++\n\n"
 
-LFS_Sources_Root=/lfs/sources
+LFS_Sources_Root=${LFSRoot}/sources
 BuildDir=`mktemp -d --suffix ".file"`
 
 echo -e "+++ build path: ${BuildDir}\n"

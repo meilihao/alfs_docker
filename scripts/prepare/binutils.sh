@@ -4,7 +4,7 @@ set -e
 echo -e "\n\n+++ start binutils.sh +++\n\n"
 
 # put LFS_Sources_Root here to allow running build script directly
-LFS_Sources_Root=/lfs/sources
+LFS_Sources_Root=${LFSRoot}/sources
 BuildDir=`mktemp -d --suffix ".binutils"`
 
 echo -e "+++ build path: ${BuildDir}\n"

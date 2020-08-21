@@ -5,7 +5,7 @@ set -e
 
 echo -e "\n\n+++ start glibc.sh +++\n\n"
 
-LFS_Sources_Root=/lfs/sources
+LFS_Sources_Root=${LFSRoot}/sources
 BuildDir=`mktemp -d --suffix ".glibc"`
 
 echo -e "+++ build path: ${BuildDir}\n"

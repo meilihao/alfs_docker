@@ -3,7 +3,7 @@ set -e
 
 echo -e "\n\n+++ start m4.sh +++\n\n"
 
-LFS_Sources_Root=/lfs/sources
+LFS_Sources_Root=${LFSRoot}/sources
 BuildDir=`mktemp -d --suffix ".m4"`
 
 echo -e "+++ build path: ${BuildDir}\n"

@@ -13,10 +13,10 @@ if [ -f ${LFS_Build_Done} ]; then
     rm ${LFS_Build_Done}
 fi
 
-if [ -d ${LFS} ]; then
-    echo -e "--- clean ${LFS}\n"
-    rm -rf ${LFS}
-fi
+echo -e "--- clean ${LFS}\n"
+pushd ${LFS}
+rm -rf `ls ${LFS} |egrep -v lfs_root`
+popd
 
 rm -rf /tmp/*
 

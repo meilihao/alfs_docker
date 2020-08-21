@@ -63,6 +63,6 @@ echo "tester:x:101:" >> /etc/group
 install -o tester -d /home/tester
 
 # no exec, 因为执行/bin/bash + cmd后bash会退出, 因此新开bash去做
-/bin/bash --login +h -c "/lfs/scripts/build/run-build2.sh"
+/bin/bash --login +h -c "${LFSRoot}/scripts/build/run-build-in-chroot2.sh"
 
 echo -e "--- done creating-essential-files-and-symlinks.sh in chroot ---\n\n"

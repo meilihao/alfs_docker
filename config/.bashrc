@@ -9,7 +9,8 @@ PATH=/usr/bin:/usr/sbin
 if [ ! -L /bin ]; then PATH=/bin:$PATH; fi
 if [ ! -L /sbin ]; then PATH=/sbin:$PATH; fi
 PATH=$LFS/tools/bin:$PATH
-export LFS LC_ALL LFS_TGT PATH
+LFSRoot=/mnt/lfs/lfs_root
+export LFS LC_ALL LFS_TGT PATH LFSRoot
 export MAKEFLAGS='-j2'
 alias ll='ls -alF --color=auto'
 alias la='ls -A'
@@ -17,4 +18,4 @@ alias l='ls -CF'
 alias grep='grep --color=auto'
 
 # not auto to build lfs
-#/lfs/scripts/run-all.sh
+#$LFSRoot/scripts/run-all.sh

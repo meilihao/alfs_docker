@@ -8,6 +8,8 @@ MAINTAINER meilihao <563278383@qq.com>
 # 非交互时采用默认时区Etc/UTC
 ENV DEBIAN_FRONTEND noninteractive
 
+ENV LFSRoot=/mnt/lfs/lfs_root
+
 # 保留scripts的层次结构
 # 使用docker mount便于调试
 #COPY scripts/ /lfs/scripts/
@@ -32,6 +34,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/source
     update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 2 && \
     ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     dpkg-reconfigure -f noninteractive tzdata && \
-    rm /etc/bash.bashrc
+    rm /etc/bash.bashrc && \
+    mkdir -pv $LFSRoot
 
-ENTRYPOINT [ "/lfs/scripts/run-in-env.sh" ]
+ENTRYPOINT [ "$LFSRoot/scripts/run-in-env.sh" ]

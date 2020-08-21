@@ -2,7 +2,7 @@
 set -e
 echo -e "--- start run-build.sh in chroot ---\n\n"
 
-LFS_Script_Build=/lfs/scripts/build
+LFS_Script_Build=${LFSRoot}/scripts/build
 
 ${LFS_Script_Build}/create-directories.sh
 ${LFS_Script_Build}/creating-essential-files-and-symlinks.sh

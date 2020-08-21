@@ -3,7 +3,7 @@ set -e
 
 echo -e "\n\n+++ start binutils2.sh +++\n\n"
 
-LFS_Sources_Root=/lfs/sources
+LFS_Sources_Root=${LFSRoot}/sources
 BuildDir=`mktemp -d --suffix ".binutils2"`
 
 echo -e "+++ build path: ${BuildDir}\n"
