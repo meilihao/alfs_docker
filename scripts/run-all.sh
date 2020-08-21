@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-# clean env
-unset DEBIAN_FRONTEND
-
 # avoid to rebuild lfs when "docker exec -it <container_id> bash"
 LFS_Build_Done=~/.lfs_build_done
 

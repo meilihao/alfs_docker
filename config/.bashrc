@@ -1,5 +1,9 @@
+# clean env
+unset DEBIAN_FRONTEND
+
 # 4.4. Setting Up the Environment
 # $PATH add /sbin for use chroot
+
 set +h
 umask 022
 LFS=/mnt/lfs
