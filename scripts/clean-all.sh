@@ -20,4 +20,10 @@ popd
 
 rm -rf /tmp/*
 
+mountpoint -q $LFS/dev/pts && umount $LFS/dev/pts
+mountpoint -q $LFS/dev && umount $LFS/dev
+mountpoint -q $LFS/sys && umount $LFS/sys
+mountpoint -q $LFS/proc && umount $LFS/proc
+mountpoint -q $LFS/run && umount $LFS/run
+
 echo -e "--- done clean-all.sh ---\n\n"
