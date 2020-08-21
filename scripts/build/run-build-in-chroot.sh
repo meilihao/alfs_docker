@@ -10,3 +10,7 @@ ${LFS_Script_Build}/creating-essential-files-and-symlinks.sh
 unset LFS_Script_Build
 
 echo -e "--- done run-build.sh in chroot ---\n\n"
+
+echo -e "--- exit chroot ---\n\n"
+
+exit
