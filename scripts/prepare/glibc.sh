@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-# locate ld-linux-x86-64.so.2, get:
-# 1. /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2 ->  /usr/lib/x86_64-linux-gnu/ld-2.31.so
-# 1. /usr/lib64/ld-linux-x86-64.so.2                ->  /lib/x86_64-linux-gnu/ld-2.31.so
-# they has the same sha256 sum
+# `ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64` is use for chroot, so ld-linux-x86-64.so.2 isn't host's so.
 
 echo -e "\n\n+++ start glibc.sh +++\n\n"
 
@@ -16,8 +13,8 @@ echo -e "+++ build path: ${BuildDir}\n"
 tar -xf ${LFS_Sources_Root}/glibc-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-ln -sfv /usr/lib64/ld-linux-x86-64.so.2 $LFS/lib64                    && \
-ln -sfv /usr/lib64/ld-linux-x86-64.so.2 $LFS/lib64/ld-lsb-x86-64.so.3 && \
+ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64                        && \
+ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64/ld-lsb-x86-64.so.3     && \
 patch -Np1 -i ${LFS_Sources_Root}/glibc-2.32-fhs-1.patch              && \
 mkdir -v build && \
 cd       build && \
