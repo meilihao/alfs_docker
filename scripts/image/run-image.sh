@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-echo "--- start run-image.sh ---"
+echo -e "--- start run-image.sh ---\n\n"
 
 LFS_Script_Image=/lfs/scripts/image
 
