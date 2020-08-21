@@ -26,7 +26,6 @@ mkdir -pv ${LFS}/{bin,etc,lib,lib64,sbin,usr,var,tools}
 
 find ${LFSRoot}/scripts -name "*.sh" -exec chmod +x {} \;
 
-# prepare to build
 ${LFSRoot}/scripts/prepare/run-prepare.sh
 ${LFSRoot}/scripts/build/run-build.sh
 ${LFSRoot}/scripts/image/run-image.sh
