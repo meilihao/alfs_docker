@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-echo "--- start create-directories.sh in chroot ---"
+echo -e "--- start create-directories.sh in chroot ---\n\n"
 
 mkdir -pv /{boot,home,mnt,opt,srv}
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-echo "--- start run-build.sh ---"
+echo -e "--- start run-build.sh ---\n\n"
 
 LFS_Script_Build=/lfs/scripts/build
 

@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 set -e
-echo "--- start run-build.sh in chroot ---"
+echo -e "--- start run-build.sh in chroot ---\n\n"
 
 LFS_Script_Build=/lfs/scripts/build
 
 ${LFS_Script_Build}/create-directories.sh
+${LFS_Script_Build}/creating-essential-files-and-symlinks.sh
 
 unset LFS_Script_Build
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-echo "--- start prepare-vkfs.sh ---"
+echo -e "--- start prepare-vkfs.sh ---\n\n"
 
 echo "Preparing Virtual Kernel File Systems.."
 
