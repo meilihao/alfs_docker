@@ -22,7 +22,7 @@ cd build       && \
     --disable-werror           \
     --enable-64-bit-bfd     && \
 make           && \
-make install   && \
+make DESTDIR=$LFS install   && \
 popd           && \
 rm -rf ${BuildDir}
 
