@@ -15,6 +15,19 @@ chroot "$LFS" /usr/bin/env -i   \
     /bin/bash --login +h \
     -c "/lfs_root/scripts/build/run-build-in-chroot.sh"
 
+umount $LFS/dev{/pts,}
+umount $LFS/{sys,proc,run}
+
+# 7.14.1. Stripping
+# strip --strip-debug $LFS/usr/lib/*
+# strip --strip-unneeded $LFS/usr/{,s}bin/*
+# strip --strip-unneeded $LFS/tools/bin/*
+
+# rm -rf $LFS/usr/share/{info,man,doc}
+
+cd $LFS &&
+tar --exclude=lfs_root -czpf ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd-rc1.tar.gz .
+
 unset LFS_Script_Build
 
 echo -e "--- done run-build.sh ---\n\n"
