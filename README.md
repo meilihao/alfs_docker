@@ -53,7 +53,7 @@ $ cd ..
 ```bash
 $ sudo docker build . -t "lfs_builder"
 $ sudo docker run --privileged -d -it -v ${PWD}/scripts:/mnt/lfs/lfs_root/scripts -v ${PWD}/iso:/mnt/lfs/lfs_root/iso -v ${PWD}/sources:/mnt/lfs/lfs_root/sources --entrypoint /bin/bash lfs_builder
-root:~# /lfs/scripts/run-all.sh # in container
+root:~# $LFSRoot/scripts/run-all.sh # in container
 ```
 
 **note**, that extended privileges are required by docker container in order to execute some commands (e.g. mount, `mount -v --bind /dev $LFS/dev`).
