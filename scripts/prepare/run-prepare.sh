@@ -3,7 +3,7 @@ set -e
 
 echo "--- start run-prepare.sh ---"
 
-LFS_Script_Prepare=/lfs/scripts/prepare
+LFS_Script_Prepare=${LFSRoot}/scripts/prepare
 
 ${LFS_Script_Prepare}/binutils.sh
 ${LFS_Script_Prepare}/gcc.sh
