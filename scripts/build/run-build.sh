@@ -8,6 +8,7 @@ ${LFS_Script_Build}/prepare-vkfs.sh
 
 chroot "$LFS" /usr/bin/env -i   \
     LFSRoot=/lfs_root           \
+    MAKEFLAGS="$MAKEFLAGS"      \
     HOME=/root                  \
     TERM="$TERM"                \
     PS1='(lfs chroot) \u:\w\$ ' \
@@ -33,6 +34,7 @@ ${LFS_Script_Build}/prepare-vkfs-again.sh
 
 chroot "$LFS" /usr/bin/env -i   \
     LFSRoot=/lfs_root           \
+    MAKEFLAGS="$MAKEFLAGS"      \
     HOME=/root                  \
     TERM="$TERM"                \
     PS1='(lfs chroot) \u:\w\$ ' \
