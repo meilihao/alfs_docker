@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 set -e
+set -x
+
+# The cross-compiler will be installed in a separate $LFS/tools directory, since it will not be part of the final system. 
 
 echo "--- start run-prepare.sh ---"
 
