@@ -8,7 +8,7 @@ ${LFSRoot}/scripts/build/expect.sh
 ${LFSRoot}/scripts/build/dejagun.sh
 ${LFSRoot}/scripts/build/iana-etc.sh
 ${LFSRoot}/scripts/build/glibc.sh
-# ${LFSRoot}/scripts/build/glibc-config.sh
+${LFSRoot}/scripts/build/glibc-config.sh
 
 echo -e "--- done run-build-in-chroot-again in chroot ---\n\n"
 

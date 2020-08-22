@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-# install the locale for your own country, language and character set.
-
 echo -e "\n\n+++ start glibc-config.sh +++\n\n"
 
 cat > /etc/nsswitch.conf << "EOF"
@@ -27,33 +25,33 @@ BuildDir=`mktemp -d --suffix ".tzdata"`
 
 echo -e "+++ build path: ${BuildDir}\n"
 
-tar -xf ${LFSRoot}/sources/tzdata*.tar.gz -C ${BuildDir} --strip-components 1 && \
+tar -xf ${LFSRoot}/sources/tzdata*.tar.gz -C ${BuildDir} && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 ZONEINFO=/usr/share/zoneinfo        && \
-mkdir -pv $ZONEINFO/{posix,right}   && \
+mkdir -pv $ZONEINFO/{posix,right}
 for tz in etcetera southamerica northamerica europe africa antarctica  \
           asia australasia backward pacificnew systemv; do
     zic -L /dev/null   -d $ZONEINFO       ${tz}
     zic -L /dev/null   -d $ZONEINFO/posix ${tz}
     zic -L leapseconds -d $ZONEINFO/right ${tz}
-done && \
+done
 cp -v zone.tab zone1970.tab iso3166.tab $ZONEINFO && \
 # zic -d $ZONEINFO -p America/New_York && \
 zic -d $ZONEINFO -p Asia/Shanghai   && \
 ln -sfv /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-unset ZONEINFO && \
+unset ZONEINFO                      && \
 popd                                && \
 rm -rf ${BuildDir}
 
 unset BuildDir
 
-# cat > /etc/ld.so.conf << "EOF"
-# # Begin /etc/ld.so.conf
-# /usr/local/lib
-# /opt/lib
+cat > /etc/ld.so.conf << "EOF"
+# Begin /etc/ld.so.conf
+/usr/local/lib
+/opt/lib
 
-# EOF
+EOF
 
 # dynamic loader search a directory  
 cat >> /etc/ld.so.conf << "EOF"
