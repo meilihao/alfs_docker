@@ -46,6 +46,7 @@ $ cd ..
 1. kernel compatible for glibc
 
     1. scripts/prepare/glibc.sh : --enable-kernel=4.19 # my kernel version
+    1. scripts/build/glibc.sh : --enable-kernel=4.19
 
 ### 1. build docker image and run it
 > docker debug cmd: sudo docker run --rm -it ubuntu:20.04 bash
@@ -53,7 +54,9 @@ $ cd ..
 ```bash
 $ sudo docker build . -t "lfs_builder"
 $ sudo docker run --privileged -d -it -v ${PWD}/scripts:/mnt/lfs/lfs_root/scripts -v ${PWD}/iso:/mnt/lfs/lfs_root/iso -v ${PWD}/sources:/mnt/lfs/lfs_root/sources --entrypoint /bin/bash lfs_builder
-root:~# $LFSRoot/scripts/run-all.sh # in container
+root@8916814e8d0d:/# vim ~/.bashrc # for MAKEFLAGS
+root@8916814e8d0d:/# source ~/.bash_profile
+root@8916814e8d0d:/# $LFSRoot/scripts/run-all.sh
 ```
 
 **note**, that extended privileges are required by docker container in order to execute some commands (e.g. mount, `mount -v --bind /dev $LFS/dev`).
