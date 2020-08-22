@@ -6,6 +6,7 @@ LFS_Script_Build=${LFSRoot}/scripts/build
 
 ${LFS_Script_Build}/man-pages.sh
 ${LFS_Script_Build}/tcl.sh
+${LFS_Script_Build}/expect.sh
 
 unset LFS_Script_Build
 
