@@ -30,6 +30,8 @@ pushd $LFS && \
 tar --exclude=lfs_root -czpf ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd-`date +%s`.tar.gz . && \
 popd
 
+# restore.sh is not in chroot
+
 ${LFS_Script_Build}/prepare-vkfs-again.sh
 
 chroot "$LFS" /usr/bin/env -i   \

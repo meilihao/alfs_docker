@@ -8,6 +8,9 @@ ${LFS_Script_Build}/man-pages.sh
 ${LFS_Script_Build}/tcl.sh
 ${LFS_Script_Build}/expect.sh
 ${LFS_Script_Build}/dejagun.sh
+${LFS_Script_Build}/iana-etc.sh
+${LFS_Script_Build}/glibc.sh
+# ${LFS_Script_Build}/glibc-config.sh
 
 unset LFS_Script_Build
 

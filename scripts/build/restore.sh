@@ -2,6 +2,10 @@
 set -e
 echo -e "--- start run-restore.sh ---\n\n"
 
+umount $LFS/dev{/pts,} || true     && \
+umount $LFS/{sys,proc,run} || true && \
+
+# check umount is ok
 pushd ${LFS} && \
 rm -rf `ls ${LFS} |egrep -v lfs_root` && \
 tar -xpf ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd-rc1.tar.gz && \
