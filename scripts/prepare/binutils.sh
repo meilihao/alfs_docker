@@ -4,12 +4,11 @@ set -e
 echo -e "\n\n+++ start binutils.sh +++\n\n"
 
 # put LFS_Sources_Root here to allow running build script directly
-LFS_Sources_Root=${LFSRoot}/sources
 BuildDir=`mktemp -d --suffix ".binutils"`
 
 echo -e "+++ build path: ${BuildDir}\n"
 
-tar -xf ${LFS_Sources_Root}/binutils-*.tar.xz -C ${BuildDir} --strip-components 1 && \
+tar -xf ${LFSRoot}/sources/binutils-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 mkdir -v build && \
@@ -24,7 +23,6 @@ make install   && \
 popd           && \
 rm -rf ${BuildDir}
 
-unset LFS_Sources_Root
 unset BuildDir
 
 echo -e "+++ done binutils.sh +++\n\n"

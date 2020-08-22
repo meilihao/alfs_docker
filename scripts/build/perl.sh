@@ -3,12 +3,11 @@ set -e
 
 echo -e "\n\n+++ start perl.sh +++\n\n"
 
-LFS_Sources_Root=${LFSRoot}/sources
 BuildDir=`mktemp -d --suffix ".perl"`
 
 echo -e "+++ build path: ${BuildDir}\n"
 
-tar -xf ${LFS_Sources_Root}/perl-*.tar.xz -C ${BuildDir} --strip-components 1 && \
+tar -xf ${LFSRoot}/sources/perl-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 sh Configure -des                                        \
@@ -25,7 +24,6 @@ make install                          && \
 popd                                  && \
 rm -rf ${BuildDir}
 
-unset LFS_Sources_Root
 unset BuildDir
 
 echo -e "+++ done perl.sh +++\n\n"

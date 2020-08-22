@@ -3,13 +3,12 @@ set -e
 
 echo -e "\n\n+++ start tcl.sh +++\n\n"
 
-LFS_Sources_Root=${LFSRoot}/sources
 BuildDir=`mktemp -d --suffix ".tcl"`
 
 echo -e "+++ build path: ${BuildDir}\n"
 
-tar -xf ${LFS_Sources_Root}/tcl*-html.tar.gz -C ${BuildDir} --strip-components 1 && \
-tar -xf ${LFS_Sources_Root}/tcl*-src.tar.gz -C ${BuildDir} --strip-components 1 && \
+tar -xf ${LFSRoot}/sources/tcl*-html.tar.gz -C ${BuildDir} --strip-components 1 && \
+tar -xf ${LFSRoot}/sources/tcl*-src.tar.gz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 SRCDIR=$(pwd)  && \
@@ -39,7 +38,6 @@ ln -sfv tclsh8.6 /usr/bin/tclsh       && \
 popd                                  && \
 rm -rf ${BuildDir}
 
-unset LFS_Sources_Root
 unset BuildDir
 
 echo -e "+++ done tcl.sh +++\n\n"

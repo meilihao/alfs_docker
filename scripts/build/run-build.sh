@@ -2,9 +2,7 @@
 set -e
 echo -e "--- start run-build.sh ---\n\n"
 
-LFS_Script_Build=${LFSRoot}/scripts/build
-
-${LFS_Script_Build}/prepare-vkfs.sh
+${LFSRoot}/scripts/build/prepare-vkfs.sh
 
 chroot "$LFS" /usr/bin/env -i   \
     LFSRoot=/lfs_root           \
@@ -32,7 +30,7 @@ popd
 
 # restore.sh is not in chroot
 
-${LFS_Script_Build}/prepare-vkfs-again.sh
+${LFSRoot}/scripts/build/prepare-vkfs-again.sh
 
 chroot "$LFS" /usr/bin/env -i   \
     LFSRoot=/lfs_root           \
@@ -43,7 +41,5 @@ chroot "$LFS" /usr/bin/env -i   \
     PATH=/bin:/usr/bin:/sbin:/usr/sbin \
     /bin/bash --login +h \
     -c "/lfs_root/scripts/build/run-build-in-chroot-again.sh"
-
-unset LFS_Script_Build
 
 echo -e "--- done run-build.sh ---\n\n"

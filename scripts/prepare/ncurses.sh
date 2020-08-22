@@ -3,12 +3,11 @@ set -e
 
 echo -e "\n\n+++ start ncurses.sh +++\n\n"
 
-LFS_Sources_Root=${LFSRoot}/sources
 BuildDir=`mktemp -d --suffix ".ncurses"`
 
 echo -e "+++ build path: ${BuildDir}\n"
 
-tar -xf ${LFS_Sources_Root}/ncurses-*.tar.gz -C ${BuildDir} --strip-components 1 && \
+tar -xf ${LFSRoot}/sources/ncurses-*.tar.gz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 sed -i s/mawk// configure && \
@@ -36,7 +35,6 @@ ln -sfv ../../lib/$(readlink $LFS/usr/lib/libncursesw.so) $LFS/usr/lib/libncurse
 popd           && \
 rm -rf ${BuildDir}
 
-unset LFS_Sources_Root
 unset BuildDir
 
 echo -e "+++ done ncurses.sh +++\n\n"

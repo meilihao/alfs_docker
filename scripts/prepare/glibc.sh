@@ -5,17 +5,16 @@ set -e
 
 echo -e "\n\n+++ start glibc.sh +++\n\n"
 
-LFS_Sources_Root=${LFSRoot}/sources
 BuildDir=`mktemp -d --suffix ".glibc"`
 
 echo -e "+++ build path: ${BuildDir}\n"
 
-tar -xf ${LFS_Sources_Root}/glibc-*.tar.xz -C ${BuildDir} --strip-components 1 && \
+tar -xf ${LFSRoot}/sources/glibc-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64                        && \
 ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64/ld-lsb-x86-64.so.3     && \
-patch -Np1 -i ${LFS_Sources_Root}/glibc-2.32-fhs-1.patch              && \
+patch -Np1 -i ${LFSRoot}/sources/glibc-2.32-fhs-1.patch              && \
 mkdir -v build && \
 cd       build && \
 ../configure                             \
@@ -38,7 +37,6 @@ echo 'int main(){}' > dummy.c \
 
 $LFS/tools/libexec/gcc/$LFS_TGT/10.2.0/install-tools/mkheaders
 
-unset LFS_Sources_Root
 unset BuildDir
 
 echo -e "+++ done glibc.sh +++\n\n"

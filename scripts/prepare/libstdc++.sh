@@ -5,12 +5,11 @@ set -e
 
 echo -e "\n\n+++ start libstdc++.sh +++\n\n"
 
-LFS_Sources_Root=${LFSRoot}/sources
 BuildDir=`mktemp -d --suffix ".libstdc++"`
 
 echo -e "+++ build path: ${BuildDir}\n"
 
-tar -xf ${LFS_Sources_Root}/gcc-*.tar.xz -C ${BuildDir} --strip-components 1 && \
+tar -xf ${LFSRoot}/sources/gcc-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 mkdir -v build && \
@@ -28,7 +27,6 @@ make DESTDIR=$LFS install             && \
 popd                                  && \
 rm -rf ${BuildDir}
 
-unset LFS_Sources_Root
 unset BuildDir
 
 echo -e "+++ done libstdc++.sh +++\n\n"

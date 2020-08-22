@@ -3,12 +3,11 @@ set -e
 
 echo -e "\n\n+++ start m4.sh +++\n\n"
 
-LFS_Sources_Root=${LFSRoot}/sources
 BuildDir=`mktemp -d --suffix ".m4"`
 
 echo -e "+++ build path: ${BuildDir}\n"
 
-tar -xf ${LFS_Sources_Root}/m4-*.tar.xz -C ${BuildDir} --strip-components 1 && \
+tar -xf ${LFSRoot}/sources/m4-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 sed -i 's/IO_ftrylockfile/IO_EOF_SEEN/' lib/*.c        && \
@@ -21,7 +20,6 @@ make DESTDIR=$LFS install            && \
 popd           && \
 rm -rf ${BuildDir}
 
-unset LFS_Sources_Root
 unset BuildDir
 
 echo -e "+++ done m4.sh +++\n\n"

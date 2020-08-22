@@ -2,17 +2,13 @@
 set -e
 echo -e "--- start run-build-in-chroot-again in chroot ---\n\n"
 
-LFS_Script_Build=${LFSRoot}/scripts/build
-
-${LFS_Script_Build}/man-pages.sh
-${LFS_Script_Build}/tcl.sh
-${LFS_Script_Build}/expect.sh
-${LFS_Script_Build}/dejagun.sh
-${LFS_Script_Build}/iana-etc.sh
-${LFS_Script_Build}/glibc.sh
-# ${LFS_Script_Build}/glibc-config.sh
-
-unset LFS_Script_Build
+${LFSRoot}/scripts/build/man-pages.sh
+${LFSRoot}/scripts/build/tcl.sh
+${LFSRoot}/scripts/build/expect.sh
+${LFSRoot}/scripts/build/dejagun.sh
+${LFSRoot}/scripts/build/iana-etc.sh
+${LFSRoot}/scripts/build/glibc.sh
+# ${LFSRoot}/scripts/build/glibc-config.sh
 
 echo -e "--- done run-build-in-chroot-again in chroot ---\n\n"
 

@@ -23,12 +23,11 @@ rpc: files
 # End /etc/nsswitch.conf
 EOF
 
-LFS_Sources_Root=${LFSRoot}/sources
 BuildDir=`mktemp -d --suffix ".tzdata"`
 
 echo -e "+++ build path: ${BuildDir}\n"
 
-tar -xf ${LFS_Sources_Root}/tzdata*.tar.gz -C ${BuildDir} --strip-components 1 && \
+tar -xf ${LFSRoot}/sources/tzdata*.tar.gz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 ZONEINFO=/usr/share/zoneinfo        && \
@@ -47,7 +46,6 @@ unset ZONEINFO && \
 popd                                && \
 rm -rf ${BuildDir}
 
-unset LFS_Sources_Root
 unset BuildDir
 
 # cat > /etc/ld.so.conf << "EOF"

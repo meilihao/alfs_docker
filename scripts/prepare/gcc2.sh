@@ -3,15 +3,14 @@ set -e
 
 echo -e "\n\n+++ start gcc2.sh +++\n\n"
 
-LFS_Sources_Root=${LFSRoot}/sources
 BuildDir=`mktemp -d --suffix ".gcc2"`
 
 echo -e "+++ build path: ${BuildDir}\n"
 
-tar -xf ${LFS_Sources_Root}/gcc-*.tar.xz -C ${BuildDir} --strip-components 1 && \
-mkdir -pv ${BuildDir}/mpfr &&  tar -xf ${LFS_Sources_Root}/mpfr-*.tar.xz -C ${BuildDir}/mpfr --strip-components 1 && \
-mkdir -pv ${BuildDir}/gmp &&  tar -xf ${LFS_Sources_Root}/gmp-*.tar.xz -C ${BuildDir}/gmp --strip-components 1 && \
-mkdir -pv ${BuildDir}/mpc &&  tar -xf ${LFS_Sources_Root}/mpc-*.tar.gz -C ${BuildDir}/mpc --strip-components 1 && \
+tar -xf ${LFSRoot}/sources/gcc-*.tar.xz -C ${BuildDir} --strip-components 1 && \
+mkdir -pv ${BuildDir}/mpfr &&  tar -xf ${LFSRoot}/sources/mpfr-*.tar.xz -C ${BuildDir}/mpfr --strip-components 1 && \
+mkdir -pv ${BuildDir}/gmp &&  tar -xf ${LFSRoot}/sources/gmp-*.tar.xz -C ${BuildDir}/gmp --strip-components 1 && \
+mkdir -pv ${BuildDir}/mpc &&  tar -xf ${LFSRoot}/sources/mpc-*.tar.gz -C ${BuildDir}/mpc --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 sed -e '/m64=/s/lib64/lib/' \
@@ -43,7 +42,6 @@ ln -sv gcc $LFS/usr/bin/cc && \
 popd           && \
 rm -rf ${BuildDir}
 
-unset LFS_Sources_Root
 unset BuildDir
 
 echo -e "+++ done gcc2.sh +++\n\n"

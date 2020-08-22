@@ -3,12 +3,11 @@ set -e
 
 echo -e "\n\n+++ start findutils.sh +++\n\n"
 
-LFS_Sources_Root=${LFSRoot}/sources
 BuildDir=`mktemp -d --suffix ".findutils"`
 
 echo -e "+++ build path: ${BuildDir}\n"
 
-tar -xf ${LFS_Sources_Root}/findutils-*.tar.xz -C ${BuildDir} --strip-components 1 && \
+tar -xf ${LFSRoot}/sources/findutils-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 ./configure --prefix=/usr   \
@@ -21,7 +20,6 @@ sed -i 's|find:=${BINDIR}|find:=/bin|' $LFS/usr/bin/updatedb && \
 popd           && \
 rm -rf ${BuildDir}
 
-unset LFS_Sources_Root
 unset BuildDir
 
 echo -e "+++ done findutils.sh +++\n\n"

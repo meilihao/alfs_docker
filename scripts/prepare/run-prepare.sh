@@ -6,31 +6,27 @@ set -x
 
 echo "--- start run-prepare.sh ---"
 
-LFS_Script_Prepare=${LFSRoot}/scripts/prepare
-
-${LFS_Script_Prepare}/binutils.sh
-${LFS_Script_Prepare}/gcc.sh
-${LFS_Script_Prepare}/linux-api-header.sh
-${LFS_Script_Prepare}/glibc.sh
-${LFS_Script_Prepare}/libstdc++.sh
-${LFS_Script_Prepare}/m4.sh
-${LFS_Script_Prepare}/ncurses.sh
-${LFS_Script_Prepare}/bash.sh
-${LFS_Script_Prepare}/coreutils.sh
-${LFS_Script_Prepare}/diffutils.sh
-${LFS_Script_Prepare}/file.sh
-${LFS_Script_Prepare}/findutils.sh
-${LFS_Script_Prepare}/gawk.sh
-${LFS_Script_Prepare}/grep.sh
-${LFS_Script_Prepare}/gzip.sh
-${LFS_Script_Prepare}/make.sh
-${LFS_Script_Prepare}/patch.sh
-${LFS_Script_Prepare}/sed.sh
-${LFS_Script_Prepare}/tar.sh
-${LFS_Script_Prepare}/xz.sh
-${LFS_Script_Prepare}/binutils2.sh
-${LFS_Script_Prepare}/gcc2.sh
-
-unset LFS_Script_Prepare
+${LFSRoot}/scripts/prepare/binutils.sh
+${LFSRoot}/scripts/prepare/gcc.sh
+${LFSRoot}/scripts/prepare/linux-api-header.sh
+${LFSRoot}/scripts/prepare/glibc.sh
+${LFSRoot}/scripts/prepare/libstdc++.sh
+${LFSRoot}/scripts/prepare/m4.sh
+${LFSRoot}/scripts/prepare/ncurses.sh
+${LFSRoot}/scripts/prepare/bash.sh
+${LFSRoot}/scripts/prepare/coreutils.sh
+${LFSRoot}/scripts/prepare/diffutils.sh
+${LFSRoot}/scripts/prepare/file.sh
+${LFSRoot}/scripts/prepare/findutils.sh
+${LFSRoot}/scripts/prepare/gawk.sh
+${LFSRoot}/scripts/prepare/grep.sh
+${LFSRoot}/scripts/prepare/gzip.sh
+${LFSRoot}/scripts/prepare/make.sh
+${LFSRoot}/scripts/prepare/patch.sh
+${LFSRoot}/scripts/prepare/sed.sh
+${LFSRoot}/scripts/prepare/tar.sh
+${LFSRoot}/scripts/prepare/xz.sh
+${LFSRoot}/scripts/prepare/binutils2.sh
+${LFSRoot}/scripts/prepare/gcc2.sh
 
 echo -e "--- done run-prepare.sh ---\n\n"
