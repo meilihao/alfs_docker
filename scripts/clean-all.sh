@@ -13,17 +13,17 @@ if [ -f ${LFS_Build_Done} ]; then
     rm ${LFS_Build_Done}
 fi
 
+mountpoint -q $LFS/dev/pts && umount $LFS/dev/pts
+mountpoint -q $LFS/dev && umount $LFS/dev
+mountpoint -q $LFS/sys && umount $LFS/sys
+mountpoint -q $LFS/proc && umount $LFS/proc
+mountpoint -q $LFS/run && umount $LFS/run
+
 echo -e "--- clean ${LFS}\n"
 pushd ${LFS}
 rm -rf `ls ${LFS} |egrep -v lfs_root`
 popd
 
 rm -rf /tmp/*
-
-mountpoint -q $LFS/dev/pts && umount $LFS/dev/pts
-mountpoint -q $LFS/dev && umount $LFS/dev
-mountpoint -q $LFS/sys && umount $LFS/sys
-mountpoint -q $LFS/proc && umount $LFS/proc
-mountpoint -q $LFS/run && umount $LFS/run
 
 echo -e "--- done clean-all.sh ---\n\n"
