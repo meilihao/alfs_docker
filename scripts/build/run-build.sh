@@ -22,8 +22,6 @@ umount $LFS/{sys,proc,run}
 # strip --strip-unneeded $LFS/usr/{,s}bin/*
 # strip --strip-unneeded $LFS/tools/bin/*
 
-# rm -rf $LFS/usr/share/{info,man,doc}
-
 pushd $LFS && \
 tar --exclude=lfs_root -czpf ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd-`date +%s`.tar.gz . && \
 popd
