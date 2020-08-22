@@ -25,8 +25,20 @@ umount $LFS/{sys,proc,run}
 
 # rm -rf $LFS/usr/share/{info,man,doc}
 
-cd $LFS &&
-tar --exclude=lfs_root -czpf ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd-rc1.tar.gz .
+pushd $LFS && \
+tar --exclude=lfs_root -czpf ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd-rc1.tar.gz . && \
+popd
+
+${LFS_Script_Build}/prepare-vkfs-again.sh
+
+chroot "$LFS" /usr/bin/env -i   \
+    LFSRoot=/lfs_root           \
+    HOME=/root                  \
+    TERM="$TERM"                \
+    PS1='(lfs chroot) \u:\w\$ ' \
+    PATH=/bin:/usr/bin:/sbin:/usr/sbin \
+    /bin/bash --login +h \
+    -c "/lfs_root/scripts/build/run-build-in-chroot-again.sh"
 
 unset LFS_Script_Build
 
