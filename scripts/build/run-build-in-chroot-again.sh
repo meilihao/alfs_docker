@@ -5,6 +5,7 @@ echo -e "--- start run-build-in-chroot-again in chroot ---\n\n"
 LFS_Script_Build=${LFSRoot}/scripts/build
 
 ${LFS_Script_Build}/man-pages.sh
+${LFS_Script_Build}/tcl.sh
 
 unset LFS_Script_Build
 
