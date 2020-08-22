@@ -26,7 +26,7 @@ umount $LFS/{sys,proc,run}
 # rm -rf $LFS/usr/share/{info,man,doc}
 
 pushd $LFS && \
-tar --exclude=lfs_root -czpf ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd-rc1.tar.gz . && \
+tar --exclude=lfs_root -czpf ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd-`date +%s`.tar.gz . && \
 popd
 
 ${LFS_Script_Build}/prepare-vkfs-again.sh
