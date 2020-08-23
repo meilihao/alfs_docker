@@ -40,4 +40,11 @@ chroot "$LFS" /usr/bin/env -i   \
     /bin/bash --login +h \
     -c "${LFSRoot}/scripts/build/run-build-in-chroot-again.sh"
 
+chroot "$LFS" /usr/bin/env -i          \
+    HOME=/root TERM="$TERM"            \
+    PS1='(lfs chroot) \u:\w\$ '        \
+    PATH=/bin:/usr/bin:/sbin:/usr/sbin \
+    /bin/bash --login \
+    - c "${LFSRoot}/scripts/build/cleanup3.sh"
+
 echo -e "--- done run-build.sh ---\n\n"
