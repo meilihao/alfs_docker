@@ -7,6 +7,7 @@ ${LFSRoot}/scripts/build/prepare-vkfs.sh
 chroot "$LFS" /usr/bin/env -i   \
     LFSRoot=/lfs_root           \
     MAKEFLAGS="$MAKEFLAGS"      \
+    LFS_DOCS="$LFS_DOCS"          \
     HOME=/root                  \
     TERM="$TERM"                \
     PS1='(lfs chroot) \u:\w\$ ' \
@@ -33,6 +34,7 @@ ${LFSRoot}/scripts/build/prepare-vkfs-again.sh
 chroot "$LFS" /usr/bin/env -i   \
     LFSRoot=/lfs_root           \
     MAKEFLAGS="$MAKEFLAGS"      \
+    LFS_DOCS="$LFS_DOCS"          \
     HOME=/root                  \
     TERM="$TERM"                \
     PS1='(lfs chroot) \u:\w\$ ' \
@@ -42,6 +44,7 @@ chroot "$LFS" /usr/bin/env -i   \
 
 chroot "$LFS" /usr/bin/env -i          \
     HOME=/root TERM="$TERM"            \
+    LFS_DOCS="$LFS_DOCS"                 \
     PS1='(lfs chroot) \u:\w\$ '        \
     PATH=/bin:/usr/bin:/sbin:/usr/sbin \
     /bin/bash --login \
@@ -50,6 +53,7 @@ chroot "$LFS" /usr/bin/env -i          \
 chroot "$LFS" /usr/bin/env -i          \
     LFSRoot=/lfs_root                  \
     MAKEFLAGS="$MAKEFLAGS"             \
+    LFS_DOCS="$LFS_DOCS"                 \
     HOME=/root TERM="$TERM"            \
     PS1='(lfs chroot) \u:\w\$ '        \
     PATH=/bin:/usr/bin:/sbin:/usr/sbin \
