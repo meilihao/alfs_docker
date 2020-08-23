@@ -12,7 +12,7 @@ chroot "$LFS" /usr/bin/env -i   \
     PS1='(lfs chroot) \u:\w\$ ' \
     PATH=/bin:/usr/bin:/sbin:/usr/sbin \
     /bin/bash --login +h \
-    -c "/lfs_root/scripts/build/run-build-in-chroot.sh"
+    -c "${LFSRoot}/scripts/build/run-build-in-chroot.sh"
 
 umount $LFS/dev{/pts,}
 umount $LFS/{sys,proc,run}
@@ -38,6 +38,6 @@ chroot "$LFS" /usr/bin/env -i   \
     PS1='(lfs chroot) \u:\w\$ ' \
     PATH=/bin:/usr/bin:/sbin:/usr/sbin \
     /bin/bash --login +h \
-    -c "/lfs_root/scripts/build/run-build-in-chroot-again.sh"
+    -c "${LFSRoot}/scripts/build/run-build-in-chroot-again.sh"
 
 echo -e "--- done run-build.sh ---\n\n"
