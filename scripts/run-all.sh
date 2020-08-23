@@ -22,7 +22,8 @@ echo -e "--- print env done---\n\n"
 
 echo -e "--- start build lfs ---\n\n"
 
-mkdir -pv ${LFS}/{bin,etc,lib,lib64,sbin,usr,var,tools}
+# logs for debug log when building
+mkdir -pv ${LFS}/{bin,etc,lib,lib64,sbin,usr,var,tools,logs}
 
 find ${LFSRoot}/scripts -name "*.sh" -exec chmod +x {} \;
 
