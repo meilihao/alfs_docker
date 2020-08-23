@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
+# for 2.5. - 2.7.
+# not use for now
+
 echo -e "--- start qemu.sh ---\n\n"
 
 # qemu-img create -f <fmt> <image filename> <size of disk>
@@ -10,6 +13,7 @@ sudo modprobe -v nbd
 
 sudo qemu-nbd -c /dev/nbd0 lfs.img
 
+sudo gdisk /dev/nbd0
 
 # see result
 sudo  gdisk -l /dev/nbd0
