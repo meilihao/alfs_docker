@@ -32,7 +32,7 @@ rm -rf ${BuildDir}
 # To perform a sanity check, run the following commands
 echo 'int main(){}' > dummy.c \
   && $LFS_TGT-gcc dummy.c \
-  && readelf -l a.out | grep '/ld-linux' \
+  && readelf -l a.out | grep '/ld-linux' | grep '/lib64/ld-linux-x86-64.so.2' \
   && rm -v dummy.c a.out
 
 $LFS/tools/libexec/gcc/$LFS_TGT/10.2.0/install-tools/mkheaders
