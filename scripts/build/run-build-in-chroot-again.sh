@@ -15,6 +15,10 @@ ${LFSRoot}/scripts/build/xz.sh
 ${LFSRoot}/scripts/build/zstd.sh
 ${LFSRoot}/scripts/build/file.sh
 ${LFSRoot}/scripts/build/readline.sh
+${LFSRoot}/scripts/build/m4.sh
+${LFSRoot}/scripts/build/bc.sh
+${LFSRoot}/scripts/build/flex.sh
+${LFSRoot}/scripts/build/binutils.sh
 
 echo -e "--- done run-build-in-chroot-again in chroot ---\n\n"
 
