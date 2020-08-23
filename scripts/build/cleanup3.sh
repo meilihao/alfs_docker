@@ -21,4 +21,6 @@ rm -rf /tools
 
 userdel -r tester
 
+logout
+
 echo -e "+++ done cleanup3.sh +++\n\n"
