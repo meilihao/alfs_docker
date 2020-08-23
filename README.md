@@ -62,6 +62,11 @@ root@8916814e8d0d:/# $LFSRoot/scripts/run-all.sh
 
 **note**, that extended privileges are required by docker container in order to execute some commands (e.g. mount, `mount -v --bind /dev $LFS/dev`).
 
+## update lfs
+1. compare version/xxx.txt latest.txt by `Beyond Compare`
+1. update script
+1. build lfs again for test
+
 ## useful tools
 1. `tar -tvf gcc-*.tar.xz` # list files in tar.xz
 1. `watch -n 10 "ps -ef |grep bash"` # watch processing when lost direct log with ssh broken
