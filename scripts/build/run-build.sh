@@ -47,4 +47,13 @@ chroot "$LFS" /usr/bin/env -i          \
     /bin/bash --login \
     - c "${LFSRoot}/scripts/build/cleanup3.sh"
 
+chroot "$LFS" /usr/bin/env -i          \
+    LFSRoot=/lfs_root                  \
+    MAKEFLAGS="$MAKEFLAGS"             \
+    HOME=/root TERM="$TERM"            \
+    PS1='(lfs chroot) \u:\w\$ '        \
+    PATH=/bin:/usr/bin:/sbin:/usr/sbin \
+    /bin/bash --login \
+    - c "${LFSRoot}/scripts/build/run-build-in-chroot-system-config.sh"
+
 echo -e "--- done run-build.sh ---\n\n"
