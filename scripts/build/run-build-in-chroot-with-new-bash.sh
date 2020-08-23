@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-echo -e "--- start run-build-in-chroot-with-new-bash in chroot ---\n\n"
+echo -e "--- start run-build-in-chroot-with-new-bash.sh in chroot ---\n\n"
 
 ${LFSRoot}/scripts/build/libtool.sh
 ${LFSRoot}/scripts/build/gdbm.sh
@@ -45,4 +45,4 @@ ${LFSRoot}/scripts/build/e2fsprogs.sh
 ${LFSRoot}/scripts/build/stripping-again.sh
 ${LFSRoot}/scripts/build/cleanup2.sh
 
-echo -e "--- done run-build-in-chroot-with-new-bash in chroot ---\n\n"
+echo -e "--- done run-build-in-chroot-with-new-bash.sh in chroot ---\n\n"
