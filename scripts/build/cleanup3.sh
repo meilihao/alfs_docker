@@ -21,6 +21,7 @@ rm -rf /tools
 
 userdel -r tester
 
+# split with Chapter 9. System Configuration
 logout
 
 echo -e "+++ done cleanup3.sh +++\n\n"
