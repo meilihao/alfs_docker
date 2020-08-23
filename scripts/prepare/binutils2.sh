@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+# 6.17. Binutils-2.35 - Pass 2
+
 echo -e "\n\n+++ start binutils2.sh +++\n\n"
 
 BuildDir=`mktemp -d --suffix ".binutils2"`

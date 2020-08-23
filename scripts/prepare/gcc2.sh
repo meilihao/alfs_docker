@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+# 6.18. GCC-10.2.0 - Pass 2 
+
 echo -e "\n\n+++ start gcc2.sh +++\n\n"
 
 BuildDir=`mktemp -d --suffix ".gcc2"`
