@@ -53,6 +53,7 @@ $ cd ..
 
 ```bash
 $ sudo docker build . -t "lfs_builder"
+$ cp config/.config sources
 $ sudo docker run --privileged -d -it -v ${PWD}/scripts:/mnt/lfs/lfs_root/scripts -v ${PWD}/iso:/mnt/lfs/lfs_root/iso -v ${PWD}/sources:/mnt/lfs/lfs_root/sources --entrypoint /bin/bash lfs_builder
 $ sudo docker exec -it <container_id> bash
 root@8916814e8d0d:/# vim ~/.bashrc # for MAKEFLAGS
