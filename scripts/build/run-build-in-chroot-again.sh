@@ -23,6 +23,8 @@ ${LFSRoot}/scripts/build/gmp.sh
 ${LFSRoot}/scripts/build/mpfr.sh
 ${LFSRoot}/scripts/build/mpc.sh
 ${LFSRoot}/scripts/build/attr.sh
+${LFSRoot}/scripts/build/acl.sh
+${LFSRoot}/scripts/build/libcap.sh
 
 echo -e "--- done run-build-in-chroot-again in chroot ---\n\n"
 
