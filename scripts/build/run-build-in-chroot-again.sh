@@ -19,6 +19,10 @@ ${LFSRoot}/scripts/build/m4.sh
 ${LFSRoot}/scripts/build/bc.sh
 ${LFSRoot}/scripts/build/flex.sh
 ${LFSRoot}/scripts/build/binutils.sh
+${LFSRoot}/scripts/build/gmp.sh
+${LFSRoot}/scripts/build/mpfr.sh
+${LFSRoot}/scripts/build/mpc.sh
+${LFSRoot}/scripts/build/attr.sh
 
 echo -e "--- done run-build-in-chroot-again in chroot ---\n\n"
 
