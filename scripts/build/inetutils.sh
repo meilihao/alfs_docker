@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
+# cd tests && ./ping-localhost.sh, got follow log:
+# FAIL: ping-localhost.sh :../ping/ping6: sending packet: Cannot assign requested address. because the host system does not have ipv6 capability.
+
 echo -e "\n\n+++ start inetutils.sh +++\n\n"
 
 BuildDir=`mktemp -d --suffix ".inetutils"`
@@ -21,7 +24,7 @@ cd ${BuildDir} && \
             --disable-servers         && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make check
+    make check | tee /logs/test-inetutils-`date +%s`.log || true
 fi                                    && \
 make install                          && \
 mv -v /usr/bin/{hostname,ping,ping6,traceroute} /bin && \
