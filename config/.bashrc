@@ -18,8 +18,10 @@ export LFS LC_ALL LFS_TGT PATH
 # only use ``.bashrc`
 export MAKEFLAGS='-j2'
 export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-# 1 install doc; 0 is not
+# 1 is install doc; 0 is not
 export LFS_DOCS=0
+# 1 is run tests; 0 is not. running tests takes much more time
+export LFS_TEST=1
 
 alias ll='ls -alF --color=auto'
 alias la='ls -A'
