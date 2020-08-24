@@ -13,7 +13,9 @@ cd ${BuildDir} && \
 sed -i "s/''/etags/" t/tags-lisp-space.sh && \
 ./configure --prefix=/usr --docdir=/usr/share/doc/automake-1.16.2 && \
 make                                  && \
-make -j4 check                        && \
+if [ $LFS_TEST -eq 1 ]; then
+    make -j4 check
+fi                                    && \
 make install                          && \
 popd                                  && \
 rm -rf ${BuildDir}
