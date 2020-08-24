@@ -73,4 +73,4 @@ root@8916814e8d0d:/# $LFSRoot/scripts/run-all.sh
 1. `watch -n 10 "ps -ef |grep bash"` # watch processing when lost direct log with ssh broken
 
 ## log
-offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0-rc1/s
+offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0-rc1/
