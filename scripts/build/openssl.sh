@@ -17,7 +17,7 @@ cd ${BuildDir} && \
          zlib-dynamic                 && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make test | tee /logs/test-openssl-`date +%s`.log || true
+    make test 2>&1 | tee /logs/test-openssl-`date +%s`.log || true
 fi                                    && \
 sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile   && \
 make MANSUFFIX=ssl install            && \

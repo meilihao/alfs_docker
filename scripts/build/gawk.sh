@@ -13,10 +13,14 @@ cd ${BuildDir} && \
 sed -i 's/extras//' Makefile.in       && \
 ./configure --prefix=/usr             && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check 2>&1| tee /logs/test-gawk-`date +%s`.log
+fi                                    && \
 make install                          && \
-mkdir -v /usr/share/doc/gawk-5.1.0    && \
-cp    -v doc/{awkforai.txt,*.{eps,pdf,jpg}} /usr/share/doc/gawk-5.1.0 && \
+if [ $LFS_DOCS -eq 1 ]; then
+    mkdir -v /usr/share/doc/gawk-5.1.0 && \
+    cp -v doc/{awkforai.txt,*.{eps,pdf,jpg}} /usr/share/doc/gawk-5.1.0
+fi                                    && \
 popd                                  && \
 rm -rf ${BuildDir}
 

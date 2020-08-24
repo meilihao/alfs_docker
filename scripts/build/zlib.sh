@@ -13,7 +13,7 @@ cd ${BuildDir} && \
 ./configure --prefix=/usr && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make check
+    make check 2>&1| tee /logs/test-zlib-`date +%s`.log
 fi                                    && \
 make install                          && \
 mv -v /usr/lib/libz.so.* /lib         && \

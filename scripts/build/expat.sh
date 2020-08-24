@@ -15,7 +15,7 @@ cd ${BuildDir} && \
             --docdir=/usr/share/doc/expat-2.2.9 && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make check
+    make check 2>&1| tee /logs/test-expat-`date +%s`.log
 fi                                    && \
 make install                          && \
 if [ $LFS_DOCS -eq 1 ]; then

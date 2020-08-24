@@ -23,7 +23,9 @@ cd       build && \
              --enable-64-bit-bfd \
              --with-system-zlib       && \
 make tooldir=/usr                     && \
-make -k check                         && \
+if [ $LFS_TEST -eq 1 ]; then
+    make -k check 2>&1 | tee /logs/test-binutils-`date +%s`.log
+fi                                    && \
 make tooldir=/usr install             && \
 popd                                  && \
 rm -rf ${BuildDir}

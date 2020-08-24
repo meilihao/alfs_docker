@@ -13,8 +13,8 @@ cd ${BuildDir} && \
 ./configure --prefix=/usr             && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make check
-fi
+    make check 2>&1| tee /logs/test-file-`date +%s`.log
+fi                                    && \
 make install                          && \
 popd                                  && \
 rm -rf ${BuildDir}

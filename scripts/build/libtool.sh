@@ -13,7 +13,7 @@ cd ${BuildDir} && \
 ./configure --prefix=/usr             && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make check | tee /logs/test-libtool-`date +%s`.log || true
+    make check 2>&1 | tee /logs/test-libtool-`date +%s`.log || true
 fi                                    && \
 make install                          && \
 popd                                  && \

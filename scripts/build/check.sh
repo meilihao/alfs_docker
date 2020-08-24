@@ -12,7 +12,9 @@ pushd ${PWD}   && \
 cd ${BuildDir} && \
 ./configure --prefix=/usr --disable-static && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check 2>&1 | tee /logs/test-check-`date +%s`.log
+fi                                    && \
 make docdir=/usr/share/doc/check-0.15.2 install && \
 popd                                  && \
 rm -rf ${BuildDir}

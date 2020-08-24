@@ -20,7 +20,9 @@ sed -i '/find/s@/usr@@' init/systemd/man-db.service.in && \
             --with-vgrind=/usr/bin/vgrind        \
             --with-grap=/usr/bin/grap && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check 2>&1| tee /logs/test-man-db-`date +%s`.log
+fi                                    && \
 make install                          && \
 popd                                  && \
 rm -rf ${BuildDir}

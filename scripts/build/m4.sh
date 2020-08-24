@@ -15,7 +15,7 @@ echo "#define _IO_IN_BACKUP 0x100" >> lib/stdio-impl.h   && \
 ./configure --prefix=/usr             && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make check
+    make check 2>&1| tee /logs/test-m4-`date +%s`.log
 fi                                    && \
 make install                          && \
 popd                                  && \

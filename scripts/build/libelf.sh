@@ -13,7 +13,7 @@ cd ${BuildDir} && \
 ./configure --prefix=/usr --disable-debuginfod --libdir=/lib && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make check
+    make check 2>&1| tee /logs/test-libelf-`date +%s`.log
 fi                                    && \
 make -C libelf install                && \
 install -vm644 config/libelf.pc /usr/lib/pkgconfig && \

@@ -31,7 +31,7 @@ sed -e "s|$SRCDIR/unix/pkgs/itcl4.2.0|/usr/lib/itcl4.2.0|" \
     -i pkgs/itcl4.2.0/itclConfig.sh   && \
 unset SRCDIR                          && \
 if [ $LFS_TEST -eq 1 ]; then
-    make test
+    make test 2>&1| tee /logs/test-tcl-`date +%s`.log
 fi                                    && \
 make install                          && \
 chmod -v u+w /usr/lib/libtcl8.6.so    && \

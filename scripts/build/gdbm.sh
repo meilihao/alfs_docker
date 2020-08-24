@@ -16,7 +16,7 @@ sed -r -i '/^char.*parseopt_program_(doc|args)/d' src/parseopt.c             && 
             --enable-libgdbm-compat   && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make check
+    make check 2>&1| tee /logs/test-gdbm-`date +%s`.log
 fi                                    && \
 make install                          && \
 popd                                  && \

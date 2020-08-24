@@ -17,7 +17,7 @@ make install                          && \
 install -v -dm755  /usr/share/doc/dejagnu-1.6.2                 && \
 install -v -m644   doc/dejagnu.{html,txt} /usr/share/doc/dejagnu-1.6.2 && \
 if [ $LFS_TEST -eq 1 ]; then
-    make check
+    make check 2>&1 | tee /logs/test-dejagnu-`date +%s`.log
 fi                                    && \
 popd                                  && \
 rm -rf ${BuildDir}

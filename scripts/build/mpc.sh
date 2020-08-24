@@ -16,7 +16,7 @@ cd ${BuildDir} && \
 make                                  && \
 make html                             && \
 if [ $LFS_TEST -eq 1 ]; then
-    make check
+    make check 2>&1| tee /logs/test-mpc-`date +%s`.log
 fi                                    && \
 make install                          && \
 make install-html                     && \

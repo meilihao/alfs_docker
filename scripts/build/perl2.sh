@@ -30,7 +30,7 @@ sh Configure -des                                         \
              -Dusethreads             && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make test | tee /logs/test-perl2-`date +%s`.log || true
+    make test 2>&1 | tee /logs/test-perl2-`date +%s`.log || true
 fi                                    && \
 make install                          && \
 unset BUILD_ZLIB BUILD_BZIP2          && \

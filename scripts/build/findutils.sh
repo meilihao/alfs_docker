@@ -12,8 +12,10 @@ pushd ${PWD}   && \
 cd ${BuildDir} && \
 ./configure --prefix=/usr --localstatedir=/var/lib/locate && \
 make                                  && \
-chown -Rv tester .                    && \
-su tester -c "PATH=$PATH make check"  && \
+if [ $LFS_TEST -eq 1 ]; then
+    chown -Rv tester .                    && \
+    su tester -c "PATH=$PATH make check 2>&1| tee /logs/test-findutils-`date +%s`.log"
+fi                                    && \
 make install                          && \
 mv -v /usr/bin/find /bin              && \
 sed -i 's|find:=${BINDIR}|find:=/bin|' /usr/bin/updatedb && \

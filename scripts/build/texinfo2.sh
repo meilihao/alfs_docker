@@ -12,7 +12,9 @@ pushd ${PWD}   && \
 cd ${BuildDir} && \
 ./configure --prefix=/usr --disable-static && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check 2>&1| tee /logs/test-texinfo2-`date +%s`.log
+fi                                    && \
 make install                          && \
 make TEXMF=/usr/share/texmf install-tex && \
 pushd /usr/share/info                 && \

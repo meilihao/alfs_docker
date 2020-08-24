@@ -15,7 +15,7 @@ make                                  && \
 make html                             && \
 if [ $LFS_TEST -eq 1 ]; then
     chown -Rv tester .                && \
-    su tester -c "PATH=$PATH make check"
+    su tester -c "PATH=$PATH make check 2>&1| tee /logs/test-sed-`date +%s`.log"
 fi                                    && \
 make install                          && \
 if [ $LFS_DOCS -eq 1 ]; then

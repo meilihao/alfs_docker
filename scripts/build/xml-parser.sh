@@ -13,7 +13,7 @@ cd ${BuildDir} && \
 perl Makefile.PL                      && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make test
+    make test 2>&1| tee /logs/test-xml-parser-`date +%s`.log
 fi                                    && \
 make install                          && \
 popd                                  && \

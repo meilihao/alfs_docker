@@ -25,8 +25,10 @@ mkdir -pv /var/lib/hwclock && \
             --disable-static     \
             --without-python          && \
 make                                  && \
-chown -Rv tester .                    && \
-su tester -c "make -k check"          && \
+if [ $LFS_TEST -eq 1 ]; then
+    chown -Rv tester .                    && \
+    su tester -c "make -k check 2>&1| tee /logs/test-util-linux2-`date +%s`.log"
+fi                                    && \
 make install                          && \
 popd                                  && \
 rm -rf ${BuildDir}

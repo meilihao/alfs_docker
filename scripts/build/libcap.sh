@@ -13,7 +13,7 @@ cd ${BuildDir} && \
 sed -i '/install -m.*STACAPLIBNAME/d' libcap/Makefile                          && \
 make lib=lib                          && \
 if [ $LFS_TEST -eq 1 ]; then
-    make test
+    make test 2>&1| tee /logs/test-libcap-`date +%s`.log
 fi                                    && \
 make lib=lib PKGCONFIGDIR=/usr/lib/pkgconfig install                           && \
 chmod -v 755 /lib/libcap.so.2.42      && \

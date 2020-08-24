@@ -13,7 +13,7 @@ cd ${BuildDir} && \
 PREFIX=/usr CC=gcc CFLAGS="-std=c99" ./configure.sh -G -O3                 && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make test
+    make test 2>&1 | tee /logs/test-bc-`date +%s`.log
 fi                                    && \
 make install                          && \
 popd                                  && \

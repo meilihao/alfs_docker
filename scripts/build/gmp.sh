@@ -17,7 +17,7 @@ cd ${BuildDir} && \
 make                                  && \
 make html                             && \
 if [ $LFS_TEST -eq 1 ]; then
-    make check 2>&1 | tee gmp-check-log   && \
+    make check 2>&1 | tee gmp-check-log && \
     awk '/# PASS:/{total+=$3} ; END{print total}' gmp-check-log  | grep "197"
 fi                                    && \
 make install                          && \

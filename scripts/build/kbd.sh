@@ -15,7 +15,9 @@ sed -i '/RESIZECONS_PROGS=/s/yes/no/' configure      && \
 sed -i 's/resizecons.8 //' docs/man/man8/Makefile.in && \
 ./configure --prefix=/usr --disable-vlock            && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check 2>&1| tee /logs/test-kbd-`date +%s`.log
+fi                                    && \
 make install                          && \
 rm -v /usr/lib/libtswrap.{a,la,so*}   && \
 mkdir -v            /usr/share/doc/kbd-2.3.0 && \

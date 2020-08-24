@@ -13,7 +13,7 @@ cd ${BuildDir} && \
 ./configure --prefix=/usr --docdir=/usr/share/doc/gperf-3.1                   && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make -j1 check
+    make -j1 check 2>&1| tee /logs/test-gperf-`date +%s`.log
 fi                                    && \
 make install                          && \
 popd                                  && \

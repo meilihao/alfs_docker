@@ -29,7 +29,9 @@ cp -f $PWD/elf/ld-linux-x86-64.so.2 /lib/elf_ld-linux-x86-64.so.2        && \
 ln -sfnv elf_ld-linux-x86-64.so.2 /lib/ld-linux-x86-64.so.2              && \
 # ln -sfnv $PWD/elf/ld-linux-x86-64.so.2 /lib && \
 mkdir -pv /usr/lib/locale             && \
-make check  2>&1 | tee glibc-check.log || true                           && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check 2>&1| tee /logs/test-glibc-`date +%s`.log || true
+fi                                    && \
 rm -rf /usr/lib/locale                && \
 touch /etc/ld.so.conf                 && \
 sed '/test-installation/s@$(PERL)@echo not running@' -i ../Makefile      && \

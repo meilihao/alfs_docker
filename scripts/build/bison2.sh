@@ -15,7 +15,7 @@ cd ${BuildDir} && \
 ./configure --prefix=/usr --docdir=/usr/share/doc/bison-3.7.1 && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make check
+    make check 2>&1 | tee /logs/test-bison2-`date +%s`.log
 fi                                    && \
 make install                          && \
 popd                                  && \

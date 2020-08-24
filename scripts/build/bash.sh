@@ -21,7 +21,7 @@ if [ $LFS_TEST -eq 1 ]; then
     getfacl -R -p $(tty) > ${BuildDir}/permissions.facl && \
     chmod a+rw $(tty)                            && \
     chown -Rv tester .                           && \
-    su tester << EOF
+    su tester << EOF | tee /logs/test-bash-`date +%s`.log
 PATH=$PATH make tests < $(tty)
 EOF
     setfacl --restore=${BuildDir}/permissions.facl

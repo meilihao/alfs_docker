@@ -17,11 +17,13 @@ FORCE_UNSAFE_CONFIGURE=1 ./configure \
             --prefix=/usr            \
             --enable-no-install-program=kill,uptime  && \
 make                                  && \
-make NON_ROOT_USERNAME=tester check-root && \
-echo "dummy:x:102:tester" >> /etc/group  && \
-chown -Rv tester .                    && \
-su tester -c "PATH=$PATH make RUN_EXPENSIVE_TESTS=yes check"     && \
-sed -i '/dummy/d' /etc/group          && \
+if [ $LFS_TEST -eq 1 ]; then
+    make NON_ROOT_USERNAME=tester check-root 2>&1 | tee /logs/test-coreutils-`date +%s`.log && \
+    echo "dummy:x:102:tester" >> /etc/group  && \
+    chown -Rv tester .                       && \
+    su tester -c "PATH=$PATH make RUN_EXPENSIVE_TESTS=yes check 2>&1 | tee -a /logs/test-coreutils-`date +%s`.log" && \
+    sed -i '/dummy/d' /etc/group
+fi                                    && \
 make install                          && \
 mv -v /usr/bin/{cat,chgrp,chmod,chown,cp,date,dd,df,echo} /bin   && \
 mv -v /usr/bin/{false,ln,ls,mkdir,mknod,mv,pwd,rm} /bin          && \

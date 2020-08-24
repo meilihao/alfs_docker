@@ -14,7 +14,7 @@ sed -i "s/''/etags/" t/tags-lisp-space.sh && \
 ./configure --prefix=/usr --docdir=/usr/share/doc/automake-1.16.2 && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make -j4 check
+    make -j4 check 2>&1 | tee /logs/test-automake-`date +%s`.log
 fi                                    && \
 make install                          && \
 popd                                  && \

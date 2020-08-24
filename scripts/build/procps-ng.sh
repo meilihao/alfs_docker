@@ -18,7 +18,9 @@ cd ${BuildDir} && \
             --disable-kill                           \
             --with-systemd            && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check 2>&1| tee /logs/test-procps-ng-`date +%s`.log
+fi                                    && \
 make install                          && \
 mv -v /usr/lib/libprocps.so.* /lib    && \
 ln -sfv ../../lib/$(readlink /usr/lib/libprocps.so) /usr/lib/libprocps.so && \

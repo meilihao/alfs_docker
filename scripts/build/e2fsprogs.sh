@@ -21,14 +21,18 @@ cd       build && \
              --disable-uuidd         \
              --disable-fsck           && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check 2>&1 | tee /logs/test-e2fsprogs-`date +%s`.log
+fi                                    && \
 make install                          && \
 chmod -v u+w /usr/lib/{libcom_err,libe2p,libext2fs,libss}.a && \
 gunzip -v /usr/share/info/libext2fs.info.gz                 && \
 install-info --dir-file=/usr/share/info/dir /usr/share/info/libext2fs.info && \
-makeinfo -o      doc/com_err.info ../lib/et/com_err.texinfo                && \
-install -v -m644 doc/com_err.info /usr/share/info                          && \
-install-info --dir-file=/usr/share/info/dir /usr/share/info/com_err.info   && \
+if [ $LFS_DOCS -eq 1 ]; then
+    makeinfo -o      doc/com_err.info ../lib/et/com_err.texinfo                && \
+    install -v -m644 doc/com_err.info /usr/share/info                          && \
+    install-info --dir-file=/usr/share/info/dir /usr/share/info/com_err.info
+fi                                    && \
 popd                                  && \
 rm -rf ${BuildDir}
 

@@ -15,7 +15,7 @@ cd ${BuildDir} && \
             --docdir=/usr/share/doc/xz-5.2.5 && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
-    make check
+    make check 2>&1| tee /logs/test-xz-`date +%s`.log
 fi                                    && \
 make install                          && \
 mv -v   /usr/bin/{lzma,unlzma,lzcat,xz,unxz,xzcat} /bin                    && \
