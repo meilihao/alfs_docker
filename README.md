@@ -74,3 +74,5 @@ root@8916814e8d0d:/# $LFSRoot/scripts/run-all.sh
 
 ## log
 offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0-rc1/
+
+> log order not match because may be MAKEFLAGS
