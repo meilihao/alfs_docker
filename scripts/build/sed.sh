@@ -10,7 +10,7 @@ echo -e "+++ build path: ${BuildDir}\n"
 tar -xf ${LFSRoot}/sources/sed-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-/configure --prefix=/usr --bindir=/bin && \
+./configure --prefix=/usr --bindir=/bin && \
 make                                  && \
 make html                             && \
 chown -Rv tester .                    && \
