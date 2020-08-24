@@ -16,11 +16,15 @@ cd ${BuildDir} && \
          shared                \
          zlib-dynamic                 && \
 make                                  && \
-make test                             && \
+if [ $LFS_TEST -eq 1 ]; then
+    make test | tee /logs/test-openssl-`date +%s`.log || true
+fi                                    && \
 sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile   && \
 make MANSUFFIX=ssl install            && \
-mv -v /usr/share/doc/openssl /usr/share/doc/openssl-1.1.1g && \
-cp -vfr doc/* /usr/share/doc/openssl-1.1.1g                && \
+if [ $LFS_TEST -eq 1 ]; then
+    mv -v /usr/share/doc/openssl /usr/share/doc/openssl-1.1.1g && \
+    cp -vfr doc/* /usr/share/doc/openssl-1.1.1g
+fi                                    && \
 popd                                  && \
 rm -rf ${BuildDir}
 
