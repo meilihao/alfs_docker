@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -e
+set -x
 
 # /tmp need 1777 because make check will write somethon in /tmp, otherwise `mkdir: cannot create directory '/tmp/dg-combine-results-18903-8450': Permission denied` will lead to `FAIL: gcc.c-torture/execute/builtins/fprintf.c execution,  -O0`
 
@@ -27,7 +28,7 @@ cd build       && \
 make                                  && \
 ulimit -s 32768                       && \
 chown -Rv tester .                    && \
-su tester -c "PATH=$PATH make -k check V=1 2>&1 | tee /logs/test-gcc-`date +%s`.log" && \
+su tester -c "PATH=$PATH make -k check V=1 2>&1 | tee /logs/test-gcc-`date +%s`.log || true" && \
 ../contrib/test_summary               && \
 make install                          && \
 rm -rf /usr/lib/gcc/$(gcc -dumpmachine)/10.2.0/include-fixed/bits/ && \
@@ -47,7 +48,7 @@ grep "/lib.*/libc.so.6 " dummy.log |grep "/lib/libc.so.6 succeeded"   && \
 grep found dummy.log | grep "ld-linux-x86-64.so.2"                    && \
 rm -v dummy.c a.out dummy.log                           && \
 mkdir -pv /usr/share/gdb/auto-load/usr/lib              && \
-mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib 2>/dev/null   && \
+mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib || true  && \
 popd                                                    && \
 rm -rf ${BuildDir}
 
