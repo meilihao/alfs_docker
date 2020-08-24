@@ -10,7 +10,7 @@ echo -e "+++ build path: ${BuildDir}\n"
 tar -xf ${LFSRoot}/sources/coreutils-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-patch -Np1 -i ${LFSRoot}/coreutils-8.32-i18n-1.patch && \
+patch -Np1 -i ${LFSRoot}/sources/coreutils-8.32-i18n-1.patch && \
 sed -i '/test.lock/s/^/#/' gnulib-tests/gnulib.mk    && \
 autoreconf -fiv && \
 FORCE_UNSAFE_CONFIGURE=1 ./configure \
