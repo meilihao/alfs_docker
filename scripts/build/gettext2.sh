@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-$ 8.31. Gettext-0.21
+# 8.31. Gettext-0.21
 
 echo -e "\n\n+++ start gettext2.sh +++\n\n"
 
