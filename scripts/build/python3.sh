@@ -28,7 +28,7 @@ if [ $LFS_DOCS -eq 1 ]; then
     --no-same-owner       \
     --no-same-permissions \
     -C /usr/share/doc/python-3.8.5/html \
-    -xvf ${LFSRoot}/python-3.8.5-docs-html.tar.bz2
+    -xvf ${LFSRoot}/sources/python-3.8.5-docs-html.tar.bz2
 fi                                    && \
 popd                                  && \
 rm -rf ${BuildDir}
