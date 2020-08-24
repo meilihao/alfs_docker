@@ -12,7 +12,9 @@ pushd ${PWD}   && \
 cd ${BuildDir} && \
 ./configure --prefix=/usr --disable-static --with-gcc-arch=native && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check
+fi                                    && \
 make install                          && \
 popd                                  && \
 rm -rf ${BuildDir}
