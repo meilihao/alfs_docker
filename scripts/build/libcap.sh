@@ -12,7 +12,9 @@ pushd ${PWD}   && \
 cd ${BuildDir} && \
 sed -i '/install -m.*STACAPLIBNAME/d' libcap/Makefile                          && \
 make lib=lib                          && \
-make test                             && \
+if [ $LFS_TEST -eq 1 ]; then
+    make test
+fi                                    && \
 make lib=lib PKGCONFIGDIR=/usr/lib/pkgconfig install                           && \
 chmod -v 755 /lib/libcap.so.2.42      && \
 mv -v /lib/libpsx.a /usr/lib          && \

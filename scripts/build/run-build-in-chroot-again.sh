@@ -34,6 +34,7 @@ ${LFSRoot}/scripts/build/psmisc.sh
 ${LFSRoot}/scripts/build/gettext2.sh
 ${LFSRoot}/scripts/build/bison2.sh
 ${LFSRoot}/scripts/build/grep.sh
+${LFSRoot}/scripts/build/bash.sh
 
 exec /bin/bash --login +h \
     -c "${LFSRoot}/scripts/build/run-build-in-chroot-with-new-bash.sh"

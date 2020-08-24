@@ -15,7 +15,9 @@ cd ${BuildDir} && \
             --docdir=/usr/share/doc/mpc-1.1.0                               && \
 make                                  && \
 make html                             && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check
+fi                                    && \
 make install                          && \
 make install-html                     && \
 popd                                  && \

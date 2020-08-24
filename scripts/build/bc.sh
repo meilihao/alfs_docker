@@ -12,7 +12,9 @@ pushd ${PWD}   && \
 cd ${BuildDir} && \
 PREFIX=/usr CC=gcc CFLAGS="-std=c99" ./configure.sh -G -O3                 && \
 make                                  && \
-make test                             && \
+if [ $LFS_TEST -eq 1 ]; then
+    make test
+fi                                    && \
 make install                          && \
 popd                                  && \
 rm -rf ${BuildDir}

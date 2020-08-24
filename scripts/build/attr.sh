@@ -15,7 +15,9 @@ cd ${BuildDir} && \
             --sysconfdir=/etc \
             --docdir=/usr/share/doc/attr-2.4.48                              && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check
+fi                                    && \
 make install                          && \
 mv -v /usr/lib/libattr.so.* /lib      && \
 ln -sfv ../../lib/$(readlink /usr/lib/libattr.so) /usr/lib/libattr.so        && \

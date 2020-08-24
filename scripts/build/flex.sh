@@ -12,7 +12,9 @@ pushd ${PWD}   && \
 cd ${BuildDir} && \
 ./configure --prefix=/usr --docdir=/usr/share/doc/flex-2.6.4                 && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check
+fi                                    && \
 make install                          && \
 ln -sv flex /usr/bin/lex              && \
 popd                                  && \

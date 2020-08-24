@@ -15,7 +15,9 @@ sed -r -i '/^char.*parseopt_program_(doc|args)/d' src/parseopt.c             && 
             --disable-static \
             --enable-libgdbm-compat   && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check
+fi                                    && \
 make install                          && \
 popd                                  && \
 rm -rf ${BuildDir}

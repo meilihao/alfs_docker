@@ -16,7 +16,9 @@ cd ${BuildDir} && \
             --mandir=/usr/share/man \
             --with-tclinclude=/usr/include && \
 make                                  && \
-make test                             && \
+if [ $LFS_TEST -eq 1 ]; then
+    make test
+fi                                    && \
 make install                          && \
 ln -svf expect5.45.4/libexpect5.45.4.so /usr/lib  && \
 popd                                  && \

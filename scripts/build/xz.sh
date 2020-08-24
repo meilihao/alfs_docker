@@ -14,7 +14,9 @@ cd ${BuildDir} && \
             --disable-static \
             --docdir=/usr/share/doc/xz-5.2.5 && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check
+fi                                    && \
 make install                          && \
 mv -v   /usr/bin/{lzma,unlzma,lzcat,xz,unxz,xzcat} /bin                    && \
 mv -v /usr/lib/liblzma.so.* /lib                                           && \

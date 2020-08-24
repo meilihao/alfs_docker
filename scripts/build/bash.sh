@@ -7,7 +7,8 @@ BuildDir=`mktemp -d --suffix ".bash"`
 
 echo -e "+++ build path: ${BuildDir}\n"
 
-tar -xf ${LFSRoot}/sources/bash-*.tar.xz -C ${BuildDir} --strip-components 1 && \
+tar -xf ${LFSRoot}/sources/bash-*.tar.gz -C ${BuildDir} --strip-components 1 && \
+chmod 755 ${BuildDir} && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 patch -Np1 -i ${LFSRoot}/sources/bash-5.0-upstream_fixes-1.patch             && \
@@ -16,10 +17,15 @@ patch -Np1 -i ${LFSRoot}/sources/bash-5.0-upstream_fixes-1.patch             && 
             --without-bash-malloc            \
             --with-installed-readline && \
 make                                  && \
-chown -Rv tester .                    && \
-su tester << EOF                      && \
+if [ $LFS_TEST -eq 1 ]; then
+    getfacl -R -p $(tty) > ${BuildDir}/permissions.facl && \
+    chmod a+rw $(tty)                            && \
+    chown -Rv tester .                           && \
+    su tester << EOF
 PATH=$PATH make tests < $(tty)
 EOF
+    setfacl --restore=${BuildDir}/permissions.facl
+fi                                    && \
 make install                          && \
 mv -vf /usr/bin/bash /bin             && \
 popd                                  && \

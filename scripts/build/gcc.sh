@@ -29,10 +29,12 @@ cd build       && \
              --disable-bootstrap      \
              --with-system-zlib       && \
 make                                  && \
-ulimit -s 32768                       && \
-chown -Rv tester .                    && \
-su tester -c "PATH=$PATH make -k check V=1 2>&1 | tee /logs/test-gcc-`date +%s`.log || true" && \
-../contrib/test_summary               && \
+if [ $LFS_TEST -eq 1 ]; then
+    ulimit -s 32768                   && \
+    chown -Rv tester .                && \
+    su tester -c "PATH=$PATH make -k check V=1 2>&1 | tee /logs/test-gcc-`date +%s`.log || true" && \
+    ../contrib/test_summary
+fi                                    && \
 make install                          && \
 rm -rf /usr/lib/gcc/$(gcc -dumpmachine)/10.2.0/include-fixed/bits/ && \
 chown -v -R root:root \

@@ -12,7 +12,9 @@ pushd ${PWD}   && \
 cd ${BuildDir} && \
 ./configure --prefix=/usr && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check
+fi                                    && \
 make install                          && \
 mv -v /usr/lib/libz.so.* /lib         && \
 ln -sfv ../../lib/$(readlink /usr/lib/libz.so) /usr/lib/libz.so && \

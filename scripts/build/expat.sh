@@ -14,9 +14,13 @@ cd ${BuildDir} && \
             --disable-static \
             --docdir=/usr/share/doc/expat-2.2.9 && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check
+fi                                    && \
 make install                          && \
-install -v -m644 doc/*.{html,png,css} /usr/share/doc/expat-2.2.9 && \
+if [ $LFS_DOCS -eq 1 ]; then
+    install -v -m644 doc/*.{html,png,css} /usr/share/doc/expat-2.2.9
+fi                                    && \
 popd                                  && \
 rm -rf ${BuildDir}
 

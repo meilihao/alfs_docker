@@ -16,8 +16,10 @@ cd ${BuildDir} && \
             --docdir=/usr/share/doc/gmp-6.2.0                             && \
 make                                  && \
 make html                             && \
-make check 2>&1 | tee gmp-check-log   && \
-awk '/# PASS:/{total+=$3} ; END{print total}' gmp-check-log  | grep "197" && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check 2>&1 | tee gmp-check-log   && \
+    awk '/# PASS:/{total+=$3} ; END{print total}' gmp-check-log  | grep "197"
+fi                                    && \
 make install                          && \
 make install-html                     && \
 popd                                  && \

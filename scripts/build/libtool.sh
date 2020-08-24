@@ -12,7 +12,9 @@ pushd ${PWD}   && \
 cd ${BuildDir} && \
 ./configure --prefix=/usr             && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check | tee /logs/test-libtool-`date +%s`.log || true
+fi                                    && \
 make install                          && \
 popd                                  && \
 rm -rf ${BuildDir}

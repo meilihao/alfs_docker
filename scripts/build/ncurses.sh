@@ -30,9 +30,11 @@ done
 rm -vf                     /usr/lib/libcursesw.so && \
 echo "INPUT(-lncursesw)" > /usr/lib/libcursesw.so && \
 ln -sfv libncurses.so      /usr/lib/libcurses.so  && \
-mkdir -v       /usr/share/doc/ncurses-6.2         && \
-cp -v -R doc/* /usr/share/doc/ncurses-6.2         && \
-popd                                  && \
+if [ $LFS_DOCS -eq 1 ]; then
+    mkdir -v       /usr/share/doc/ncurses-6.2     && \
+    cp -v -R doc/* /usr/share/doc/ncurses-6.2
+fi                                                && \
+popd                                              && \
 rm -rf ${BuildDir}
 
 unset BuildDir

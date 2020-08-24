@@ -13,11 +13,15 @@ cd ${BuildDir} && \
 ./configure --prefix=/usr --bindir=/bin && \
 make                                  && \
 make html                             && \
-chown -Rv tester .                    && \
-su tester -c "PATH=$PATH make check"  && \
+if [ $LFS_TEST -eq 1 ]; then
+    chown -Rv tester .                && \
+    su tester -c "PATH=$PATH make check"
+fi                                    && \
 make install                          && \
-install -d -m755           /usr/share/doc/sed-4.8 && \
-install -m644 doc/sed.html /usr/share/doc/sed-4.8 && \
+if [ $LFS_DOCS -eq 1 ]; then
+    install -d -m755           /usr/share/doc/sed-4.8 && \
+    install -m644 doc/sed.html /usr/share/doc/sed-4.8
+fi                                    && \
 popd                                  && \
 rm -rf ${BuildDir}
 

@@ -16,7 +16,9 @@ cd ${BuildDir} && \
             --disable-static \
             --docdir=/usr/share/doc/gettext-0.21 && \
 make                                  && \
-make check                            && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check
+fi                                    && \
 make install                          && \
 chmod -v 0755 /usr/lib/preloadable_libintl.so    && \
 popd                                  && \
