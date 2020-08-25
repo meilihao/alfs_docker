@@ -19,9 +19,12 @@ find /usr -depth -name $(uname -m)-lfs-linux-gnu\* | xargs rm -rf
 
 rm -rf /tools
 
-userdel -r tester
-
-# split with Chapter 9. System Configuration
-logout
+userdel -r tester || true
 
 echo -e "+++ done cleanup3.sh +++\n\n"
+
+# split with Chapter 9. System Configuration
+# logout: not login shell: use `exit`
+# logout
+# `exit` is exit this script's bash env/process
+exit
