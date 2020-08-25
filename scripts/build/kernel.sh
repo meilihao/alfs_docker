@@ -8,10 +8,10 @@ BuildDir=`mktemp -d --suffix ".kernel"`
 echo -e "+++ build path: ${BuildDir}\n"
 
 tar -xf ${LFSRoot}/sources/linux-*.tar.xz -C ${BuildDir} --strip-components 1 && \
-cp -fv ${LFSRoot}/sources/.config ${BuildDir} && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 make mrproper  && \
+cp -fv ${LFSRoot}/sources/.config ${BuildDir} && \
 make           && \
 make modules_install && \
 cp -iv arch/x86/boot/bzImage /boot/vmlinuz-5.8.1-lfs-10.0-systemd-rc1 && \
