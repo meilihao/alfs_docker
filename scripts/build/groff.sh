@@ -10,7 +10,7 @@ echo -e "+++ build path: ${BuildDir}\n"
 tar -xf ${LFSRoot}/sources/groff-*.tar.gz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-PAGE=<paper_size> ./configure --prefix=/usr && \
+PAGE=A4 ./configure --prefix=/usr && \
 make -j1                              && \
 make install                          && \
 popd                                  && \
