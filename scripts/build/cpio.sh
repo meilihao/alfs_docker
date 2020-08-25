@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-# error(by gcc-10): "/usr/bin/ld: ../gnu/libgnu.a(progname.o):/tmp/tmp.IWFVwN58EX.cpio/gnu/progname.c:33: multiple definition of `program_name'; global.o:/tmp/tmp.IWFVwN58EX.cpio/src/global.c:188: first defined here", patch location: https://gitweb.gentoo.org/repo/gentoo.git/commit/?id=d78585ef0dc6ded24811254595ea3741f196bc46
+# error(by gcc-10): "/usr/bin/ld: ../gnu/libgnu.a(progname.o):/tmp/tmp.IWFVwN58EX.cpio/gnu/progname.c:33: multiple definition of `program_name'; global.o:/tmp/tmp.IWFVwN58EX.cpio/src/global.c:188: first defined here", patch location: https://git.savannah.gnu.org/cgit/cpio.git/commit/?id=641d3f489cf6238bb916368d4ba0d9325a235afb
 
 echo -e "\n\n+++ start cpio.sh +++\n\n"
 
