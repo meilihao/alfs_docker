@@ -58,6 +58,7 @@ nogroup:x:99:
 users:x:999:
 EOF
 
+# in docker, `$(ls -n $(tty) | cut -d" " -f3)`=0
 echo "tester:x:101:101::/home/tester:/bin/bash" >> /etc/passwd
 echo "tester:x:101:" >> /etc/group
 install -o tester -d /home/tester
