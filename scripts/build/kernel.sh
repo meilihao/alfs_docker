@@ -16,11 +16,11 @@ make           && \
 make modules_install && \
 cp -iv arch/x86/boot/bzImage /boot/vmlinuz-5.8.1-lfs-10.0-systemd-rc1 && \
 cp -iv System.map /boot/System.map-5.8.1 && \
-cp -iv .config /boot/config-5.8.1
+cp -iv .config /boot/config-5.8.1        && \
 if [ $LFS_DOCS -eq 1 ]; then
     install -d /usr/share/doc/linux-5.8.1
     cp -r Documentation/* /usr/share/doc/linux-5.8.1
-fi
+fi                                       && \
 rm -rf ${BuildDir}
 
 # install -v -m755 -d /etc/modprobe.d
