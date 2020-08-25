@@ -11,6 +11,11 @@ version:  LFS-10.0-systemd-rc1
 1. prepare with an account which has sudo permission.
 
     ```
+    $ useradd -m jhalfs
+    $ passwd  jhalfs
+    $ visudo # 在打开的文件内加入`jhalfs ALL=(ALL)ALL`
+    $ su -  jhalfs
+    $ ###
     $ svn list svn://svn.linuxfromscratch.org/LFS/tags # get all tags in LFS
     $ sudo mkdir /mnt/build_dir
     $ sudo chmod 777 /mnt/build_dir
@@ -31,9 +36,9 @@ version:  LFS-10.0-systemd-rc1
         (X) Linux From Scratch systemd
     Release (SVN)  ---> 
     
-        ( ) SVN # use Current Development
-        ( ) Working Copy # unknown
-        (X) Branch or stable book # **推荐**", 比如"9.1", "10.0-rc1"
+        ( ) SVN # use Current Development, **不推荐**
+        ( ) Working Copy # 选择所使用的书籍的绝对路径, 比如`svn co http://svn.linuxfromscratch.org/LFS/tags/10.0-rc1 lfs-10.0-rc1
+        (X) Branch or stable book # **推荐**", 比如"9.1", "10.0-rc1", 此时由jhalfs下载book, 默认放在`/mnt/build_dir/jhalfs/lfs-<tag>`里
     (10.0-rc1) Branch (preceded by "branch-"), stable Version, or tag
         Mutilib (Standard LFS on i686 or amd64)  --->
     [ ] Add blfs-tool support
