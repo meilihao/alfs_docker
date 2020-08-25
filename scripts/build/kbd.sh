@@ -10,7 +10,7 @@ echo -e "+++ build path: ${BuildDir}\n"
 tar -xf ${LFSRoot}/sources/kbd-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-patch -Np1 -i ${LFSRoot}/kbd-2.3.0-backspace-1.patch && \
+patch -Np1 -i ${LFSRoot}/sources/kbd-2.3.0-backspace-1.patch && \
 sed -i '/RESIZECONS_PROGS=/s/yes/no/' configure      && \
 sed -i 's/resizecons.8 //' docs/man/man8/Makefile.in && \
 ./configure --prefix=/usr --disable-vlock            && \

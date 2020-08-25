@@ -11,7 +11,7 @@ tar -xf ${LFSRoot}/sources/systemd-*.tar.gz -C ${BuildDir} --strip-components 1 
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 ln -sf /bin/true /usr/bin/xsltproc && \
-tar -xf ${LFSRoot}/systemd-man-pages-*.tar.xz && \
+tar -xf ${LFSRoot}/sources/systemd-man-pages-*.tar.xz && \
 sed '177,$ d' -i src/resolve/meson.build         && \
 sed -i 's/GROUP="render", //' rules.d/50-udev-default.rules.in && \
 mkdir -p build && \
