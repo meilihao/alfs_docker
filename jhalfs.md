@@ -7,7 +7,7 @@ version:  LFS-10.0-systemd-rc1
     `svn co svn://svn.linuxfromscratch.org/ALFS/jhalfs/trunk jhalfs-dev` # in 20200825
 1. install packages need by jhalfs
 
-    `apt install libxml2-utils xsltproc bison gawk texinfo`
+    `apt install libxml2-utils xsltproc bison gawk texinfo docbook-xml docbook-xsl`
 1. prepare with an account which has sudo permission.
 
     ```
@@ -249,3 +249,24 @@ PKG_LST="unpacked"
 
 # REBUILD_MAKEFILE is not set
 ```
+
+jhalfs生成的构建Makefile入口是`/mnt/build_dir/jhalfs/Makefile`.
+
+## FAQ
+###
+error log:
+```log
+xsltproc --nonet --xinclude --stringparam profile.revision systemd --stringparam profile.arch default --output prbook.xml /mnt/build_dir/jhalfs/lfs-10.0-rc1/stylesheets/lfs-xsl/profile.xsl /mnt/build_dir/jhalfs/lfs-10.0-rc1/index.xml
+I/O error : Attempt to load network entity http://docbook.sourceforge.net/release/xsl/current/profiling/profile-mode.xsl
+warning: failed to load external entity "http://docbook.sourceforge.net/release/xsl/current/profiling/profile-mode.xsl"
+compilation error: file /mnt/build_dir/jhalfs/lfs-10.0-rc1/stylesheets/lfs-xsl/profile.xsl line 15 element import
+xsl:import : unable to load http://docbook.sourceforge.net/release/xsl/current/profiling/profile-mode.xsl
+I/O error : Attempt to load network entity http://docbook.sourceforge.net/release/xsl/current/common/stripns.xsl
+warning: failed to load external entity "http://docbook.sourceforge.net/release/xsl/current/common/stripns.xsl"
+compilation error: file /mnt/build_dir/jhalfs/lfs-10.0-rc1/stylesheets/lfs-xsl/profile.xsl line 19 element import
+xsl:import : unable to load http://docbook.sourceforge.net/release/xsl/current/common/stripns.xsl
+```
+
+查看/mnt/build_dir/jhalfs/lfs-10.0-rc1/stylesheets/lfs-xsl/profile.xsl和/mnt/build_dir/jhalfs/lfs-10.0-rc1/index.xml的文件头部内容, 再结合[网上文章](https://wiki.archlinux.org/index.php/DocBook), 推测是缺少解析xml的组件.
+
+解决方法: `apt install docbook-xml docbook-xsl`即可.
