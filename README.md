@@ -19,10 +19,12 @@ env:
 1. update scripts/version-check.sh
 
 ### 1. download linux kernel build config
+download `.config` need match sources/linux-*.tar.xz's version.
+
 ```bash
-$ wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.8.2/amd64/linux-headers-5.8.2-050802-generic_5.8.2-050802.202008190732_amd64.deb
-$ dpkg -x linux-hea    ders-5.8.2-050802-generic_5.8.2-050802.202008190732_amd64.deb tmp
-$ cp tmp/usr/src/linux-headers-5.8.2-050802-generic/.config config
+$ wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.8.1/amd64/linux-headers-5.8.1-050801-generic_5.8.1-050801.202008111432_amd64.deb
+$ dpkg -x linux-headers-5.8.1-050801-generic_5.8.1-050801.202008111432_amd64.deb tmp
+$ cp tmp/usr/src/linux-headers-5.8.1-050801-generic/.config config
 ```
 
 ### 1. download all packages and patches
