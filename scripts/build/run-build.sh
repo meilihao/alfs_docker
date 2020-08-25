@@ -2,10 +2,12 @@
 set -e
 echo -e "--- start run-build.sh ---\n\n"
 
+LFSRootInChroot='/lfs_root'
+
 ${LFSRoot}/scripts/build/prepare-vkfs.sh
 
 chroot "$LFS" /usr/bin/env -i   \
-    LFSRoot=/lfs_root           \
+    LFSRoot="$LFSRootInChroot"  \
     MAKEFLAGS="$MAKEFLAGS"      \
     LFS_DOCS="$LFS_DOCS"        \
     LFS_TEST="$LFS_TEST"        \
@@ -14,7 +16,7 @@ chroot "$LFS" /usr/bin/env -i   \
     PS1='(lfs chroot) \u:\w\$ ' \
     PATH=/bin:/usr/bin:/sbin:/usr/sbin \
     /bin/bash --login +h \
-    -c "${LFSRoot}/scripts/build/run-build-in-chroot.sh"
+    -c "${LFSRootInChroot}/scripts/build/run-build-in-chroot.sh"
 
 umount $LFS/dev{/pts,}
 umount $LFS/{sys,proc,run}
@@ -33,7 +35,7 @@ popd
 ${LFSRoot}/scripts/build/prepare-vkfs-again.sh
 
 chroot "$LFS" /usr/bin/env -i   \
-    LFSRoot=/lfs_root           \
+    LFSRoot="$LFSRootInChroot"  \
     MAKEFLAGS="$MAKEFLAGS"      \
     LFS_DOCS="$LFS_DOCS"        \
     LFS_TEST="$LFS_TEST"        \
@@ -42,7 +44,7 @@ chroot "$LFS" /usr/bin/env -i   \
     PS1='(lfs chroot) \u:\w\$ ' \
     PATH=/bin:/usr/bin:/sbin:/usr/sbin \
     /bin/bash --login +h \
-    -c "${LFSRoot}/scripts/build/run-build-in-chroot-again.sh"
+    -c "${LFSRootInChroot}/scripts/build/run-build-in-chroot-again.sh"
 
 chroot "$LFS" /usr/bin/env -i          \
     HOME=/root TERM="$TERM"            \
@@ -51,10 +53,10 @@ chroot "$LFS" /usr/bin/env -i          \
     PS1='(lfs chroot) \u:\w\$ '        \
     PATH=/bin:/usr/bin:/sbin:/usr/sbin \
     /bin/bash --login \
-    - c "${LFSRoot}/scripts/build/cleanup3.sh"
+    -c "${LFSRootInChroot}/scripts/build/cleanup3.sh"
 
 chroot "$LFS" /usr/bin/env -i          \
-    LFSRoot=/lfs_root                  \
+    LFSRoot="$LFSRootInChroot"         \
     MAKEFLAGS="$MAKEFLAGS"             \
     LFS_DOCS="$LFS_DOCS"               \
     LFS_TEST="$LFS_TEST"               \
@@ -62,6 +64,6 @@ chroot "$LFS" /usr/bin/env -i          \
     PS1='(lfs chroot) \u:\w\$ '        \
     PATH=/bin:/usr/bin:/sbin:/usr/sbin \
     /bin/bash --login \
-    - c "${LFSRoot}/scripts/build/run-build-in-chroot-system-config.sh"
+    -c "${LFSRootInChroot}/scripts/build/run-build-in-chroot-system-config.sh"
 
 echo -e "--- done run-build.sh ---\n\n"
