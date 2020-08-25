@@ -7,8 +7,10 @@ echo -e "\n\n+++ start cleanup2.sh +++\n\n"
 
 rm -rf /tmp/*
 
-rm /lib/elf_ld-linux-x86-64.so.2
+rm /lib/elf_ld-linux-x86-64.so.2 || true
 
-logout
+# logout: not login shell: use `exit'
+# logout
+exit
 
 echo -e "+++ done cleanup2.sh +++\n\n"
