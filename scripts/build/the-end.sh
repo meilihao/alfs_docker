@@ -19,4 +19,6 @@ PRETTY_NAME="Linux From Scratch 10.0-systemd-rc1"
 VERSION_CODENAME="Linux From Scratch for fun"
 EOF
 
+rm -rf /tmp/*
+
 echo -e "--- done the-end.sh in chroot ---\n\n"
