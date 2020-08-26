@@ -8,6 +8,6 @@ umount -v $LFS/run
 umount -v $LFS/proc
 umount -v $LFS/sys
 
-umount -v $LFS
+# umount -v $LFS
 
 echo -e "--- done done.sh in chroot ---\n\n"
