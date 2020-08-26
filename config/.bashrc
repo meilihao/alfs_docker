@@ -22,6 +22,7 @@ export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\
 export LFS_DOCS=1
 # 1 is run tests; 0 is not. running tests takes much more time
 export LFS_TEST=1
+export LFSRootInChroot='/lfs_root'
 
 alias ll='ls -alF --color=auto'
 alias la='ls -A'

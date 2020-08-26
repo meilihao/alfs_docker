@@ -2,8 +2,6 @@
 set -e
 echo -e "--- start run-build.sh ---\n\n"
 
-LFSRootInChroot='/lfs_root'
-
 ${LFSRoot}/scripts/build/prepare-vkfs.sh
 
 chroot "$LFS" /usr/bin/env -i   \
