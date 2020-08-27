@@ -24,7 +24,7 @@ export LFS_DOCS=1
 export LFS_TEST=1
 export LFSRootInChroot='/lfs_root'
 
-alias ll='ls -alF --color=auto'
+alias ll='ls -ahlF --color=auto'
 alias la='ls -A'
 alias l='ls -CF'
 alias grep='grep --color=auto'
