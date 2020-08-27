@@ -26,7 +26,10 @@ umount $LFS/{sys,proc,run}
 
 if $BackupBeforRealInstall; then
     pushd $LFS && \
-    tar --exclude=lfs_root -czpf ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd-`date +%s`.tar.gz . && \
+    if [ -f ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd.tar.gz ]; then
+        mv -v ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd.tar.gz ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd-`date +%s`.tar.gz
+    fi         && \
+    tar --exclude=lfs_root -czpf ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd.tar.gz . && \
     popd
 fi
 
