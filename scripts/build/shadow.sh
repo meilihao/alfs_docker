@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -e
-set -x
 echo -e "\n\n+++ start shadow.sh +++\n\n"
 
 BuildDir=`mktemp -d --suffix ".shadow"`
