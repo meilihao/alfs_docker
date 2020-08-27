@@ -6,7 +6,7 @@ rm -rf /tmp/*
 # may be move
 rm -rf $LFS/logs
 
-if ${OnlyLFSFSRoot}; then
+if ${OnlyBuildFSRoot}; then
     echo -e "--- only package fsroot ---\n\n"
 
     pushd /tmp && \
