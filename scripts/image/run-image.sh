@@ -9,6 +9,7 @@ rm -rf $LFS/logs
 if ${OnlyBuildFSRoot}; then
     echo -e "--- only package fsroot ---\n\n"
 
+    # use zip because tar打包$LFS在其他机器解压时报错
     pushd /tmp && \
     zip -9r /tmp/fsroot.zip ${LFS} -x="${LFS}/lfs_root/*" && \
     mv -v /tmp/fsroot.zip ${LFSRoot}/iso/lfs-fsroot.zip && \

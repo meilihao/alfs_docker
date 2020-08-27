@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-
+set -x
 echo -e "\n\n+++ start shadow.sh +++\n\n"
 
 BuildDir=`mktemp -d --suffix ".shadow"`
@@ -25,7 +25,7 @@ make                                  && \
 make install                          && \
 pwconv                                && \
 grpconv                               && \
-echo "root:root" | chpasswd           && \    
+echo "root:root" | chpasswd           && \
 popd                                  && \
 rm -rf ${BuildDir}
 
