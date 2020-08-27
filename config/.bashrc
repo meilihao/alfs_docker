@@ -23,6 +23,7 @@ export LFS_DOCS=1
 # 1 is run tests; 0 is not. running tests takes much more time
 export LFS_TEST=1
 export LFSRootInChroot='/lfs_root'
+export OnlyLFSFSRoot=true
 
 alias ll='ls -ahlF --color=auto'
 alias la='ls -A'
