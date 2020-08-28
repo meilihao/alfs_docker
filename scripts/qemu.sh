@@ -76,6 +76,7 @@ grub-install: error: efibootmgr: not found.
 # sudo cp /usr/bin/efibootmgr /mnt/lfs/usr/bin/
 # sudo cp /lib/x86_64-linux-gnu/libefivar.so.1 /mnt/lfs/lib
 # ---
+# qemu-img dd -f qcow2 -O raw bs=4M if=/vm-images/image.qcow2 of=/dev/sdd1 # 支持将qcow2 dd到磁盘
 
 qemu-nbd --disconnect /dev/nbd0
 
