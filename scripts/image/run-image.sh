@@ -11,7 +11,7 @@ if ${OnlyBuildFSRoot}; then
 
     # use zip because tar打包$LFS在其他机器解压时报错
     pushd /tmp && \
-    zip -9r /tmp/fsroot.zip ${LFS} -x="${LFS}/lfs_root/*" && \
+    zip -9r -y /tmp/fsroot.zip ${LFS} -x="${LFS}/lfs_root/*" && \
     if [ -f ${LFSRoot}/iso/lfs-fsroot.zip ]; then
         mv -v ${LFSRoot}/iso/lfs-fsroot.zip ${LFSRoot}/iso/lfs-fsroot-`date +%s`.zip
     fi                                                    && \
