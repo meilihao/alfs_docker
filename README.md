@@ -69,6 +69,9 @@ root@8916814e8d0d:/# $LFSRoot/scripts/run-all.sh
 
 **note**, that extended privileges are required by docker container in order to execute some commands (e.g. mount, `mount -v --bind /dev $LFS/dev`).
 
+#### 1. change lfs-fsroot.zip -> Bootable qcow2 image
+see [qemu.md](qemu.md)
+
 ## update lfs
 1. compare version/xxx.txt latest.txt by `Beyond Compare`
 1. update script

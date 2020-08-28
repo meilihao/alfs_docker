@@ -9,7 +9,7 @@ rm -rf $LFS/logs
 if ${OnlyBuildFSRoot}; then
     echo -e "--- only package fsroot ---\n\n"
 
-    # use zip because tar打包$LFS在其他机器解压时报错
+    # use zip because tar打包$LFS在其他机器(deepin v20)解压时报错, 但在ubuntu 20.04的docker容器中解压又是正常的.
     pushd /tmp && \
     zip -9r -y /tmp/fsroot.zip ${LFS} -x="${LFS}/lfs_root/*" && \
     if [ -f ${LFSRoot}/iso/lfs-fsroot.zip ]; then
