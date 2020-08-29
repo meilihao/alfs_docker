@@ -258,7 +258,9 @@ Installation finished. No error reported.
 # umount $LFS/{boot/efi,boot,}
 # exit container
 $ sudo qemu-nbd --disconnect /dev/nbd0
-$ qemu-system-x86_64 -bios "/usr/share/ovmf/OVMF.fd" -enable-kvm -m 1024 -hda lfs.img
+# 因为/usr/share/ovmf/OVMF.fd是只读的, 见FAQ的"cfi.pflash01 failed: Block node is read-only"
+$ cp /usr/share/ovmf/OVMF.fd .
+$ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img
 ```
 
 效果图:
@@ -305,8 +307,18 @@ EOF
 ### qemu + uefi时不要出现网络引导界面
 qemu在未找到引导磁盘时会尝试PXE（网络）引导，此时可使用`-net none`跳过.
 
+### qemu-system-x86_64: Initialization of device cfi.pflash01 failed: Block node is read-only
+执行`qemu-system-x86_64 -M q35 -pflash /usr/share/ovmf/OVMF.fd -enable-kvm -m 1024 -hda lfs.img`时报错.
+查看/usr/share/ovmf/OVMF.fd的权限:
+```bash
+# ll /usr/share/ovmf/OVMF.fd 
+-rw-r--r-- 1 root root 2.0M 4月  24 03:33 /usr/share/ovmf/OVMF.fd
+```
+发现其是只读的, 但`-pflash`仿真的是flash, 能保存uefi vars, 因此需要写权限.
 
+解决方法:"cp /usr/share/qemu/OVMF.fd .", 再使用本地的OVMF.fd作为`-pflash`的参数以避免原文件不可写即可.
 
+> 上面命令使用`-biso /usr/share/ovmf/OVMF.fd`不报错是因为`-biso`模拟的是不可写设备(包括重启丢失uefi vars), 因此只有只读权限也可正常工作. 
 
 
 http://lists.linuxfromscratch.org/pipermail/hints/2018-April/003325.html
