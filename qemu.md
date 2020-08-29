@@ -4,6 +4,11 @@
 - [使用grub2制作U盘引导iso](http://xstarcd.github.io/wiki/Linux/boot-multiple-iso-from-usb-via-grub2-using-linux.html)
 - [GRUB](https://wiki.archlinux.org/index.php/GRUB)
 - [grub2详解(翻译和整理官方手册)](https://www.lagou.com/lgeduarticle/9097.html)
+- [lfs-uefi.txt](http://www.linuxfromscratch.org/hints/downloads/files/lfs-uefi.txt)
+
+其实在`lfs 2. 准备宿主系统`阶段就将qcow2与相应的目录`${LFS}, ${LFS}/boot`甚至`${LFS}/boot/efi`挂载好, 就不需要通过lfs-fsroot.zip再中转一次来制作qcow2 image.
+
+ps: `The docker support for udev is obviously limited`, 在host对`/dev/nbd${N}`重新分区, 比如对了一个分区, 因为容器里的udev不能工作, 导致容器中`/dev`下该设备的分区显示不变, 因此需要在创建容器前, 该设备已分区正确.
 
 ## prepare qcow2 image
 ```bash
@@ -197,6 +202,8 @@ $ qemu-system-x86_64 -enable-kvm -m 1024 -hda lfs.img
 ![](/misc/img/gpt_bios_grub.png)
 ![](/misc/img/gpt_kernel.png)
 
+> 上图报错("VFS: Unable to mount root fs on unknown")是因为没有配置initrd.
+
 ### uefi
 ```bash
 # mkfs -v -t ext4 /dev/nbd0p4
@@ -295,10 +302,8 @@ EOF
 
 解决方法: `sudo apt-get install dosfstools`.
 
-### 如何将qcow2打内容克隆到磁盘
-`qemu-img dd -f qcow2 -O raw bs=4M if=/vm-images/image.qcow2 of=/dev/sdd1`支持将qcow2 dd到磁盘
-
-
+### qemu + uefi时不要出现网络引导界面
+qemu在未找到引导磁盘时会尝试PXE（网络）引导，此时可使用`-net none`跳过.
 
 
 
