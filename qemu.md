@@ -218,6 +218,7 @@ $ qemu-system-x86_64 -enable-kvm -m 1024 -hda lfs.img
 # rsync -av --exclude="boot" ${LFSFSRoot}/* ${LFS}
 # --- 避免grub-install时报错
 # rsync -av /usr/lib/grub/x86_64-efi ${LFS}/usr/lib/grub
+# --- 或参照[lfs-uefi.txt](http://www.linuxfromscratch.org/hints/downloads/files/lfs-uefi.txt), 自行编译
 # cp /usr/bin/efibootmgr $LFS/usr/bin
 # rsync -av /lib/x86_64-linux-gnu/{libefivar.so.1*,libefiboot.so.1*} $LFS/lib
 
@@ -236,12 +237,13 @@ $ qemu-system-x86_64 -enable-kvm -m 1024 -hda lfs.img
 # cat > /etc/fstab << "EOF"
 # 文件系统     挂载点       类型     选项                转储  检查
 #                                                              顺序
-UUID=D1F7-D179		                     /boot/efi    vfat    noauto,noatime    1 2
+UUID=D1F7-D179		                     /boot/efi    vfat    rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro    1 2
 UUID=7c5e5590-9f32-4882-a6a1-fabb7d91fa4b    /boot    ext4    noauto,noatime    1 2
 UUID=9767098f-4749-4855-bb5e-8a775e498f1b    /        ext4    noatime	        0 1
 
 EOF
-# grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=lfs --debug # bootloader-id=lfs指`/boot/efi/EFI/${bootloader-id}`, `--efi-directory`替代了已经废弃的`--root-directory`.
+# 按照FAQ重新编译grub以支持efi
+# grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=lfs --recheck --debug # bootloader-id=lfs指`/boot/efi/EFI/${bootloader-id}`, `--efi-directory`替代了已经废弃的`--root-directory`.
 ...
 BootCurrent: 0000
 Timeout: 0 seconds
@@ -251,12 +253,23 @@ Boot0000* deepin
 Boot0001* lfs
 Installation finished. No error reported.
 # grub-mkconfig -o /boot/grub/grub.cfg
+# --- 7c5e5590-9f32-4882-a6a1-fabb7d91fa4b is /boot's uuid
+# cat > /boot/efi/EFI/lfs/grub.cfg << "EOF"
+search.fs_uuid 7c5e5590-9f32-4882-a6a1-fabb7d91fa4b root
+set prefix=($root)'/grub'
+configfile $prefix/grub.cfg
+EOF
+# cp -r /boot/efi/EFI/lfs /boot/efi/EFI/boot
+# cp /boot/efi/EFI/boot/grubx64.efi /boot/efi/EFI/boot/bootx64.efi
+# -- 修复自动生成的grub.cfg的错误, 比如"/vmlinuz-5.8.1-lfs-10.0-systemd-rc1 root=/dev/nbd0p4 ro" -> "/vmlinuz-5.8.1-lfs-10.0-systemd-rc1 root=UUID=9767098f-4749-4855-bb5e-8a775e498f1b ro"
+# vim /boot/grub/grub.cfg
 # --- exit chroot
 # exit
 # umount $LFS/dev{/pts,}
 # umount $LFS/{sys,proc,run}
 # umount $LFS/{boot/efi,boot,}
-# exit container
+# --- exit container
+# exit
 $ sudo qemu-nbd --disconnect /dev/nbd0
 # 因为/usr/share/ovmf/OVMF.fd是只读的, 见FAQ的"cfi.pflash01 failed: Block node is read-only"
 $ cp /usr/share/ovmf/OVMF.fd .
@@ -320,12 +333,18 @@ qemu在未找到引导磁盘时会尝试PXE（网络）引导，此时可使用`
 
 > 上面命令使用`-biso /usr/share/ovmf/OVMF.fd`不报错是因为`-biso`模拟的是不可写设备(包括重启丢失uefi vars), 因此只有只读权限也可正常工作. 
 
+### unicode.pf2
+因为grub使用了unicode.pf2字体, 而lfs构建grub时不构建其grub-mkfont工具(用于生成unicode.pf2). 如需构建该字体可参考[lfs-uefi.txt](http://www.linuxfromscratch.org/hints/downloads/files/lfs-uefi.txt).
 
-http://lists.linuxfromscratch.org/pipermail/hints/2018-April/003325.html
+最简单的方法是从host拷贝一份放入lfs环境: cp /usr/share/grub/unicode.pf2 $EFI/usr/share/grub
 
-:~# grub-install --bootloader-id=lfs --recheck --debug > a.log 2>&1 
-(lfs chroot) root:~#  grep "unicode.pf2" grub.log
-grep: grub.log: No such file or directory
-(lfs chroot) root:~#  grep "unicode.pf2" a.log   
-grub-install: info: copying `/usr/share/grub/unicode.pf2' -> `/boot/grub/fonts/unicode.pf2'.
-grub-install: info: cannot open `/usr/share/grub/unicode.pf2': No such file or directory.
+### grub efi支持
+grub构建时其`./configure`启用选项`--with-platform=efi`,即
+```conf
+./configure --prefix=/usr  \
+    --sbindir=/sbin        \
+    --sysconfdir=/etc      \
+    --disable-efiemu       \
+    --with-platform=efi    \
+    --disable-werror
+```
