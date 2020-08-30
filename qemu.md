@@ -79,7 +79,7 @@ $ sudo docker run --privileged -d -it --entrypoint /bin/bash ubuntu:20.04
 $ sudo docker cp ./lfs-fsroot.tar.gz 314e2de3097dfbdc58f5d236c2c244718273afc601cb67f67e952e53a3a44513:/lfs_fs_root.tar.gz
 $ sudo docker exec -it 314e2de3097dfbdc58f5d236c2c244718273afc601cb67f67e952e53a3a44513 bash
 # sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
-# apt udpate && apt install -y rsync bsdmainutils grub-efi-amd64-bin # bsdmainutils for hd
+# apt udpate && apt install -y rsync bsdmainutils grub-efi-amd64-bin # bsdmainutils for hd, grub-efi-amd64-bin for efi, initramfs-tools for initramfs
 # export LFSFSRoot=/lfs_fs_root # in docker now
 # export LFS=/mnt/lfs
 # mkdir -pv $LFSFSRoot
@@ -115,6 +115,12 @@ Device        Start      End  Sectors  Size Type
 /dev/nbd0p2    4096   528383   524288  256M EFI System
 /dev/nbd0p3  528384  4722687  4194304    2G Linux filesystem
 /dev/nbd0p4 4722688 16777182 12054495  5.8G Linux filesystem
+# --- build initramfs
+# ll $LFSFSRoot/lib/modules
+...
+drwxr-xr-x 3 root root 4096 Aug 27 07:02 5.8.1/
+# cp -rf $LFSFSRoot/lib/modules/* /lib/modules
+# update-initramfs -c -k 5.8.1 -v -b $LFS/boot
 ```
 
 本文支持两种引导:
@@ -198,7 +204,7 @@ $ sudo qemu-nbd --disconnect /dev/nbd0
 $ qemu-system-x86_64 -enable-kvm -m 1024 -hda lfs.img
 ```
 
-效果图:
+效果图(no initramfs):
 ![](/misc/img/gpt_bios_grub.png)
 ![](/misc/img/gpt_kernel.png)
 
@@ -276,9 +282,10 @@ $ cp /usr/share/ovmf/OVMF.fd .
 $ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img
 ```
 
-效果图:
-![](/misc/img/)
-![](/misc/img/)
+效果图(with initramfs):
+![](/misc/img/20200831010739.png)
+![](/misc/img/20200831010828.png)
+![](/misc/img/20200831010202.png)
 
 ## FAQ
 ### grub.cfg手动配置(**不推荐, 未测试**)
