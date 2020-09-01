@@ -93,4 +93,6 @@ offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
 > log order not match because may be MAKEFLAGS
 
 ## issue
-- hold "GCC plugins (GCC_PLUGINS) [Y/n/?] (NEW)" when run `scripts/build/kernel.sh`, and `CONFIG_HAVE_GCC_PLUGINS=n` does not work.
+- hold "GCC plugins (GCC_PLUGINS) [Y/n/?] (NEW)" when run `scripts/build/kernel.sh`, and `CONFIG_HAVE_GCC_PLUGINS=n` does not work and make report "Restart config..."
+
+    初步排查是`scripts/kconfig/conf.c`提示了`Restart config`, 待查???.
