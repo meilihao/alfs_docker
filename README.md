@@ -1,8 +1,6 @@
-# alfs_docker
+# alfs_docker - ALFS (Automated Linux From Scratch) with docker
 参考:
 - [reinterpretcat/lfs](https://github.com/reinterpretcat/lfs)
-
-ALFS (Automated Linux From Scratch) with docker.
 
 alfs_docker is based on [LFS-10.0-systemd](http://www.linuxfromscratch.org/lfs/download.html) for x86_64 only.
 
@@ -20,33 +18,39 @@ env:
 download `.config` need match sources/linux-*.tar.xz's version.
 
 ```bash
+$ export ALFSDockerRoo=~/git/alfs_docker
+$ pushd /tmp
 $ wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.8.3/amd64/linux-headers-5.8.3-050803-generic_5.8.3-050803.202008211236_amd64.deb
 $ dpkg -x linux-headers-*.deb tmp
-$ cp tmp/usr/src/linux-headers-*-generic/.config config
+$ cp tmp/usr/src/linux-headers-*-generic/.config ${ALFSDockerRoo}/config
 ```
+
+> custom .config is in [here](/config/.config.replace), **recommand**
 
 ### 1. download all packages and patches
 a tarball of all the needed files can be downloaded from one of the LFS files mirrors listed at http://www.linuxfromscratch.org/mirrors.html#files.
 
 ```bash
-$ wget --continue --directory-prefix=sources https://mirror-hk.koddos.net/lfs/lfs-packages/lfs-packages-10.0.tar
-$ wget --directory-prefix=sources https://mirror-hk.koddos.net/lfs/lfs-packages/SHA1SUMS
-$ cat sources/SHA1SUMS |grep "lfs-packages-10.0" > sources/target_sum
-$ cd sources && sha1sum -c target_sum
-$ cd ..
+$ wget --continue https://mirror-hk.koddos.net/lfs/lfs-packages/lfs-packages-10.0.tar
+$ wget https://mirror-hk.koddos.net/lfs/lfs-packages/SHA1SUMS
+$ cat SHA1SUMS |grep "lfs-packages-10.0.tar" > lfs-sum
+$ sha1sum -c lfs-sum
+$ tar -xvf lfs-packages-10.0.tar
+$ mv 10.0 ${ALFSDockerRoo}/sources
+$ popd
 ```
 
-> or mirror: http://mirrors.ustc.edu.cn/lfs/lfs-packages/lfs-packages-10.0.tar
+> or mirror for china: http://mirrors.ustc.edu.cn/lfs/lfs-packages/lfs-packages-10.0.tar
 
 ### 1. update args
 1. glibc compatible : use host's glibc version
 
-    1. scripts/prepare/gcc.sh : --with-glibc-version=2.28 # my debian 10's glibc version
+    1. ${ALFSDockerRoo}/scripts/prepare/gcc.sh : --with-glibc-version=2.31 # docker base image(ubuntu 20.04)'s glibc version
 
 1. kernel compatible for glibc
 
-    1. scripts/prepare/glibc.sh : --enable-kernel=4.19 # my kernel version
-    1. scripts/build/glibc.sh : --enable-kernel=4.19
+    1. ${ALFSDockerRoo}/scripts/prepare/glibc.sh : --enable-kernel=4.19 # my host(debian 10) kernel version
+    1. ${ALFSDockerRoo}/scripts/build/glibc.sh : --enable-kernel=4.19
 
 ### 1. build docker image and run it
 > docker debug cmd: sudo docker run --rm -it ubuntu:20.04 bash
