@@ -91,3 +91,6 @@ bootable qcow2 image with efi is [here](https://pan.baidu.com/s/1usXAdzzMk85a7HY
 offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
 
 > log order not match because may be MAKEFLAGS
+
+## issue
+- hold "GCC plugins (GCC_PLUGINS) [Y/n/?] (NEW)" when run `scripts/build/kernel.sh`, and `CONFIG_HAVE_GCC_PLUGINS=n` does not work.
