@@ -5,6 +5,7 @@ echo -e "--- start run-build.sh ---\n\n"
 ${LFSRoot}/scripts/build/prepare-vkfs.sh
 
 chroot "$LFS" /usr/bin/env -i   \
+    LFSVersion="$LFSVersion"    \
     LFSRoot="$LFSRootInChroot"  \
     MAKEFLAGS="$MAKEFLAGS"      \
     LFS_DOCS="$LFS_DOCS"        \
@@ -26,10 +27,10 @@ umount $LFS/{sys,proc,run}
 
 if $BackupBeforRealInstall; then
     pushd $LFS && \
-    if [ -f ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd.tar.gz ]; then
-        mv -v ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd.tar.gz ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd-`date +%s`.tar.gz
+    if [ -f ${LFSRoot}/iso/lfs-temp-tools-${LFSVersion}.tar.gz ]; then
+        mv -v ${LFSRoot}/iso/lfs-temp-tools-${LFSVersion}.tar.gz ${LFSRoot}/iso/lfs-temp-tools-${LFSVersion}-`date +%s`.tar.gz
     fi         && \
-    tar --exclude=lfs_root -czpf ${LFSRoot}/iso/lfs-temp-tools-10.0-systemd.tar.gz . && \
+    tar --exclude=lfs_root -czpf ${LFSRoot}/iso/lfs-temp-tools-${LFSVersion}.tar.gz . && \
     popd
 fi
 
@@ -38,6 +39,7 @@ fi
 ${LFSRoot}/scripts/build/prepare-vkfs-again.sh
 
 chroot "$LFS" /usr/bin/env -i   \
+    LFSVersion="$LFSVersion"    \
     LFSRoot="$LFSRootInChroot"  \
     MAKEFLAGS="$MAKEFLAGS"      \
     LFS_DOCS="$LFS_DOCS"        \
@@ -50,6 +52,7 @@ chroot "$LFS" /usr/bin/env -i   \
     -c "${LFSRootInChroot}/scripts/build/run-build-in-chroot-again.sh"
 
 chroot "$LFS" /usr/bin/env -i          \
+    LFSVersion="$LFSVersion"           \
     HOME=/root TERM="$TERM"            \
     LFS_DOCS="$LFS_DOCS"               \
     LFS_TEST="$LFS_TEST"               \
@@ -59,6 +62,7 @@ chroot "$LFS" /usr/bin/env -i          \
     -c "${LFSRootInChroot}/scripts/build/cleanup3.sh"
 
 chroot "$LFS" /usr/bin/env -i          \
+    LFSVersion="$LFSVersion"           \
     LFSRoot="$LFSRootInChroot"         \
     MAKEFLAGS="$MAKEFLAGS"             \
     LFS_DOCS="$LFS_DOCS"               \

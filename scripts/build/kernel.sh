@@ -4,6 +4,7 @@ set -e
 echo -e "\n\n+++ start kernel.sh +++\n\n"
 
 BuildDir=`mktemp -d --suffix ".kernel"`
+KernelVersion=`ls ${LFSRoot}/sources/linux-*.tar.xz|xargs -n 1 basename |sed 's/linux-\(.*\)\.tar\.xz/\1/g'`
 
 echo -e "+++ build path: ${BuildDir}\n"
 
@@ -14,12 +15,12 @@ make mrproper  && \
 cp -fv ${LFSRoot}/sources/.config ${BuildDir} && \
 make           && \
 make modules_install && \
-cp -iv arch/x86/boot/bzImage /boot/vmlinuz-5.8.1-lfs-10.0-systemd-rc1 && \
-cp -iv System.map /boot/System.map-5.8.1 && \
-cp -iv .config /boot/config-5.8.1        && \
+cp -iv arch/x86/boot/bzImage /boot/vmlinuz-${KernelVersion}-lfs-${LFSVersion} && \
+cp -iv System.map /boot/System.map-${KernelVersion} && \
+cp -iv .config /boot/config-${KernelVersion}        && \
 if [ $LFS_DOCS -eq 1 ]; then
-    install -d /usr/share/doc/linux-5.8.1
-    cp -r Documentation/* /usr/share/doc/linux-5.8.1
+    install -d /usr/share/doc/linux-${KernelVersion}
+    cp -r Documentation/* /usr/share/doc/linux-${KernelVersion}
 fi                                       && \
 rm -rf ${BuildDir}
 
@@ -34,5 +35,6 @@ rm -rf ${BuildDir}
 # EOF
 
 unset BuildDir
+unset KernelVersion
 
 echo -e "+++ done kernel.sh +++\n\n"

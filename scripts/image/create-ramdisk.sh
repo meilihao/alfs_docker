@@ -8,7 +8,7 @@ LOOP=/dev/loop0
 IMAGE=isolinux/ramdisk.img
 # inital ram disk size in KB
 # must be in sync with CONFIG_BLK_DEV_RAM_SIZE in .config and enough physical memory
-# but using my .config-5.8.1 from ubuntu, 最终RAMDISK需要2.5g的空间, 且当时未知要修改CONFIG_BLK_DEV_RAM_SIZE, 因此创建BootableISO的方法是失败的
+# but using my .config from ubuntu, 最终RAMDISK需要2.5g的空间, 且当时未知要修改CONFIG_BLK_DEV_RAM_SIZE, 因此创建BootableISO的方法是失败的
 IMAGE_SIZE=900000
 LOOP_DIR=${BuildDir}/$LOOP
 RAMDISK=${BuildDir}/ramdisk

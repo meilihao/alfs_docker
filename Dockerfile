@@ -1,7 +1,7 @@
 # docker build . -t "lfs_builder"
 FROM ubuntu:20.04
 
-LABEL Description="Automated LFS build" Version="LFS-10.0-systemd"
+LABEL Description="Automated LFS build" Version="10.0-systemd"
 MAINTAINER meilihao <563278383@qq.com>
 
 # 从tzdata 2018版本开始（如2018d），安装过程中默认采用交互式，即要求输入指定的Geographic area和Time zone，从而必须人工值守进行安装, 否则会卡在"Configuring tzdata", build image时手动输入都没用

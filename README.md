@@ -6,8 +6,6 @@ ALFS (Automated Linux From Scratch) with docker.
 
 alfs_docker is based on [LFS-10.0-systemd](http://www.linuxfromscratch.org/lfs/download.html) for x86_64 only.
 
-lfs version: LFS-10.0-systemd-rc1
-
 env:
 - ubuntu20.04/deepin v20/debian 10
 - docker 19.03.8
@@ -22,23 +20,23 @@ env:
 download `.config` need match sources/linux-*.tar.xz's version.
 
 ```bash
-$ wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.8.1/amd64/linux-headers-5.8.1-050801-generic_5.8.1-050801.202008111432_amd64.deb
-$ dpkg -x linux-headers-5.8.1-050801-generic_5.8.1-050801.202008111432_amd64.deb tmp
-$ cp tmp/usr/src/linux-headers-5.8.1-050801-generic/.config config
+$ wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.8.3/amd64/linux-headers-5.8.3-050803-generic_5.8.3-050803.202008211236_amd64.deb
+$ dpkg -x linux-headers-*.deb tmp
+$ cp tmp/usr/src/linux-headers-*-generic/.config config
 ```
 
 ### 1. download all packages and patches
 a tarball of all the needed files can be downloaded from one of the LFS files mirrors listed at http://www.linuxfromscratch.org/mirrors.html#files.
 
 ```bash
-$ wget --continue --directory-prefix=sources https://mirror-hk.koddos.net/lfs/lfs-packages/lfs-packages-10.0-rc1.tar
+$ wget --continue --directory-prefix=sources https://mirror-hk.koddos.net/lfs/lfs-packages/lfs-packages-10.0.tar
 $ wget --directory-prefix=sources https://mirror-hk.koddos.net/lfs/lfs-packages/SHA1SUMS
-$ cat sources/SHA1SUMS |grep "lfs-packages-10.0-rc1" > sources/target_sum
+$ cat sources/SHA1SUMS |grep "lfs-packages-10.0" > sources/target_sum
 $ cd sources && sha1sum -c target_sum
 $ cd ..
 ```
 
-> or mirror: http://mirrors.ustc.edu.cn/lfs/lfs-packages/lfs-packages-10.0-rc1.tar
+> or mirror: http://mirrors.ustc.edu.cn/lfs/lfs-packages/lfs-packages-10.0.tar
 
 ### 1. update args
 1. glibc compatible : use host's glibc version
@@ -59,10 +57,10 @@ $ wget --continue --directory-prefix=sources https://ftp.gnu.org/gnu/cpio/cpio-2
 $ curl https://git.savannah.gnu.org/cgit/cpio.git/patch/?id=641d3f489cf6238bb916368d4ba0d9325a235afb -o sources/cpio-2.13.patch
 $ wget https://codeload.github.com/lz4/lz4/tar.gz/v1.9.2 -O sources/lz4-1.9.2.tar.gz
 $ sudo docker build . -t "lfs_builder"
-$ cp -fv config/.config sources
+$ cp -fv config/.config sources # can replace my custome .confing
 $ sudo docker run --privileged -d -it -v ${PWD}/scripts:/mnt/lfs/lfs_root/scripts -v ${PWD}/iso:/mnt/lfs/lfs_root/iso -v ${PWD}/sources:/mnt/lfs/lfs_root/sources --entrypoint /bin/bash lfs_builder
 $ sudo docker exec -it <container_id> bash
-root@8916814e8d0d:/# vim ~/.bashrc # for MAKEFLAGS, LFS_DOCS, LFS_TEST, OnlyBuildFSRoot, BackupBeforRealInstall
+root@8916814e8d0d:/# vim ~/.bashrc # for MAKEFLAGS, LFS_DOCS, LFS_TEST, OnlyBuildFSRoot, BackupBeforRealInstall, LFSVersion
 root@8916814e8d0d:/# source ~/.bash_profile
 root@8916814e8d0d:/# $LFSRoot/scripts/run-all.sh
 ```
@@ -75,8 +73,10 @@ see [qemu.md](qemu.md), support `bios/gpt` and `efi/gpt`
 bootable qcow2 image with efi is [here](https://pan.baidu.com/s/1usXAdzzMk85a7HYbcC2sRg), auth code is `1x3a`.
 
 ## update lfs
-1. compare version/xxx.txt latest.txt by `Beyond Compare`
-1. update script
+1. downlaod latest lfs from [http://linuxfromscratch.org/lfs/downloads/](http://linuxfromscratch.org/lfs/downloads/)
+1. delete content before "Chapter 4. Final Preparations" to reduce interference for compare
+1. compare current version with latest by `Beyond Compare`
+1. update script`
 1. build lfs again for test
 
 ## useful tools
@@ -84,6 +84,6 @@ bootable qcow2 image with efi is [here](https://pan.baidu.com/s/1usXAdzzMk85a7HY
 1. `watch -n 10 "ps -ef |grep bash"` # watch processing when lost direct log with ssh broken
 
 ## log
-offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0-rc1/
+offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
 
 > log order not match because may be MAKEFLAGS

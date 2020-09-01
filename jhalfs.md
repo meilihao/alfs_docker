@@ -1,5 +1,5 @@
 # jhalfs by linuxfromscratch.org
-version:  LFS-10.0-systemd-rc1
+version:  LFS-10.0-systemd
 
 ## steps
 1. get jhalfs
@@ -19,7 +19,7 @@ version:  LFS-10.0-systemd-rc1
     $ svn list svn://svn.linuxfromscratch.org/LFS/tags # get all tags in LFS
     $ sudo mkdir /mnt/build_dir
     $ sudo chmod 777 /mnt/build_dir
-    $ wget https://mirror-hk.koddos.net/lfs/lfs-packages/lfs-packages-10.0-rc1.tar
+    $ wget https://mirror-hk.koddos.net/lfs/lfs-packages/lfs-packages-10.0.tar
     $ tar -xvf lfs-packages-10.0.tar
     ```
 1. make && config
@@ -37,9 +37,9 @@ version:  LFS-10.0-systemd-rc1
     Release (SVN)  ---> 
     
         ( ) SVN # use Current Development, **不推荐**
-        ( ) Working Copy # 选择所使用的书籍的绝对路径, 比如`svn co http://svn.linuxfromscratch.org/LFS/tags/10.0-rc1 lfs-10.0-rc1
-        (X) Branch or stable book # **推荐**", 比如"9.1", "10.0-rc1", 此时由jhalfs下载book, 默认放在`/mnt/build_dir/jhalfs/lfs-<tag>`里
-    (10.0-rc1) Branch (preceded by "branch-"), stable Version, or tag
+        ( ) Working Copy # 选择所使用的书籍的绝对路径, 比如`svn co http://svn.linuxfromscratch.org/LFS/tags/10.0 lfs-10.0
+        (X) Branch or stable book # **推荐**", 比如"9.1", "10.0", 此时由jhalfs下载book, 默认放在`/mnt/build_dir/jhalfs/lfs-<tag>`里
+    (10.0) Branch (preceded by "branch-"), stable Version, or tag
         Mutilib (Standard LFS on i686 or amd64)  --->
     [ ] Add blfs-tool support
     [ ] Add custom tools support
@@ -47,7 +47,7 @@ version:  LFS-10.0-systemd-rc1
 
     (/mnt/build_dir) Build Directory # lfs构建目录, 建议使用官方默认的lfs目录
     [*] Retrieve source files
-    (/mnt/build_dir/10.0-rc1) Package Archive Directory # 上面下载的lfs-packages-10.0.tar的解压目录的绝对路径, 如果不设置, 它默认会自动去`(http://ftp.osuosl.org) FTP mirror`指定的地址下载, 并保持到`${Build Directory}/sources`下
+    (/mnt/build_dir/10.0) Package Archive Directory # 上面下载的lfs-packages-10.0.tar的解压目录的绝对路径, 如果不设置, 它默认会自动去`(http://ftp.osuosl.org) FTP mirror`指定的地址下载, 并保持到`${Build Directory}/sources`下
     [*]     Retry on 'connection refused' failure
     (20)    Number of retry attempts on download failures
     (30)    Download timeout (in seconds)
@@ -124,7 +124,7 @@ RUN_ME="./jhalfs run"
 # relSVN is not set
 # WORKING_COPY is not set
 BRANCH=y
-BRANCH_ID="10.0-rc1"
+BRANCH_ID="10.0"
 LFS_MULTILIB_NO=y
 # LFS_MULTILIB_I686 is not set
 # LFS_MULTILIB_X32 is not set
@@ -144,7 +144,7 @@ LGROUP="lfs"
 LHOME="/home"
 BUILDDIR="/mnt/build_dir"
 GETPKG=y
-SRC_ARCHIVE="/mnt/build_dir/10.0-rc1"
+SRC_ARCHIVE="/mnt/build_dir/10.0"
 RETRYSRCDOWNLOAD=y
 RETRYDOWNLOADCNT=20
 DOWNLOADTIMEOUT=30
@@ -261,17 +261,17 @@ jhalfs生成的构建Makefile入口是`/mnt/build_dir/jhalfs/Makefile`.
 ###
 error log:
 ```log
-xsltproc --nonet --xinclude --stringparam profile.revision systemd --stringparam profile.arch default --output prbook.xml /mnt/build_dir/jhalfs/lfs-10.0-rc1/stylesheets/lfs-xsl/profile.xsl /mnt/build_dir/jhalfs/lfs-10.0-rc1/index.xml
+xsltproc --nonet --xinclude --stringparam profile.revision systemd --stringparam profile.arch default --output prbook.xml /mnt/build_dir/jhalfs/lfs-10.0/stylesheets/lfs-xsl/profile.xsl /mnt/build_dir/jhalfs/lfs-10.0/index.xml
 I/O error : Attempt to load network entity http://docbook.sourceforge.net/release/xsl/current/profiling/profile-mode.xsl
 warning: failed to load external entity "http://docbook.sourceforge.net/release/xsl/current/profiling/profile-mode.xsl"
-compilation error: file /mnt/build_dir/jhalfs/lfs-10.0-rc1/stylesheets/lfs-xsl/profile.xsl line 15 element import
+compilation error: file /mnt/build_dir/jhalfs/lfs-10.0/stylesheets/lfs-xsl/profile.xsl line 15 element import
 xsl:import : unable to load http://docbook.sourceforge.net/release/xsl/current/profiling/profile-mode.xsl
 I/O error : Attempt to load network entity http://docbook.sourceforge.net/release/xsl/current/common/stripns.xsl
 warning: failed to load external entity "http://docbook.sourceforge.net/release/xsl/current/common/stripns.xsl"
-compilation error: file /mnt/build_dir/jhalfs/lfs-10.0-rc1/stylesheets/lfs-xsl/profile.xsl line 19 element import
+compilation error: file /mnt/build_dir/jhalfs/lfs-10.0/stylesheets/lfs-xsl/profile.xsl line 19 element import
 xsl:import : unable to load http://docbook.sourceforge.net/release/xsl/current/common/stripns.xsl
 ```
 
-查看/mnt/build_dir/jhalfs/lfs-10.0-rc1/stylesheets/lfs-xsl/profile.xsl和/mnt/build_dir/jhalfs/lfs-10.0-rc1/index.xml的文件头部内容, 再结合[网上文章](https://wiki.archlinux.org/index.php/DocBook), 推测是缺少解析xml的组件.
+查看/mnt/build_dir/jhalfs/lfs-10.0/stylesheets/lfs-xsl/profile.xsl和/mnt/build_dir/jhalfs/lfs-10.0/index.xml的文件头部内容, 再结合[网上文章](https://wiki.archlinux.org/index.php/DocBook), 推测是缺少解析xml的组件.
 
 解决方法: `apt install docbook-xml docbook-xsl`即可.

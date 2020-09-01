@@ -118,9 +118,9 @@ Device        Start      End  Sectors  Size Type
 # --- build initramfs
 # ll $LFSFSRoot/lib/modules
 ...
-drwxr-xr-x 3 root root 4096 Aug 27 07:02 5.8.1/
+drwxr-xr-x 3 root root 4096 Aug 27 07:02 5.8.3/
 # cp -rf $LFSFSRoot/lib/modules/* /lib/modules
-# update-initramfs -c -k 5.8.1 -v -b $LFS/boot
+# update-initramfs -c -k 5.8.3 -v -b $LFS/boot
 ```
 
 本文支持两种引导:
@@ -267,7 +267,7 @@ configfile $prefix/grub.cfg
 EOF
 # cp -r /boot/efi/EFI/lfs /boot/efi/EFI/boot
 # cp /boot/efi/EFI/boot/grubx64.efi /boot/efi/EFI/boot/bootx64.efi
-# -- 修复自动生成的grub.cfg的错误, 比如"/vmlinuz-5.8.1-lfs-10.0-systemd-rc1 root=/dev/nbd0p4 ro" -> "/vmlinuz-5.8.1-lfs-10.0-systemd-rc1 root=UUID=9767098f-4749-4855-bb5e-8a775e498f1b ro"
+# -- 修复自动生成的grub.cfg的错误, 比如"/vmlinuz-5.8.3-lfs-10.0-systemd root=/dev/nbd0p4 ro" -> "/vmlinuz-5.8.3-lfs-10.0-systemd root=UUID=9767098f-4749-4855-bb5e-8a775e498f1b ro"
 # vim /boot/grub/grub.cfg
 # --- exit chroot
 # exit
@@ -298,8 +298,8 @@ set timeout=5
 insmod ext2
 set root=(hd0,2)
 
-menuentry "GNU/Linux, Linux 5.8.1-lfs-10.0-systemd-rc1" {
-        linux   /vmlinuz-5.8.1-lfs-10.0-systemd-rc1 root=/dev/sda2 ro
+menuentry "GNU/Linux, Linux 5.8.3-lfs-10.0-systemd" {
+        linux   /vmlinuz-5.8.3-lfs-10.0-systemd root=/dev/sda2 ro
 }
 EOF
 ```

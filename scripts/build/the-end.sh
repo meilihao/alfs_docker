@@ -2,20 +2,20 @@
 set -e
 echo -e "--- start the-end.sh in chroot ---\n\n"
 
-echo 10.0-systemd-rc1 > /etc/lfs-release
+echo ${LFSVersion} > /etc/lfs-release
 
-cat > /etc/lsb-release << "EOF"
+cat > /etc/lsb-release << EOF
 DISTRIB_ID="Linux From Scratch"
-DISTRIB_RELEASE="10.0-systemd-rc1"
+DISTRIB_RELEASE="${LFSVersion}"
 DISTRIB_CODENAME="BigBang"
 DISTRIB_DESCRIPTION="Linux From Scratch for fun"
 EOF
 
-cat > /etc/os-release << "EOF"
+cat > /etc/os-release << EOF
 NAME="Linux From Scratch"
-VERSION="10.0-systemd-rc1"
+VERSION="${LFSVersion}"
 ID=lfs
-PRETTY_NAME="Linux From Scratch 10.0-systemd-rc1"
+PRETTY_NAME="Linux From Scratch ${LFSVersion}"
 VERSION_CODENAME="Linux From Scratch for fun"
 EOF
 

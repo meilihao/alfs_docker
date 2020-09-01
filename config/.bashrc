@@ -25,6 +25,7 @@ export LFS_TEST=1
 export OnlyBuildFSRoot=true
 export BackupBeforRealInstall=true
 export LFSRootInChroot='/lfs_root'
+export LFSVersion='10.0-systemd'
 
 alias ll='ls -ahlF --color=auto'
 alias la='ls -A'
