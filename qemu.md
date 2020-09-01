@@ -16,7 +16,30 @@ $ qemu-img create -f qcow2 lfs.img 8G # qemu-img create -f <fmt> <image filename
 $ sudo modprobe -v nbd
 $ sudo qemu-nbd -c /dev/nbd0 lfs.img
 $ sudo gdisk /dev/nbd0 # or use script
-# sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | sudo gdisk /dev/nbd0
+$ --- no ef02 for uefi/gpt only, **recommand**
+$ sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | sudo gdisk /dev/nbd0
+  o # new gpt
+  Y # Proceed
+  n
+  2
+
+  +256M
+  ef00 # EFI System
+  n
+  3
+
+  +2048M
+  8300
+  n
+  4
+  
+  
+  
+  w # write GPT data
+  Y # want to proceed
+EOF
+$ --- have ef02 for biso/gpt + uefi/gpt
+$ sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | sudo gdisk /dev/nbd0
   o # new gpt
   Y # Proceed
   n # new partition
