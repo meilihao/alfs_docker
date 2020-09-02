@@ -27,10 +27,10 @@ if $BackupBeforRealInstall; then
     umount $LFS/{sys,proc,run}
 
     pushd $LFS && \
-    if [ -f /mnt/lfs-temp-tools-${LFSVersion}.tar.gz ]; then
-        mv -v /mnt/lfs-temp-tools-${LFSVersion}.tar.gz /mnt/lfs-temp-tools-${LFSVersion}-`date +%s`.tar.gz
+    if [ -f /mnt/lfs-backup-tools-${LFSVersion}.tar.gz ]; then
+        mv -v /mnt/lfs-backup-tools-${LFSVersion}.tar.gz /mnt/lfs-backup-tools-${LFSVersion}-`date +%s`.tar.gz
     fi         && \
-    tar --exclude=lfs_root -czpf /mnt/lfs-temp-tools-${LFSVersion}.tar.gz . && \
+    tar --exclude=lfs_root -czpf /mnt/lfs-backup-tools-${LFSVersion}.tar.gz . && \
     popd
 
     # restore.sh is not in chroot
