@@ -21,17 +21,17 @@ $ sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | sudo gdisk /dev/nbd0
   o # new gpt
   Y # Proceed
   n
-  2
+  1
 
   +256M
   ef00 # EFI System
   n
-  3
+  2
 
   +2048M
   8300
   n
-  4
+  3
   
   
   
