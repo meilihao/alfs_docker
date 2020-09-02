@@ -19,11 +19,14 @@ mountpoint -q $LFS/sys && umount $LFS/sys
 mountpoint -q $LFS/proc && umount $LFS/proc
 mountpoint -q $LFS/run && umount $LFS/run
 
+mountpoint -q $LFS/boot/efi && umount $LFS/boot/efi
+mountpoint -q $LFS/boot && umount $LFS/boot
+mountpoint -q $LFS && umount $LFS
+
 echo -e "--- clean ${LFS}\n"
-pushd ${LFS}
-rm -rf `ls ${LFS} |egrep -v lfs_root`
-popd
 
 rm -rf /tmp/*
 
 echo -e "--- done clean-all.sh ---\n\n"
+
+echo -e "+++ maybe need ${LFSRoot}/scripts/gdisk.sh +++\n\n"

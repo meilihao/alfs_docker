@@ -65,11 +65,21 @@ $ cp -fv config/.config sources # can replace my custome .confing
 $ qemu-img create -f qcow2 lfs.img 12G # qemu-img create -f <fmt> <image filename> <size of disk>
 $ sudo modprobe -v nbd
 $ sudo qemu-nbd -c /dev/nbd0 lfs.img
-$ sudo docker run --privileged -d -it -v ${PWD}/scripts:/mnt/lfs/lfs_root/scripts -v ${PWD}/iso:/mnt/lfs/lfs_root/iso -v ${PWD}/sources:/mnt/lfs/lfs_root/sources --entrypoint /bin/bash lfs_builder
-$ sudo docker exec -it <container_id> bash
-root@8916814e8d0d:/# vim ~/.bashrc # for MAKEFLAGS, LFS_DOCS, LFS_TEST, OnlyBuildFSRoot, BackupBeforRealInstall, LFSVersion
-root@8916814e8d0d:/# source ~/.bash_profile
-root@8916814e8d0d:/# $LFSRoot/scripts/run-all.sh
+$ sudo docker run --privileged -d -it -v ${PWD}/scripts:/mnt/lfs_root/scripts -v ${PWD}/sources:/mnt/lfs_root/sources --entrypoint /bin/bash lfs_builder # --privileged for mount in container
+$ sudo docker exec -it 401ccde8d881 bash
+root@401ccde8d881:/# ${LFSRoot}/scripts/sync2lfs.sh      # sync to lfs
+root@401ccde8d881:/# ${LFSRoot}/scripts/version-check.sh # for check env
+root@401ccde8d881:/# ${LFSRoot}/scripts/gdisk.sh         # for partition
+root@401ccde8d881:/# vim ~/.bashrc                       # for MAKEFLAGS, LFS_DOCS, LFS_TEST, BackupBeforRealInstall, LFSVersion
+root@401ccde8d881:/# source ~/.bash_profile
+root@401ccde8d881:/# $LFSRoot/scripts/run-all.sh         # start build lfs
+root@401ccde8d881:/# vim $LFS/boot/efi/EFI/lfs/grub.cfg  # set right /boot uuid, see qemu.md
+root@401ccde8d881:/# vim $LFS/boot/grub/grub.cfg         # fix rootfs when generate grub.cfg, see qemu.md
+root@401ccde8d881:/# /mnt/lfs_root/scripts/umount-lfs.sh # umount /dev/nbd0pN
+root@401ccde8d881:/# exit
+$ sudo qemu-nbd -d /dev/nbd0
+$ cp /usr/share/ovmf/OVMF.fd .
+$ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img
 ```
 
 **note**, that extended privileges are required by docker container in order to execute some commands (e.g. mount, `mount -v --bind /dev $LFS/dev`).

@@ -12,9 +12,6 @@ fi
 
 echo `date` > ${LFS_Build_Done}
 
-${LFSRoot}/scripts/version-check.sh
-${LFSRoot}/scripts/gdisk.sh
-
 echo -e "--- start build lfs ---\n\n"
 
 mkdir -pv ${LFS}/{bin,etc,lib,lib64,sbin,usr,var,tools}

@@ -28,6 +28,6 @@ export LFSRootInChroot='/lfs_root'
 export LFSVersion='10.0-systemd'
 
 alias ll='ls -ahlF --color=auto'
-alias la='ls -A'
-alias l='ls -CF'
+alias la='ls -AF --color=auto'
+alias l='ls -CF --color=auto'
 alias grep='grep --color=auto'

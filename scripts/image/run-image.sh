@@ -6,13 +6,23 @@ rm -rf /tmp/*
 # may be move
 rm -rf $LFS/logs
 
-# use zip because tar打包$LFS在其他机器(deepin v20)解压时报错, 但在ubuntu 20.04的docker容器中解压又是正常的.
-pushd /tmp && \
-zip -9r -y /tmp/fsroot.zip ${LFS} -x="${LFS}/lfs_root/*" && \
-if [ -f ${LFSRoot}/iso/lfs-fsroot.zip ]; then
-    mv -v ${LFSRoot}/iso/lfs-fsroot.zip ${LFSRoot}/iso/lfs-fsroot-`date +%s`.zip
-fi                                                    && \
-mv -v /tmp/fsroot.zip ${LFSRoot}/iso/lfs-fsroot.zip   && \
-popd
+# for uefi
+rsync -av /usr/lib/grub/x86_64-efi ${LFS}/usr/lib/grub
+cp /usr/bin/efibootmgr $LFS/usr/bin
+rsync -av /lib/x86_64-linux-gnu/{libefivar.so.1*,libefiboot.so.1*} $LFS/lib
+
+chroot "$LFS" /usr/bin/env -i          \
+    LFSVersion="$LFSVersion"           \
+    LFSRoot="$LFSRootInChroot"         \
+    MAKEFLAGS="$MAKEFLAGS"             \
+    LFS_DOCS="$LFS_DOCS"               \
+    LFS_TEST="$LFS_TEST"               \
+    HOME=/root TERM="$TERM"            \
+    PS1='(lfs chroot) \u:\w\$ '        \
+    PATH=/bin:/usr/bin:/sbin:/usr/sbin \
+    /bin/bash --login \
+    -c "${LFSRootInChroot}/scripts/image/qemu-image.sh"
+
+${LFSRoot}/scripts/image/done.sh
 
 echo -e "--- done run-image.sh ---\n\n"

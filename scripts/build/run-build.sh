@@ -73,6 +73,4 @@ chroot "$LFS" /usr/bin/env -i          \
     /bin/bash --login \
     -c "${LFSRootInChroot}/scripts/build/run-build-in-chroot-system-config.sh"
 
-${LFSRoot}/scripts/build/done.sh
-
 echo -e "--- done run-build.sh ---\n\n"
