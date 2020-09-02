@@ -13,6 +13,8 @@ if [ -f ${LFS_Build_Done} ]; then
     rm ${LFS_Build_Done}
 fi
 
+rm -rf /tmp/*
+
 mountpoint -q $LFS/dev/pts && umount $LFS/dev/pts
 mountpoint -q $LFS/dev && umount $LFS/dev
 mountpoint -q $LFS/sys && umount $LFS/sys
@@ -24,8 +26,6 @@ mountpoint -q $LFS/boot && umount $LFS/boot
 mountpoint -q $LFS && umount $LFS
 
 echo -e "--- clean ${LFS}\n"
-
-rm -rf /tmp/*
 
 echo -e "--- done clean-all.sh ---\n\n"
 
