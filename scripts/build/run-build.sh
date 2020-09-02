@@ -18,9 +18,9 @@ chroot "$LFS" /usr/bin/env -i   \
     -c "${LFSRootInChroot}/scripts/build/run-build-in-chroot.sh"
 
 # 7.14.1. Stripping
-strip --strip-debug $LFS/usr/lib/*
-strip --strip-unneeded $LFS/usr/{,s}bin/*
-strip --strip-unneeded $LFS/tools/bin/*
+strip --strip-debug $LFS/usr/lib/*        || true
+strip --strip-unneeded $LFS/usr/{,s}bin/* || true
+strip --strip-unneeded $LFS/tools/bin/*   || true
 
 if $BackupBeforRealInstall; then
     umount $LFS/dev{/pts,}
