@@ -15,17 +15,20 @@ PATH=$LFS/tools/bin:$PATH
 export LFS LC_ALL LFS_TGT PATH
 
 # because "sudo docker exec -it 8916814e8d0db909dc4cc0a96da49a25eee3135c853b9434655fd877a7538a30 bash" is not login shell,
-# only use ``.bashrc`
-export LFSRoot=${LFS}/lfs_root
-export MAKEFLAGS='-j2'
+# only use `.bashrc`
 export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+export LFSRoot=${LFS}/lfs_root
+export LFSRootInChroot='/lfs_root'
+
+# --- can edit args
+export MAKEFLAGS='-j2'
 # 1 is install doc; 0 is not
 export LFS_DOCS=1
 # 1 is run tests; 0 is not. running tests takes much more time
 export LFS_TEST=1
 export BackupBeforRealInstall=true
-export LFSRootInChroot='/lfs_root'
 export LFSVersion='10.0-systemd'
+# ---
 
 alias ll='ls -ahlF --color=auto'
 alias la='ls -AF --color=auto'
