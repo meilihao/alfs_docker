@@ -10,4 +10,6 @@ umount -v $LFS/sys
 
 # umount -v $LFS
 
+rm -rf $LFS/tmp/*
+
 echo -e "--- done done.sh in chroot ---\n\n"
