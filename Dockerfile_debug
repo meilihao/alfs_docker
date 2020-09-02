@@ -8,7 +8,6 @@ MAINTAINER meilihao <563278383@qq.com>
 COPY [ "scripts/run-in-env.sh", "config/.bash_profile", "config/.bashrc", "/root/" ]
 
 RUN ln -s -f /usr/bin/bash /bin/sh && \
-    rm /etc/bash.bashrc && \
-    find /scripts -name "*.sh" -exec chmod +x {} \;
+    rm /etc/bash.bashrc
 
 ENTRYPOINT [ "/root/run-in-env.sh" ]
