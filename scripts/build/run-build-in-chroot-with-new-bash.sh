@@ -43,6 +43,5 @@ ${LFSRoot}/scripts/build/procps-ng.sh
 ${LFSRoot}/scripts/build/util-linux2.sh
 ${LFSRoot}/scripts/build/e2fsprogs.sh
 ${LFSRoot}/scripts/build/stripping-again.sh
-${LFSRoot}/scripts/build/cleanup2.sh
 
 echo -e "--- done run-build-in-chroot-with-new-bash.sh in chroot ---\n\n"

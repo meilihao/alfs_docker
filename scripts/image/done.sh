@@ -8,6 +8,4 @@ umount -v $LFS/run
 umount -v $LFS/proc
 umount -v $LFS/sys
 
-rm -rf $LFS/tmp/*
-
 echo -e "--- done done.sh ---\n\n"
