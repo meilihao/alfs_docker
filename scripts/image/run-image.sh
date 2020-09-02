@@ -23,6 +23,4 @@ chroot "$LFS" /usr/bin/env -i          \
     /bin/bash --login \
     -c "${LFSRootInChroot}/scripts/image/qemu-image.sh"
 
-${LFSRoot}/scripts/image/done.sh
-
 echo -e "--- done run-image.sh ---\n\n"

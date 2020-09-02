@@ -75,7 +75,8 @@ root@401ccde8d881:/# source ~/.bash_profile
 root@401ccde8d881:/# $LFSRoot/scripts/run-all.sh         # start build lfs
 root@401ccde8d881:/# vim $LFS/boot/efi/EFI/lfs/grub.cfg  # set right /boot uuid, see qemu.md
 root@401ccde8d881:/# vim $LFS/boot/grub/grub.cfg         # fix rootfs when generate grub.cfg, see qemu.md
-root@401ccde8d881:/# /mnt/lfs_root/scripts/umount-lfs.sh # umount /dev/nbd0pN
+root@401ccde8d881:/# /mnt/lfs_root/scripts/image/done.sh # umount /dev/nbd0pN, use /mnt/lfs_root/scripts/image/done.sh because ${LFSRoot} deleted in build/cleanup2.sh
+root@401ccde8d881:/# mount # check mount
 root@401ccde8d881:/# exit
 $ sudo qemu-nbd -d /dev/nbd0
 $ cp /usr/share/ovmf/OVMF.fd .
