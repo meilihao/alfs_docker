@@ -16,6 +16,7 @@ export LFS LC_ALL LFS_TGT PATH
 
 # because "sudo docker exec -it 8916814e8d0db909dc4cc0a96da49a25eee3135c853b9434655fd877a7538a30 bash" is not login shell,
 # only use ``.bashrc`
+export LFSRoot=${LFS}/lfs_root
 export MAKEFLAGS='-j2'
 export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 # 1 is install doc; 0 is not
@@ -30,6 +31,3 @@ alias ll='ls -ahlF --color=auto'
 alias la='ls -A'
 alias l='ls -CF'
 alias grep='grep --color=auto'
-
-# not auto to build lfs
-#${LFSRoot}/scripts/run-all.sh
