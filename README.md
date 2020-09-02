@@ -97,5 +97,8 @@ offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
 
     初步排查是`scripts/kconfig/conf.c`提示了`Restart config`, 待查???.
 
+## roadmap
+see [changelog.md](/changelog.md)
+
 ## changelog
-changelog is in [changelog.md](/changelog.md)
+see [changelog.md](/changelog.md)
