@@ -23,6 +23,7 @@ mountpoint -q $LFS/run && umount $LFS/run
 
 mountpoint -q $LFS/boot/efi && umount $LFS/boot/efi
 mountpoint -q $LFS/boot && umount $LFS/boot
+# maybe need try more times for umount $LFS
 mountpoint -q $LFS && umount $LFS
 
 echo -e "--- clean ${LFS}\n"

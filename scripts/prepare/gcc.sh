@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
+# the error meet only one, and no why.
+# /mnt/lfs/lfs_root/scripts/prepare/glibc.sh: line 34: x86_64-lfs-linux-gnu-gcc: command not found
+# /mnt/lfs/lfs_root/scripts/prepare/glibc.sh: line 38: /mnt/lfs/tools/libexec/gcc/x86_64-lfs-linux-gnu/10.2.0/install-tools/mkheaders: No such file or directory
+
 echo -e "\n\n+++ start gcc.sh +++\n\n"
 
 BuildDir=`mktemp -d --suffix ".gcc"`
