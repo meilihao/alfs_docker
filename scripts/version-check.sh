@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # from LFS#2.2. Host System Requirements, only use when debug Dockerfile
 # Simple script to list version numbers of critical development tools
+
+echo "--- start version-check.sh ---"
+
 export LC_ALL=C
 bash --version | head -n1 | cut -d" " -f2-4
 MYSH=$(readlink -f /bin/sh)
@@ -54,3 +57,9 @@ if [ -x dummy ]
   then echo "g++ compilation OK";
   else echo "g++ compilation failed"; fi
 rm -f dummy.c dummy
+
+echo -e "--- done version-check.sh ---\n\n"
+
+echo "--- print env ---"
+env
+echo -e "--- done print env ---\n\n"

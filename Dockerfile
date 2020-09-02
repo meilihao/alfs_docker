@@ -10,10 +10,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ENV LFSRoot=/mnt/lfs/lfs_root
 
-# 保留scripts的层次结构
-# 使用docker mount便于调试
-#COPY scripts/ /lfs/scripts/
-COPY [ "config/.bash_profile", "config/.bashrc", "/root/" ]
+COPY [ "scripts/run-in-env.sh", "config/.bash_profile", "config/.bashrc", "/root/" ]
 
 # 2.2. Host System Requirements
 # 4.4. Setting Up the Environment
@@ -25,7 +22,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/source
     sed -i 's/security.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list && \
     apt update && \
     apt upgrade -y && \
-    apt install -y vim tree locate iproute2 zip unzip genisoimage grub-pc-bin grub-efi-amd64-bin dosfstools && \
+    apt install -y vim tree locate iproute2 zip unzip genisoimage grub-pc-bin grub-efi-amd64-bin dosfstools rsync bsdmainutils && \
     apt install -y binutils bison gawk gcc-10 g++-10 python3.8 make patch texinfo && \
     rm -rf /var/lib/apt/lists/* && \
     ln -s -f /usr/bin/bash /bin/sh && \
@@ -34,7 +31,6 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/source
     update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 2 && \
     ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     dpkg-reconfigure -f noninteractive tzdata && \
-    rm /etc/bash.bashrc && \
-    mkdir -pv $LFSRoot
+    rm /etc/bash.bashrc
 
-ENTRYPOINT [ "$LFSRoot/scripts/run-in-env.sh" ]
+ENTRYPOINT [ "/root/run-in-env.sh" ]

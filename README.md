@@ -62,6 +62,9 @@ $ curl https://git.savannah.gnu.org/cgit/cpio.git/patch/?id=641d3f489cf6238bb916
 $ wget https://codeload.github.com/lz4/lz4/tar.gz/v1.9.2 -O sources/lz4-1.9.2.tar.gz
 $ sudo docker build . -t "lfs_builder"
 $ cp -fv config/.config sources # can replace my custome .confing
+$ qemu-img create -f qcow2 lfs.img 12G # qemu-img create -f <fmt> <image filename> <size of disk>
+$ sudo modprobe -v nbd
+$ sudo qemu-nbd -c /dev/nbd0 lfs.img
 $ sudo docker run --privileged -d -it -v ${PWD}/scripts:/mnt/lfs/lfs_root/scripts -v ${PWD}/iso:/mnt/lfs/lfs_root/iso -v ${PWD}/sources:/mnt/lfs/lfs_root/sources --entrypoint /bin/bash lfs_builder
 $ sudo docker exec -it <container_id> bash
 root@8916814e8d0d:/# vim ~/.bashrc # for MAKEFLAGS, LFS_DOCS, LFS_TEST, OnlyBuildFSRoot, BackupBeforRealInstall, LFSVersion

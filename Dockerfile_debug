@@ -1,15 +1,14 @@
 # docker build . -t "lfs_debuger" -f Dockerfile_debug
 # only for debug scripts framwork
-# sudo docker run --rm -it -v iso:/lfs/iso -v sources:/lfs/sources --entrypoint /bin/bash lfs_debuger
+# sudo docker run --rm -it --entrypoint /bin/bash lfs_debuger
 FROM ubuntu:20.04
 
 MAINTAINER meilihao <563278383@qq.com>
 
-COPY scripts/ /scripts/
-COPY [ "config/.bash_profile", "config/.bashrc", "/root/" ]
+COPY [ "scripts/run-in-env.sh", "config/.bash_profile", "config/.bashrc", "/root/" ]
 
 RUN ln -s -f /usr/bin/bash /bin/sh && \
     rm /etc/bash.bashrc && \
     find /scripts -name "*.sh" -exec chmod +x {} \;
 
-ENTRYPOINT [ "/scripts/run-in-env.sh" ]
+ENTRYPOINT [ "/root/run-in-env.sh" ]
