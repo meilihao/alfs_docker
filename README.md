@@ -69,10 +69,11 @@ $ cp -fv config/.config sources # can replace my custome .confing
 $ qemu-img create -f qcow2 lfs.img 12G # qemu-img create -f <fmt> <image filename> <size of disk>
 $ sudo modprobe -v nbd
 $ sudo qemu-nbd -c /dev/nbd0 lfs.img
+$ sudo scripts/gdisk.sh
 $ sudo docker run --privileged -d -it -v ${PWD}/scripts:/mnt/lfs_root/scripts -v ${PWD}/sources:/mnt/lfs_root/sources --entrypoint /bin/bash lfs_builder # --privileged for mount in container
 $ sudo docker exec -it 401ccde8d881 bash
 root@401ccde8d881:/# /mnt/lfs_root/scripts/version-check.sh # for check env
-root@401ccde8d881:/# /mnt/lfs_root/scripts/gdisk.sh         # for partition
+root@401ccde8d881:/# /mnt/lfs_root/scripts/mount_lfs.sh     # for partition
 root@401ccde8d881:/# mount                                  # check mount, $LFS{,boot,boot/efi} is ok?
 root@401ccde8d881:/# /mnt/lfs_root/scripts/sync2lfs.sh   # sync to lfs for chroot environment
 root@401ccde8d881:/# vim ~/.bashrc                       # for MAKEFLAGS, LFS_DOCS, LFS_TEST, BackupBeforRealInstall, LFSVersion

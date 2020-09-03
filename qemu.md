@@ -378,3 +378,11 @@ grub构建时其`./configure`启用选项`--with-platform=efi`,即
     --with-platform=efi    \
     --disable-werror
 ```
+### qemu-nbd: Disconnect client, due to: Failed to read request: Unexpected end-of-file before all bytes were read
+```bash
+$ sudo qemu-nbd -c /dev/nbd0 lfs.img
+qemu-nbd: Failed to set NBD socket
+qemu-nbd: Disconnect client, due to: Failed to read request: Unexpected end-of-file before all bytes were read
+```
+
+/dev/nbd0已经绑定image了
