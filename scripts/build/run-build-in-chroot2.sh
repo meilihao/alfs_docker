@@ -13,4 +13,8 @@ ${LFSRoot}/scripts/build/util-linux.sh
 # clean for backup
 ${LFSRoot}/scripts/build/cleanup.sh
 
+if [[ `ll /tmp |wc -l` -gt 0 ]]; then
+     read
+fi
+
 echo -e "--- done run-build-in-chroot2.sh in chroot ---\n\n"

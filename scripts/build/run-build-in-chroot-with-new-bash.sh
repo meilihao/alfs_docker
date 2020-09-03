@@ -42,6 +42,11 @@ ${LFSRoot}/scripts/build/dbus.sh
 ${LFSRoot}/scripts/build/procps-ng.sh
 ${LFSRoot}/scripts/build/util-linux2.sh
 ${LFSRoot}/scripts/build/e2fsprogs.sh
+
+if [[ `ll /tmp |wc -l` -gt 0 ]]; then
+     read
+fi
+
 ${LFSRoot}/scripts/build/stripping-again.sh
 
 echo -e "--- done run-build-in-chroot-with-new-bash.sh in chroot ---\n\n"

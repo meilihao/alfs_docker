@@ -29,4 +29,8 @@ ${LFSRoot}/scripts/prepare/xz.sh
 ${LFSRoot}/scripts/prepare/binutils2.sh
 ${LFSRoot}/scripts/prepare/gcc2.sh
 
+if [[ `ll /tmp |wc -l` -gt 0 ]]; then
+     read
+fi
+
 echo -e "--- done run-prepare.sh ---\n\n"

@@ -36,6 +36,10 @@ ${LFSRoot}/scripts/build/bison2.sh
 ${LFSRoot}/scripts/build/grep.sh
 ${LFSRoot}/scripts/build/bash.sh
 
+if [[ `ll /tmp |wc -l` -gt 0 ]]; then
+     read
+fi
+
 exec /bin/bash --login +h \
     -c "${LFSRoot}/scripts/build/run-build-in-chroot-with-new-bash.sh"
 
