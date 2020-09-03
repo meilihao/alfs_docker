@@ -27,7 +27,7 @@ EOF
     setfacl --restore=${BuildDir}/permissions.facl
 fi                                    && \
 make install                          && \
-mv -vf /usr/bin/bash /bin             && \
+# mv -vf /usr/bin/bash /bin             && \
 popd                                  && \
 rm -rf ${BuildDir}
 

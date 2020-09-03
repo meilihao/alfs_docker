@@ -72,6 +72,7 @@ $ sudo docker run --privileged -d -it -v ${PWD}/scripts:/mnt/lfs_root/scripts -v
 $ sudo docker exec -it 401ccde8d881 bash
 root@401ccde8d881:/# /mnt/lfs_root/scripts/version-check.sh # for check env
 root@401ccde8d881:/# /mnt/lfs_root/scripts/gdisk.sh         # for partition
+root@401ccde8d881:/# mount                                  # check mount, $LFS{,boot,boot/efi} is ok?
 root@401ccde8d881:/# /mnt/lfs_root/scripts/sync2lfs.sh   # sync to lfs for chroot environment
 root@401ccde8d881:/# vim ~/.bashrc                       # for MAKEFLAGS, LFS_DOCS, LFS_TEST, BackupBeforRealInstall, LFSVersion
 root@401ccde8d881:/# source ~/.bash_profile

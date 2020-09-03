@@ -27,7 +27,7 @@ if [ $LFS_TEST -eq 1 ]; then
     make check 2>&1 | tee /logs/test-inetutils-`date +%s`.log || true
 fi                                    && \
 make install                          && \
-mv -v /usr/bin/{hostname,ping,ping6,traceroute} /bin && \
+# mv -v /usr/bin/{hostname,ping,ping6,traceroute} /bin && \
 mv -v /usr/bin/ifconfig /sbin         && \
 popd                                  && \
 rm -rf ${BuildDir}

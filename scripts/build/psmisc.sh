@@ -13,8 +13,8 @@ cd ${BuildDir} && \
 ./configure --prefix=/usr             && \
 make                                  && \
 make install                          && \
-mv -v /usr/bin/fuser   /bin           && \
-mv -v /usr/bin/killall /bin           && \
+# mv -v /usr/bin/fuser   /bin           && \
+# mv -v /usr/bin/killall /bin           && \
 popd                                  && \
 rm -rf ${BuildDir}
 

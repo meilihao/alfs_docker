@@ -16,7 +16,7 @@ if [ $LFS_TEST -eq 1 ]; then
     make check 2>&1| tee /logs/test-gzip-`date +%s`.log
 fi                                    && \
 make install                          && \
-mv -v /usr/bin/gzip /bin              && \
+# mv -v /usr/bin/gzip /bin              && \
 popd                                  && \
 rm -rf ${BuildDir}
 

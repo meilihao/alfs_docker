@@ -20,8 +20,8 @@ sed -i '/LIBTOOL_INSTALL/d' c++/Makefile.in && \
             --enable-widec            && \
 make                                  && \
 make install                          && \
-mv -v /usr/lib/libncursesw.so.6* /lib                                         && \
-ln -sfv ../../lib/$(readlink /usr/lib/libncursesw.so) /usr/lib/libncursesw.so && \              && \
+# mv -v /usr/lib/libncursesw.so.6* /lib                                         && \
+# ln -sfv ../../lib/$(readlink /usr/lib/libncursesw.so) /usr/lib/libncursesw.so && \
 for lib in ncurses form panel menu ; do
     rm -vf                    /usr/lib/lib${lib}.so
     echo "INPUT(-l${lib}w)" > /usr/lib/lib${lib}.so

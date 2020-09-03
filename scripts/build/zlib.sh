@@ -16,8 +16,8 @@ if [ $LFS_TEST -eq 1 ]; then
     make check 2>&1| tee /logs/test-zlib-`date +%s`.log
 fi                                    && \
 make install                          && \
-mv -v /usr/lib/libz.so.* /lib         && \
-ln -sfv ../../lib/$(readlink /usr/lib/libz.so) /usr/lib/libz.so && \
+# mv -v /usr/lib/libz.so.* /lib         && \
+# ln -sfv ../../lib/$(readlink /usr/lib/libz.so) /usr/lib/libz.so && \
 popd                                  && \
 rm -rf ${BuildDir}
 

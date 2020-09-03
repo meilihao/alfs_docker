@@ -17,7 +17,7 @@ if [ $LFS_TEST -eq 1 ]; then
     su tester -c "PATH=$PATH make check 2>&1| tee /logs/test-findutils-`date +%s`.log"
 fi                                    && \
 make install                          && \
-mv -v /usr/bin/find /bin              && \
+# mv -v /usr/bin/find /bin              && \
 sed -i 's|find:=${BINDIR}|find:=/bin|' /usr/bin/updatedb && \
 popd                                  && \
 rm -rf ${BuildDir}

@@ -18,9 +18,9 @@ if [ $LFS_TEST -eq 1 ]; then
     make check 2>&1| tee /logs/test-xz-`date +%s`.log
 fi                                    && \
 make install                          && \
-mv -v   /usr/bin/{lzma,unlzma,lzcat,xz,unxz,xzcat} /bin                    && \
-mv -v /usr/lib/liblzma.so.* /lib                                           && \
-ln -svf ../../lib/$(readlink /usr/lib/liblzma.so) /usr/lib/liblzma.so      && \
+# mv -v   /usr/bin/{lzma,unlzma,lzcat,xz,unxz,xzcat} /bin                    && \
+# mv -v /usr/lib/liblzma.so.* /lib                                           && \
+# ln -svf ../../lib/$(readlink /usr/lib/liblzma.so) /usr/lib/liblzma.so      && \
 popd                                  && \
 rm -rf ${BuildDir}
 

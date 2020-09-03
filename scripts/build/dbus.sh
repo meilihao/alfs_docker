@@ -20,8 +20,8 @@ cd ${BuildDir} && \
             --with-console-auth-dir=/run/console && \
 make                                  && \
 make install                          && \
-mv -v /usr/lib/libdbus-1.so.* /lib    && \
-ln -sfv ../../lib/$(readlink /usr/lib/libdbus-1.so) /usr/lib/libdbus-1.so && \
+# mv -v /usr/lib/libdbus-1.so.* /lib    && \
+# ln -sfv ../../lib/$(readlink /usr/lib/libdbus-1.so) /usr/lib/libdbus-1.so && \
 ln -sfv /etc/machine-id /var/lib/dbus && \
 sed -i 's:/var/run:/run:' /lib/systemd/system/dbus.socket && \
 popd                                  && \

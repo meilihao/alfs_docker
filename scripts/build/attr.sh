@@ -19,8 +19,8 @@ if [ $LFS_TEST -eq 1 ]; then
     make check 2>&1 | tee /logs/test-attr-`date +%s`.log
 fi                                    && \
 make install                          && \
-mv -v /usr/lib/libattr.so.* /lib      && \
-ln -sfv ../../lib/$(readlink /usr/lib/libattr.so) /usr/lib/libattr.so        && \
+# mv -v /usr/lib/libattr.so.* /lib      && \
+# ln -sfv ../../lib/$(readlink /usr/lib/libattr.so) /usr/lib/libattr.so        && \
 popd                                  && \
 rm -rf ${BuildDir}
 
