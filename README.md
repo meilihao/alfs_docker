@@ -63,6 +63,7 @@ $ wget --continue --directory-prefix=sources https://mirrors.edge.kernel.org/pub
 $ wget --continue --directory-prefix=sources https://ftp.gnu.org/gnu/cpio/cpio-2.13.tar.gz
 $ curl https://git.savannah.gnu.org/cgit/cpio.git/patch/?id=641d3f489cf6238bb916368d4ba0d9325a235afb -o sources/cpio-2.13.patch
 $ wget https://codeload.github.com/lz4/lz4/tar.gz/v1.9.2 -O sources/lz4-1.9.2.tar.gz
+$ git clone --depth=1 https://github.com/ohmybash/oh-my-bash.git sources/oh-my-bash
 $ sudo docker build . -t "lfs_builder"
 $ cp -fv config/.config sources # can replace my custome .confing
 $ qemu-img create -f qcow2 lfs.img 12G # qemu-img create -f <fmt> <image filename> <size of disk>

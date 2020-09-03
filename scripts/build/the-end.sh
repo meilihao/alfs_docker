@@ -19,4 +19,6 @@ PRETTY_NAME="Linux From Scratch ${LFSVersion}"
 VERSION_CODENAME="Linux From Scratch for fun"
 EOF
 
+${LFSRoot}/scripts/build/oh-my-bash.sh
+
 echo -e "--- done the-end.sh in chroot ---\n\n"
