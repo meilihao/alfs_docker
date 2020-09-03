@@ -8,7 +8,7 @@ ${LFSRoot}/scripts/build/lz4.sh
 ${LFSRoot}/scripts/build/kernel.sh
 ${LFSRoot}/scripts/build/the-end.sh
 
-if [[ `ll /tmp |wc -l` -gt 0 ]]; then
+if [[ `ll -A /tmp |grep "^d"|wc -l` -gt 0 ]]; then
      read
 fi
 

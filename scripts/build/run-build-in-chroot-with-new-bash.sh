@@ -43,7 +43,7 @@ ${LFSRoot}/scripts/build/procps-ng.sh
 ${LFSRoot}/scripts/build/util-linux2.sh
 ${LFSRoot}/scripts/build/e2fsprogs.sh
 
-if [[ `ll /tmp |wc -l` -gt 0 ]]; then
+if [[ `ll -A /tmp |grep "^d"|wc -l` -gt 0 ]]; then
      read
 fi
 

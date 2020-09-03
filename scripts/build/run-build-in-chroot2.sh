@@ -13,7 +13,7 @@ ${LFSRoot}/scripts/build/util-linux.sh
 # clean for backup
 ${LFSRoot}/scripts/build/cleanup.sh
 
-if [[ `ll /tmp |wc -l` -gt 0 ]]; then
+if [[ `ll -A /tmp |grep "^d"|wc -l` -gt 0 ]]; then
      read
 fi
 
