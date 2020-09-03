@@ -29,7 +29,7 @@ chroot "$LFS" /usr/bin/env -i          \
     -c "${LFSRootInChroot}/scripts/image/qemu-image.sh"
 
 # may be move
-rm -rf ${LFS}/logs
+mv ${LFS}/logs /mnt
 rm -rf $LFSRoot
 
 unset KernelVersion
