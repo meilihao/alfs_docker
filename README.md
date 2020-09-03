@@ -66,7 +66,7 @@ $ wget https://codeload.github.com/lz4/lz4/tar.gz/v1.9.2 -O sources/lz4-1.9.2.ta
 $ git clone --depth=1 https://github.com/ohmybash/oh-my-bash.git sources/oh-my-bash
 $ sudo docker build . -t "lfs_builder"
 $ cp -fv config/.config sources # can replace my custome .confing
-$ qemu-img create -f qcow2 lfs.img 12G # qemu-img create -f <fmt> <image filename> <size of disk>
+$ qemu-img create -f qcow2 lfs.img 16G # qemu-img create -f <fmt> <image filename> <size of disk>
 $ sudo modprobe -v nbd
 $ sudo qemu-nbd -c /dev/nbd0 lfs.img
 $ sudo scripts/gdisk.sh
