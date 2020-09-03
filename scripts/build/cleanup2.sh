@@ -6,7 +6,6 @@ set -e
 echo -e "\n\n+++ start cleanup2.sh +++\n\n"
 
 rm -rf /tmp/*
-rm -rf $LFSRoot
 rm /lib/elf_ld-linux-x86-64.so.2 2>&1 || true
 
 rm -f /usr/lib/lib{bfd,opcodes}.a
