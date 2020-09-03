@@ -17,7 +17,7 @@ cd ${BuildDir} && \
 make           && \
 make DESTDIR=$LFS install            && \
 # mv $LFS/usr/bin/bash $LFS/bin/bash   && \
-ln -sv bash $LFS/bin/sh              && \
+ln -sfv bash $LFS/bin/sh              && \
 popd           && \
 rm -rf ${BuildDir}
 
