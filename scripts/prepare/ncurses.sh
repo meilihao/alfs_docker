@@ -30,8 +30,8 @@ popd                      && \
 make           && \
 make DESTDIR=$LFS TIC_PATH=$(pwd)/build/progs/tic install   && \
 echo "INPUT(-lncursesw)" > $LFS/usr/lib/libncurses.so       && \
-mv -v $LFS/usr/lib/libncursesw.so.6* $LFS/lib               && \
-ln -sfv ../../lib/$(readlink $LFS/usr/lib/libncursesw.so) $LFS/usr/lib/libncursesw.so && \
+# mv -v $LFS/usr/lib/libncursesw.so.6* $LFS/lib               && \
+# ln -sfv ../../lib/$(readlink $LFS/usr/lib/libncursesw.so) $LFS/usr/lib/libncursesw.so && \
 popd           && \
 rm -rf ${BuildDir}
 
