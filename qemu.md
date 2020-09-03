@@ -102,7 +102,7 @@ $ sudo docker run --privileged -d -it --entrypoint /bin/bash ubuntu:20.04
 $ sudo docker cp ./lfs-fsroot.tar.gz 314e2de3097dfbdc58f5d236c2c244718273afc601cb67f67e952e53a3a44513:/lfs_fs_root.tar.gz
 $ sudo docker exec -it 314e2de3097dfbdc58f5d236c2c244718273afc601cb67f67e952e53a3a44513 bash
 # sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
-# apt udpate && apt install -y rsync bsdmainutils grub-efi-amd64-bin # bsdmainutils for hd, grub-efi-amd64-bin for efi, initramfs-tools for initramfs
+# apt udpate && apt install -y rsync bsdmainutils grub-efi-amd64-bin initramfs-tools # bsdmainutils for hd, grub-efi-amd64-bin for efi, initramfs-tools for initramfs
 # export LFSFSRoot=/lfs_fs_root # in docker now
 # export LFS=/mnt/lfs
 # mkdir -pv $LFSFSRoot

@@ -31,6 +31,6 @@ find ${LFSRoot}/scripts -name "*.sh" -exec chmod +x {} \;
 
 ${LFSRoot}/scripts/prepare/run-prepare.sh
 ${LFSRoot}/scripts/build/run-build.sh
-${LFSRoot}/scripts/image/run-image.sh
+/mnt/lfs_root/scripts/image/run-image.sh
 
 echo -e "--- done build lfs ---\n\n"

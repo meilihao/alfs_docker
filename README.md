@@ -11,6 +11,9 @@ env:
 ## [linux standards followed by LFS](https://lctt.github.io/LFS-BOOK/lfs-systemd/LFS-SYSD-BOOK.html#pre-standards)
 
 ## setp
+**note**:
+1. need a machine which support uefi because grub-install use efibootmgr, Otherwise use tag 1.0 which support bios+gpt.
+
 ### 1. update version-check.sh
 1. update scripts/version-check.sh
 
@@ -73,6 +76,7 @@ root@401ccde8d881:/# /mnt/lfs_root/scripts/sync2lfs.sh   # sync to lfs for chroo
 root@401ccde8d881:/# vim ~/.bashrc                       # for MAKEFLAGS, LFS_DOCS, LFS_TEST, BackupBeforRealInstall, LFSVersion
 root@401ccde8d881:/# source ~/.bash_profile
 root@401ccde8d881:/# $LFSRoot/scripts/run-all.sh         # start build lfs
+root@401ccde8d881:/# vim $LFS/etc/fstab                  # set right fstab, see qemu.md
 root@401ccde8d881:/# vim $LFS/boot/efi/EFI/lfs/grub.cfg  # set right /boot uuid, see qemu.md
 root@401ccde8d881:/# vim $LFS/boot/grub/grub.cfg         # fix rootfs when generate grub.cfg, see qemu.md
 root@401ccde8d881:/# /mnt/lfs_root/scripts/image/done.sh # umount /dev/nbd0pN, use /mnt/lfs_root/scripts/image/done.sh because ${LFSRoot} deleted in build/cleanup2.sh
