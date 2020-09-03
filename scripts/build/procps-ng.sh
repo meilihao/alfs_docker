@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -e
 
+# ./configure get error:
+# configure: error: Package requirements (libsystemd) were not met:
+# No package 'libsystemd' found
+# ----
+# pkg-config --exists --print-errors "systemd" is ok, pkg-config --exists --print-errors "libsystemd" is bad, found /usr/share/pkgconfig/systemd.pc and /usr/lib64/pkgconfig/libsystemd.pc with new fs layout.
+# `pkg-config --variable pc_path pkg-config` get `/usr/lib/pkgconfig:/usr/share/pkgconfig`, no "/usr/lib64/pkgconfig". fix in pkg-config.sh
+
 echo -e "\n\n+++ start procps-ng.sh +++\n\n"
 
 BuildDir=`mktemp -d --suffix ".procps-ng"`
