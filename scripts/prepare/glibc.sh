@@ -2,6 +2,7 @@
 set -e
 
 # `ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64` is use for chroot, so ld-linux-x86-64.so.2 isn't host's so.
+# delete ld-lsb-x86-64.so.3, because not found it in ubuntu 20.04 or deepin v20
 
 echo -e "\n\n+++ start glibc.sh +++\n\n"
 
@@ -13,7 +14,7 @@ tar -xf ${LFSRoot}/sources/glibc-*.tar.xz -C ${BuildDir} --strip-components 1 &&
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64                        && \
-ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64/ld-lsb-x86-64.so.3     && \
+# ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64/ld-lsb-x86-64.so.3     && \
 patch -Np1 -i ${LFSRoot}/sources/glibc-2.32-fhs-1.patch              && \
 mkdir -v build && \
 cd       build && \
