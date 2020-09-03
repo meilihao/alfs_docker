@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-# use `--with-pc-path` because libsystemd.pc in /usr/lib64/pkgconfig, and default pc path does not include /usr/lib64/pkgconfig
+# use `--with-pc-path` because libsystemd.pc in /usr/lib64/pkgconfig, and default pc path does not include /usr/lib64/pkgconfig, so build procps-ng.sh failed and build dbus failed too.
 
 echo -e "\n\n+++ start pkg-config.sh +++\n\n"
 

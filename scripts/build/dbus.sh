@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
+# `sed -i 's:/var/run:/run:' /lib/systemd/system/dbus.socket` failed, "sed: can't read /lib/systemd/system/dbus.socket: No such file or directory"
+# ---
+# cat config.log, found "Package libsystemd was not found in the pkg-config search path", the same error in procps-ng.
+
 echo -e "\n\n+++ start dbus.sh +++\n\n"
 
 BuildDir=`mktemp -d --suffix ".dbus"`
