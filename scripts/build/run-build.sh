@@ -33,7 +33,6 @@ if $BackupBeforRealInstall; then
     tar --exclude=lfs_root -cJpf /mnt/lfs-backup-tools-${LFSVersion}.tar.xz . && \
     popd
 
-    # restore.sh is not in chroot
     ${LFSRoot}/scripts/build/prepare-vkfs-again.sh
 fi
 
