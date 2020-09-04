@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+# failed is ok: 223: capabilities: binary store/restore              FAILED (capabs_raw01.at:28)
+
 echo -e "\n\n+++ start tar.sh +++\n\n"
 
 BuildDir=`mktemp -d --suffix ".tar"`

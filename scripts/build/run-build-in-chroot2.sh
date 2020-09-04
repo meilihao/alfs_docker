@@ -11,7 +11,7 @@ ${LFSRoot}/scripts/build/python.sh
 ${LFSRoot}/scripts/build/texinfo.sh
 ${LFSRoot}/scripts/build/util-linux.sh
 
-if [[ `ll -A /tmp |grep "^d"|wc -l` -gt 0 ]]; then
+if [[ `ls -l -A /tmp |grep "^d"|grep "tmp." |wc -l` -gt 0 ]]; then
      read
 fi
 

@@ -36,7 +36,7 @@ ${LFSRoot}/scripts/build/bison2.sh
 ${LFSRoot}/scripts/build/grep.sh
 ${LFSRoot}/scripts/build/bash.sh
 
-if [[ `ll -A /tmp|grep "^d"|wc -l` -gt 0 ]]; then
+if [[ `ls -l -A /tmp|grep "^d"|grep "tmp." |wc -l` -gt 0 ]]; then
      read
 fi
 
