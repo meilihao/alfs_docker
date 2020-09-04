@@ -70,15 +70,15 @@ $ qemu-img create -f qcow2 lfs.img 16G # qemu-img create -f <fmt> <image filenam
 $ sudo modprobe -v nbd
 $ sudo qemu-nbd -c /dev/nbd0 lfs.img
 $ sudo scripts/gdisk.sh
-$ sudo docker run --privileged -d -it -v ${PWD}/scripts:/mnt/lfs_root/scripts -v ${PWD}/sources:/mnt/lfs_root/sources --entrypoint /bin/bash lfs_builder # --privileged for mount in container
-$ sudo docker exec -it 401ccde8d881 bash
+$ sudo docker run --name lfs --privileged -d -it -v ${PWD}/scripts:/mnt/lfs_root/scripts -v ${PWD}/sources:/mnt/lfs_root/sources --entrypoint /bin/bash lfs_builder # --privileged for mount in container
+$ sudo docker exec -it lfs bash
 root@401ccde8d881:/# /mnt/lfs_root/scripts/version-check.sh # for check env
 root@401ccde8d881:/# /mnt/lfs_root/scripts/mount_lfs.sh     # for partition
 root@401ccde8d881:/# mount                                  # check mount, $LFS{,boot,boot/efi} is ok?
 root@401ccde8d881:/# /mnt/lfs_root/scripts/sync2lfs.sh   # sync to lfs for chroot environment
 root@401ccde8d881:/# vim ~/.bashrc                       # for MAKEFLAGS, LFS_DOCS, LFS_TEST, BackupBeforRealInstall, LFSVersion
 root@401ccde8d881:/# source ~/.bash_profile
-root@401ccde8d881:/# $LFSRoot/scripts/run-all.sh  2>&1 |tee build.log  # start build lfs
+root@401ccde8d881:/# nohup $LFSRoot/scripts/run-all.sh  2>&1 |tee build.log  # start build lfs
 root@401ccde8d881:/# vim $LFS/etc/fstab                  # set right fstab, see qemu.md
 root@401ccde8d881:/# vim $LFS/boot/efi/EFI/lfs/grub.cfg  # set right /boot uuid, see qemu.md
 root@401ccde8d881:/# vim $LFS/boot/grub/grub.cfg         # fix rootfs when generate grub.cfg, see qemu.md
@@ -92,7 +92,7 @@ $ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img
 
 #### restore
 ```bash
-# root@ddcd5d6dc98d:/#  /mnt/lfs_root/scripts/restore.sh # in docker
+# root@ddcd5d6dc98d:/# nohup /mnt/lfs_root/scripts/restart-backup.sh 2>&1 |tee build.log # in docker
 ```
 
 
