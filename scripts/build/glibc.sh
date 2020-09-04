@@ -4,6 +4,7 @@ set -e
 # install the locale for your own country, language and character set.
 # cp ld-linux-x86-64.so.2 is because ${BuildDir} will be deleted.
 # build /usr/lib/locale before run `make check`, otherwise will meet "cannot create temporary file: /usr/lib/locale/locale-archive.F0yCs6: No such file or directory"
+#
 # `make check` will failed and throw error because `FAIL: io/tst-lchmod`, so ignore error
 
 echo -e "\n\n+++ start glibc.sh +++\n\n"
