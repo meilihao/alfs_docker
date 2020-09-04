@@ -78,7 +78,7 @@ root@401ccde8d881:/# mount                                  # check mount, $LFS{
 root@401ccde8d881:/# /mnt/lfs_root/scripts/sync2lfs.sh   # sync to lfs for chroot environment
 root@401ccde8d881:/# vim ~/.bashrc                       # for MAKEFLAGS, LFS_DOCS, LFS_TEST, BackupBeforRealInstall, LFSVersion
 root@401ccde8d881:/# source ~/.bash_profile
-root@401ccde8d881:/# $LFSRoot/scripts/run-all.sh         # start build lfs
+root@401ccde8d881:/# $LFSRoot/scripts/run-all.sh  2>&1 |tee build.log  # start build lfs
 root@401ccde8d881:/# vim $LFS/etc/fstab                  # set right fstab, see qemu.md
 root@401ccde8d881:/# vim $LFS/boot/efi/EFI/lfs/grub.cfg  # set right /boot uuid, see qemu.md
 root@401ccde8d881:/# vim $LFS/boot/grub/grub.cfg         # fix rootfs when generate grub.cfg, see qemu.md
