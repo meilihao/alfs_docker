@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
+# clock.test failed is ok. total lfs build done, clock.test will be ok.
+# http.test faild in docker with "errorInfo: couldn't open socket: Name or service not known"???. when tcl.sh done, you can replay this: `(lfs chroot) root:/tmp/tmp.xxx.tcl/tests# tclsh http.test`
+# TODO: all done, recheck this.
+
 echo -e "\n\n+++ start tcl.sh +++\n\n"
 
 BuildDir=`mktemp -d --suffix ".tcl"`
