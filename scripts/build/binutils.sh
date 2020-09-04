@@ -45,6 +45,19 @@ set -e
 
 # Number  Start (sector)    End (sector)  Size       Code  Name
 # --- end
+# run `(lfs chroot) root:/tmp/tmp.BocUiWdb1q.binutils/build# make check-ld RUNTESTFLAGS="x86-64.exp"` check this error:
+# Running /tmp/tmp.BocUiWdb1q.binutils/ld/testsuite/ld-x86-64/x86-64.exp ...
+# FAIL: PLT PC-relative offset overflow check
+grep -r "PC-relative offset overflow"
+pr17618.d
+cat pr17618.d
+# ls |grep pr17618
+pr17618.d
+pr17618.s
+# follow pr17618.d command
+as --64 pr17618.s -o pr17618.o
+
+
 
 
 echo -e "\n\n+++ start binutils.sh +++\n\n"
