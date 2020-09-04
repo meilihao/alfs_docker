@@ -5,6 +5,18 @@ set -e
 # http.test faild in docker with "errorInfo: couldn't open socket: Name or service not known"???. when tcl.sh done, you can replay this: `(lfs chroot) root:/tmp/tmp.xxx.tcl/tests# tclsh http.test`
 # TODO: all done, recheck this.
 # see [TCL tests hang on some host systems](https://www.mail-archive.com/lfs-dev@lists.linuxfromscratch.org/msg04821.html)
+# 在http.test中打印url:
+# ```bash
+# # vim http.text
+# puts "----------+ $url" # get "//a49780d42654:8010"
+# test http-3.3 {http::geturl} -body {
+# ...
+# # hostname
+# a49780d42654
+# # cat /etc/hosts 
+# 127.0.0.1 localhost ea874e0e2324
+# ```
+# a49780d42654是我当前container的host, ea874e0e2324是我用备份恢复的lfs中的container id(即当时在该container中备份lfs的), 用a49780d42654代替ea874e0e2324后, all http tests is ok.
 
 echo -e "\n\n+++ start tcl.sh +++\n\n"
 
