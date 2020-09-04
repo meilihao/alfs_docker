@@ -33,6 +33,7 @@ echo -e "--- sync lfs resoureces ---\n" && \
 /mnt/lfs_root/scripts/sync2lfs.sh     && \
 popd
 
+/mnt/lfs_root/scripts/build/prepare-vkfs-again.sh
 /mnt/lfs_root/scripts/build/lfs.sh
 /mnt/lfs_root/scripts/image/run-image.sh
 
