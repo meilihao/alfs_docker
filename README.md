@@ -78,7 +78,7 @@ root@401ccde8d881:/# mount                                  # check mount, $LFS{
 root@401ccde8d881:/# /mnt/lfs_root/scripts/sync2lfs.sh   # sync to lfs for chroot environment
 root@401ccde8d881:/# vim ~/.bashrc                       # for MAKEFLAGS, LFS_DOCS, LFS_TEST, BackupBeforRealInstall, LFSVersion
 root@401ccde8d881:/# source ~/.bash_profile
-root@401ccde8d881:/# nohup $LFSRoot/scripts/run-all.sh  2>&1 |tee build.log  # start build lfs
+root@401ccde8d881:/# nohup $LFSRoot/scripts/run-all.sh  > build.log 2>&1 &  # start build lfs
 root@401ccde8d881:/# vim $LFS/etc/fstab                  # set right fstab, see qemu.md
 root@401ccde8d881:/# vim $LFS/boot/efi/EFI/lfs/grub.cfg  # set right /boot uuid, see qemu.md
 root@401ccde8d881:/# vim $LFS/boot/grub/grub.cfg         # fix rootfs when generate grub.cfg, see qemu.md
@@ -92,7 +92,7 @@ $ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img
 
 #### restore
 ```bash
-# root@ddcd5d6dc98d:/# nohup /mnt/lfs_root/scripts/restart-backup.sh 2>&1 |tee build.log # in docker
+# root@ddcd5d6dc98d:/# nohup /mnt/lfs_root/scripts/restart-backup.sh > build.log 2>&1 & # in docker
 ```
 
 
