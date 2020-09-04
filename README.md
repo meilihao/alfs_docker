@@ -90,6 +90,12 @@ $ cp /usr/share/ovmf/OVMF.fd .
 $ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img
 ```
 
+#### restore
+```bash
+# root@ddcd5d6dc98d:/#  /mnt/lfs_root/scripts/restore.sh # in docker
+```
+
+
 **note**, that extended privileges are required by docker container in order to execute some commands (e.g. mount, `mount -v --bind /dev $LFS/dev`).
 
 #### 1. change lfs-fsroot.zip -> Bootable qcow2 image
