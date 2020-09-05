@@ -15,10 +15,10 @@ env:
 1. need a machine which support uefi because grub-install use efibootmgr, Otherwise use tag 1.0 which support bios+gpt.
 
 ### 1. update version-check.sh
-1. update scripts/version-check.sh
+1. update lfs_root/scripts/version-check.sh
 
 ### 1. download linux kernel build config
-download `.config` need match sources/linux-*.tar.xz's version.
+download `.config` need match lfs_root/sources/linux-*.tar.xz's version.
 
 ```bash
 $ export ALFSDockerRoo=~/git/alfs_docker
@@ -39,7 +39,7 @@ $ wget https://mirror-hk.koddos.net/lfs/lfs-packages/SHA1SUMS
 $ cat SHA1SUMS |grep "lfs-packages-10.0.tar" > lfs-sum
 $ sha1sum -c lfs-sum
 $ tar -xvf lfs-packages-10.0.tar
-$ mv 10.0 ${ALFSDockerRoo}/sources
+$ mv 10.0 ${ALFSDockerRoo}/lfs_root/sources
 $ popd
 ```
 
@@ -48,58 +48,62 @@ $ popd
 ### 1. update args
 1. glibc compatible : use host's glibc version
 
-    1. ${ALFSDockerRoo}/scripts/prepare/gcc.sh : --with-glibc-version=2.31 # docker base image(ubuntu 20.04)'s glibc version
+    1. ${ALFSDockerRoo}/lfs_root/scripts/prepare/gcc.sh : --with-glibc-version=2.31 # docker base image(ubuntu 20.04)'s glibc version
 
 1. kernel compatible for glibc
 
-    1. ${ALFSDockerRoo}/scripts/prepare/glibc.sh : --enable-kernel=4.19 # my host(debian 10) kernel version
-    1. ${ALFSDockerRoo}/scripts/build/glibc.sh : --enable-kernel=4.19
+    1. ${ALFSDockerRoo}/lfs_root/scripts/prepare/glibc.sh : --enable-kernel=4.19 # my host(debian 10) kernel version
+    1. ${ALFSDockerRoo}/lfs_root/scripts/build/glibc.sh : --enable-kernel=4.19
 
 ### 1. build docker image and run it
 > docker debug cmd: sudo docker run --rm -it ubuntu:20.04 bash
 
 ```bash
-$ wget --continue --directory-prefix=sources https://mirrors.edge.kernel.org/pub/linux/utils/boot/syslinux/syslinux-6.03.tar.gz
-$ wget --continue --directory-prefix=sources https://ftp.gnu.org/gnu/cpio/cpio-2.13.tar.gz
-$ curl https://git.savannah.gnu.org/cgit/cpio.git/patch/?id=641d3f489cf6238bb916368d4ba0d9325a235afb -o sources/cpio-2.13.patch
-$ wget https://codeload.github.com/lz4/lz4/tar.gz/v1.9.2 -O sources/lz4-1.9.2.tar.gz
-$ git clone --depth=1 https://github.com/ohmybash/oh-my-bash.git sources/oh-my-bash
+$ wget --continue --directory-prefix=lfs_root/sources https://mirrors.edge.kernel.org/pub/linux/utils/boot/syslinux/syslinux-6.03.tar.gz
+$ wget --continue --directory-prefix=lfs_root/sources https://ftp.gnu.org/gnu/cpio/cpio-2.13.tar.gz
+$ curl https://git.savannah.gnu.org/cgit/cpio.git/patch/?id=641d3f489cf6238bb916368d4ba0d9325a235afb -o lfs_root/sources/cpio-2.13.patch
+$ wget https://codeload.github.com/lz4/lz4/tar.gz/v1.9.2 -O lfs_root/sources/lz4-1.9.2.tar.gz
 $ sudo docker build . -t "lfs_builder"
-$ cp -fv config/.config sources # can replace my custome .confing
+$ cp -fv config/.config lfs_root/sources # can replace my custome .confing
+$ sudo docker run --name lfs --privileged -d -it -v ${PWD}/lfs_root:/mnt/lfs/lfs_root --entrypoint /bin/bash lfs_builder # --privileged for mount in container
+$ sudo docker exec -it lfs bash
+root@401ccde8d881:/# $LFSRoot/scripts/version-check.sh   # for check env
+root@401ccde8d881:/# vim ~/.bashrc                       # for MAKEFLAGS, LFS_DOCS, LFS_TEST, BackupBeforRealInstall, LFSVersion
+root@401ccde8d881:/# source ~/.bash_profile
+root@401ccde8d881:/# nohup $LFSRoot/scripts/run-all.sh  > build.log 2>&1 &  # start build lfs
+root@401ccde8d881:/# exit
+```
+
+#### restore
+```bash
+# root@ddcd5d6dc98d:/# nohup $LFSRoot/scripts/restart-backup.sh > build.log 2>&1 & # in docker
+```
+
+**note**, that extended privileges are required by docker container in order to execute some commands (e.g. mount, `mount -v --bind /dev $LFS/dev`).
+
+### 1. change lfs-fsroot.zip -> Bootable qcow2 image
+```bash
 $ qemu-img create -f qcow2 lfs.img 16G # qemu-img create -f <fmt> <image filename> <size of disk>
 $ sudo modprobe -v nbd
 $ sudo qemu-nbd -c /dev/nbd0 lfs.img
 $ sudo scripts/gdisk.sh
-$ sudo docker run --name lfs --privileged -d -it -v ${PWD}/scripts:/mnt/lfs_root/scripts -v ${PWD}/sources:/mnt/lfs_root/sources --entrypoint /bin/bash lfs_builder # --privileged for mount in container
-$ sudo docker exec -it lfs bash
-root@401ccde8d881:/# /mnt/lfs_root/scripts/version-check.sh # for check env
-root@401ccde8d881:/# /mnt/lfs_root/scripts/mount_lfs.sh     # for partition
-root@401ccde8d881:/# mount                                  # check mount, $LFS{,boot,boot/efi} is ok?
-root@401ccde8d881:/# /mnt/lfs_root/scripts/sync2lfs.sh   # sync to lfs for chroot environment
-root@401ccde8d881:/# vim ~/.bashrc                       # for MAKEFLAGS, LFS_DOCS, LFS_TEST, BackupBeforRealInstall, LFSVersion
-root@401ccde8d881:/# source ~/.bash_profile
-root@401ccde8d881:/# nohup $LFSRoot/scripts/run-all.sh  > build.log 2>&1 &  # start build lfs
+$ sudo docker run --name image --privileged -d -it -v ${PWD}/lfs_root:/mnt --entrypoint /bin/bash lfs_builder
+root@401ccde8d881:/# /mnt/lfs_root/scripts/mount_lfs.sh       # for partition
+root@401ccde8d881:/# mount                                    # check mount, $LFS{,boot,boot/efi} is ok?
+root@401ccde8d881:/# /mnt/lfs_root/scripts/image/run-image.sh # umount /dev/nbd0pN
 root@401ccde8d881:/# vim $LFS/etc/fstab                  # set right fstab, see qemu.md
 root@401ccde8d881:/# vim $LFS/boot/efi/EFI/lfs/grub.cfg  # set right /boot uuid, see qemu.md
 root@401ccde8d881:/# vim $LFS/boot/grub/grub.cfg         # fix rootfs when generate grub.cfg, see qemu.md
-root@401ccde8d881:/# /mnt/lfs_root/scripts/image/done.sh # umount /dev/nbd0pN, use /mnt/lfs_root/scripts/image/done.sh because ${LFSRoot} deleted in build/cleanup2.sh
+root@401ccde8d881:/# /mnt/lfs_root/scripts/image/done.sh # umount /dev/nbd0pN
 root@401ccde8d881:/# mount # check mount
-root@401ccde8d881:/# exit
 $ sudo qemu-nbd -d /dev/nbd0
 $ cp /usr/share/ovmf/OVMF.fd .
 $ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img
 ```
 
-#### restore
-```bash
-# root@ddcd5d6dc98d:/# nohup /mnt/lfs_root/scripts/restart-backup.sh > build.log 2>&1 & # in docker
-```
 
 
-**note**, that extended privileges are required by docker container in order to execute some commands (e.g. mount, `mount -v --bind /dev $LFS/dev`).
-
-#### 1. change lfs-fsroot.zip -> Bootable qcow2 image
-see [qemu.md](qemu.md), support `bios/gpt` and `efi/gpt`
+> see [qemu.md](qemu.md), support `bios/gpt` and `efi/gpt`
 
 bootable qcow2 image with efi is [here](https://pan.baidu.com/s/1usXAdzzMk85a7HYbcC2sRg), auth code is `1x3a`.
 
