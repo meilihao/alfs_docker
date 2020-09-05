@@ -6,6 +6,7 @@ set -e
 # build /usr/lib/locale before run `make check`, otherwise will meet "cannot create temporary file: /usr/lib/locale/locale-archive.F0yCs6: No such file or directory"
 #
 # `make check` will failed and throw error because `FAIL: io/tst-lchmod`, so ignore error
+# must mount something in prepare-vkfs-again.sh, otherwise your will get more FAILs with `FAIL: io/tst-lchmod`, like ""
 
 echo -e "\n\n+++ start glibc.sh +++\n\n"
 

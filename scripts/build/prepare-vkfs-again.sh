@@ -11,4 +11,11 @@ mount -vt proc proc $LFS/proc
 mount -vt sysfs sysfs $LFS/sys
 mount -vt tmpfs tmpfs $LFS/run
 
+# return !0 when not mount
+# glibc test need /dev/fd/xxx
+if [ `mountpoint -q $LFS/dev` ]; then
+    echo "****** not mount $LFS/dev"
+    exit 1
+fi
+
 echo -e "--- done prepare-vkfs-again.sh ---\n\n"
