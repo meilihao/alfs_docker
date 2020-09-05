@@ -65,7 +65,7 @@ $ curl https://git.savannah.gnu.org/cgit/cpio.git/patch/?id=641d3f489cf6238bb916
 $ wget https://codeload.github.com/lz4/lz4/tar.gz/v1.9.2 -O lfs_root/sources/lz4-1.9.2.tar.gz
 $ sudo docker build . -t "lfs_builder"
 $ cp -fv config/.config lfs_root/sources # can replace my custome .confing
-$ sudo docker run --name lfs --privileged -d -it -v ${PWD}/lfs_root:/mnt/lfs/lfs_root --entrypoint /bin/bash lfs_builder # --privileged for mount in container
+$ sudo docker run --name lfs --privileged -d -it -v ${PWD}/rootfs:/mnt/lfs -v ${PWD}/lfs_root:/mnt/lfs/lfs_root --entrypoint /bin/bash lfs_builder # --privileged for mount in container
 $ sudo docker exec -it lfs bash
 root@401ccde8d881:/# $LFSRoot/scripts/version-check.sh   # for check env
 root@401ccde8d881:/# vim ~/.bashrc                       # for MAKEFLAGS, LFS_DOCS, LFS_TEST, BackupBeforRealInstall, LFSVersion
