@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 set -e
-set -x
 
 # /tmp need 1777 because make check will write somethon in /tmp, otherwise `mkdir: cannot create directory '/tmp/dg-combine-results-18903-8450': Permission denied` will lead to `FAIL: gcc.c-torture/execute/builtins/fprintf.c execution,  -O0`
 #
 # follow error is ok, by compare with http://www.linuxfromscratch.org/lfs/build-logs/10.0/i5-6600K/logs/824-gcc-10.2.0
+# cat test-gcc-1599308042.log |grep "Error"
+# make[2]: *** [Makefile:176: check] Error 127
+# make[1]: *** [Makefile:3801: check-fixincludes] Error 2
 # make: *** [Makefile:2350: do-check] Error 2
-# make: Target 'check' not remade because of errors
 
 echo -e "\n\n+++ start gcc.sh +++\n\n"
 
@@ -56,7 +57,7 @@ rm -v dummy.c a.out dummy.log                           && \
 mkdir -pv /usr/share/gdb/auto-load/usr/lib              && \
 mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib || true  && \
 popd                                                    && \
-true||rm -rf ${BuildDir}
+rm -rf ${BuildDir}
 
 unset BuildDir
 
