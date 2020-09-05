@@ -81,7 +81,7 @@ root@401ccde8d881:/# exit
 
 **note**, that extended privileges are required by docker container in order to execute some commands (e.g. mount, `mount -v --bind /dev $LFS/dev`).
 
-### 1. change lfs-fsroot.zip -> Bootable qcow2 image
+### 1. change lfs-rootfs-*.tar.xz -> Bootable qcow2 image
 ```bash
 $ qemu-img create -f qcow2 lfs.img 16G # qemu-img create -f <fmt> <image filename> <size of disk>
 $ sudo modprobe -v nbd

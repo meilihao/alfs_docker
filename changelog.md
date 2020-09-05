@@ -2,16 +2,18 @@
 
 ## 3.0 - doing
 
-1. build lfs = build lfs fs root + build qemu image
+1. build lfs = build lfs rootfs + build qemu image
 
-    构建优势: 占用空间更小, 因为使用qcow2时占用空间会一直扩容而不会缩容.
+    构建优势: 
+    1. 占用空间更小, 因为使用qcow2时占用空间会一直扩容而不会缩容.
+    1. rootfs更自由的转成bios/uefi
 
 ## 2.0 - failed
 
 1. not support bios + gpt + bootable qcow2 image, only for uefi - done
 1. merge qemu.md's script to scripts and not build iso - failed
 
-    binutils test will throw "Bus error", and make /dev/nbdN offline and cant't read/write. 
+    binutils test will throw "Bus error", and make /dev/nbdN offline and cant't read/write.
 
 ## 1.0
 
