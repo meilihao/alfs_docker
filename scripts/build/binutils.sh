@@ -45,20 +45,22 @@ set -e
 
 # Number  Start (sector)    End (sector)  Size       Code  Name
 # --- end
+#
+# if glic.sh tests is ok, you will not got this error:
 # run `(lfs chroot) root:/tmp/tmp.BocUiWdb1q.binutils/build# make check-ld RUNTESTFLAGS="x86-64.exp"` check this error:
-# Running /tmp/tmp.BocUiWdb1q.binutils/ld/testsuite/ld-x86-64/x86-64.exp ...
+# Running /tmp/tmp.BocUiWdb1q.binutils/ld/testsuite/ld-x86-64/x86-64.exp ... # how test pr17618 work?
 # FAIL: PLT PC-relative offset overflow check
-grep -r "PC-relative offset overflow"
-pr17618.d
-cat pr17618.d
-# ls |grep pr17618
-pr17618.d
-pr17618.s
-# follow pr17618.d command
-as --64 pr17618.s -o pr17618.o
-
-
-
+# grep -r "PC-relative offset overflow"
+# pr17618.d
+# cat pr17618.d
+# ...
+# # ls |grep pr17618
+# pr17618.d
+# pr17618.s
+# # follow pr17618.d command, 推测推测pr17618.d底部出现的error表示期望出现的结果.
+# as --64 pr17618.s -o pr17618.o
+# > to pass linker flags to gcc, we should use -Wl,-melf_x86_64 otherwise get error: "unrecognized command-line option '-melf_x86_64'". so cmd is `cc pr17618.o -Wl,-melf_x86_64 -Wl,-shared -z max-page-size=0x200000 -z noseparate-code`
+# > melf_x86_64 is from "ld --help | grep 'supported emulations:'"
 
 echo -e "\n\n+++ start binutils.sh +++\n\n"
 
