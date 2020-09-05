@@ -101,8 +101,6 @@ $ cp /usr/share/ovmf/OVMF.fd .
 $ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img
 ```
 
-
-
 > see [qemu.md](qemu.md), support `bios/gpt` and `efi/gpt`
 
 bootable qcow2 image with efi is [here](https://pan.baidu.com/s/1usXAdzzMk85a7HYbcC2sRg), auth code is `1x3a`.
