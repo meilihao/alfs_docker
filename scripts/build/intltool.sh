@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+# 在 LFS 构建环境中，已知有五个测试因为循环依赖而失败，但所有测试在 automake 安装后都能通过: [GNU Libtool 2.4.6] testsuite: 123 124 125 126 130 failed
+
 echo -e "\n\n+++ start intltool.sh +++\n\n"
 
 BuildDir=`mktemp -d --suffix ".intltool"`
