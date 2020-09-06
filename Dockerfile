@@ -8,7 +8,7 @@ MAINTAINER meilihao <563278383@qq.com>
 # 非交互时采用默认时区Etc/UTC
 ENV DEBIAN_FRONTEND noninteractive
 
-COPY [ "scripts/run-in-env.sh", "config/.bash_profile", "config/.bashrc", "/root/" ]
+COPY [ "lfs_root/scripts/run-in-env.sh", "config/.bash_profile", "config/.bashrc", "/root/" ]
 
 # 2.2. Host System Requirements
 # 4.4. Setting Up the Environment
