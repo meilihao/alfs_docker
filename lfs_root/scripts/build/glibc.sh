@@ -5,7 +5,10 @@ set -e
 # cp ld-linux-x86-64.so.2 is because ${BuildDir} will be deleted.
 # build /usr/lib/locale before run `make check`, otherwise will meet "cannot create temporary file: /usr/lib/locale/locale-archive.F0yCs6: No such file or directory"
 #
-# `make check` will failed and throw error because `FAIL: io/tst-lchmod`, so ignore error
+# `make check` will failed and throw error:
+# - `FAIL: io/tst-lchmod`
+# - `misc/tst-ttyname `
+# so ignore this errors.
 # must mount something in prepare-vkfs-again.sh, otherwise your will get more FAILs with `FAIL: io/tst-lchmod`, like ""
 
 echo -e "\n\n+++ start glibc.sh +++\n\n"
