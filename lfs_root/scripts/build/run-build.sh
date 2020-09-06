@@ -22,6 +22,16 @@ strip --strip-debug $LFS/usr/lib/*        || true
 strip --strip-unneeded $LFS/usr/{,s}bin/* || true
 strip --strip-unneeded $LFS/tools/bin/*   || true
 
+# for debug coreutils "FAIL tests/misc/chroot-credentials.sh (exit status: 1)"
+cp -v /usr/bin/strace $LFS/bin
+cp -v /lib/x86_64-linux-gnu/libunwind-ptrace.so.0 $LFS/lib/libunwind-ptrace.so.0
+cp -v /lib/x86_64-linux-gnu/libunwind-x86_64.so.8 $LFS/lib/libunwind-x86_64.so.8
+cp -v /lib/x86_64-linux-gnu/libunwind.so.8 $LFS/lib/libunwind.so.8
+
+# for next 优化disk space
+cp -v /usr/bin/ncdu $LFS/bin
+cp -v /lib/x86_64-linux-gnu/libtinfo.so.6 $LFS/lib/libtinfo.so.6
+
 if $BackupBeforRealInstall; then
     umount $LFS/dev{/pts,}
     umount $LFS/{sys,proc,run}
@@ -35,16 +45,6 @@ if $BackupBeforRealInstall; then
 
     ${LFSRoot}/scripts/build/prepare-vkfs-again.sh
 fi
-
-# for debug coreutils "FAIL tests/misc/chroot-credentials.sh (exit status: 1)"
-cp -v /usr/bin/strace $LFS/bin
-cp -v /lib/x86_64-linux-gnu/libunwind-ptrace.so.0 $LFS/lib/libunwind-ptrace.so.0
-cp -v /lib/x86_64-linux-gnu/libunwind-x86_64.so.8 $LFS/lib/libunwind-x86_64.so.8
-cp -v /lib/x86_64-linux-gnu/libunwind.so.8 $LFS/lib/libunwind.so.8
-
-# for next 优化disk space
-cp -v /usr/bin/ncdu $LFS/bin
-cp -v /lib/x86_64-linux-gnu/libtinfo.so.6 $LFS/lib/libtinfo.so.6
 
 ${LFSRoot}/scripts/build/lfs.sh
 ${LFSRoot}/scripts/build/rootfs.sh
