@@ -23,7 +23,7 @@ download `.config` need match lfs_root/sources/linux-*.tar.xz's version.
 ```bash
 $ export ALFSDockerRoo=~/git/alfs_docker
 $ pushd /tmp
-$ wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.8.3/amd64/linux-headers-5.8.3-050803-generic_5.8.3-050803.202008211236_amd64.deb
+$ wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.8.7/amd64/linux-headers-5.8.7-050807-generic_5.8.7-050807.202009051031_amd64.deb
 $ dpkg -x linux-headers-*.deb tmp
 $ cp tmp/usr/src/linux-headers-*-generic/.config ${ALFSDockerRoo}/config
 ```
@@ -45,6 +45,8 @@ $ popd
 
 > or mirror for china: http://mirrors.ustc.edu.cn/lfs/lfs-packages/lfs-packages-10.0.tar
 
+> kernel mirror: `wget https://mirrors.tuna.tsinghua.edu.cn/kernel/v5.x/linux-5.8.7.tar.xz`
+
 ### 1. update args
 1. glibc compatible : use host's glibc version
 
@@ -59,7 +61,7 @@ $ popd
 > docker debug cmd: sudo docker run --rm -it ubuntu:20.04 bash
 
 ```bash
-$ wget --continue --directory-prefix=lfs_root/sources https://mirrors.edge.kernel.org/pub/linux/utils/boot/syslinux/syslinux-6.03.tar.gz
+$ ~~wget --continue --directory-prefix=lfs_root/sources https://mirrors.edge.kernel.org/pub/linux/utils/boot/syslinux/syslinux-6.03.tar.gz~~
 $ wget --continue --directory-prefix=lfs_root/sources https://ftp.gnu.org/gnu/cpio/cpio-2.13.tar.gz
 $ curl https://git.savannah.gnu.org/cgit/cpio.git/patch/?id=641d3f489cf6238bb916368d4ba0d9325a235afb -o lfs_root/sources/cpio-2.13.patch
 $ wget https://codeload.github.com/lz4/lz4/tar.gz/v1.9.2 -O lfs_root/sources/lz4-1.9.2.tar.gz
