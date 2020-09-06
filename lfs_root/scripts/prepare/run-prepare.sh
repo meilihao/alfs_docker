@@ -29,7 +29,7 @@ ${LFSRoot}/scripts/prepare/xz.sh
 ${LFSRoot}/scripts/prepare/binutils2.sh
 ${LFSRoot}/scripts/prepare/gcc2.sh
 
-if [[ `ll -A /tmp |grep "^d"|wc -l` -gt 0 ]]; then
+if [[ `ls -l -A /tmp |grep "^d"|wc -l` -gt 0 ]]; then
      read
 fi
 
