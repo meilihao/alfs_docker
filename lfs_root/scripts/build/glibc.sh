@@ -45,6 +45,7 @@ cp -v ../nscd/nscd.conf /etc/nscd.conf && \
 mkdir -pv /var/cache/nscd             && \
 install -v -Dm644 ../nscd/nscd.tmpfiles /usr/lib/tmpfiles.d/nscd.conf    && \
 install -v -Dm644 ../nscd/nscd.service /lib/systemd/system/nscd.service  && \
+touch /etc/netgroup                                                      && \
 mkdir -pv /usr/lib/locale                                                && \
 localedef -i POSIX -f UTF-8 C.UTF-8 2> /dev/null || true                 && \
 localedef -i en_US -f UTF-8 en_US.UTF-8                                  && \
