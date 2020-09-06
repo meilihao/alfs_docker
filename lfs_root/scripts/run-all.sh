@@ -14,6 +14,13 @@ echo `date` > ${LFS_Build_Done}
 
 echo -e "--- start build lfs ---\n\n"
 
+if [ -d ${LFS}/usr ]; then
+    echo -e "--- lfs need clean ---\n\n"
+    pushd ${LFS}
+    rm -rf `ls ${LFS} |egrep -v "lfs_root"`
+    popd
+fi
+
 # use new fs layout
 mkdir -pv ${LFS}/{usr/bin,usr/sbin,usr/lib,usr/lib32,usr/lib64,usr/libx32,etc,var,tools}
 
