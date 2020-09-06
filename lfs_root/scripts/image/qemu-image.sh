@@ -3,6 +3,8 @@ set -e
 
 # if machine not support efi, will get error:
 # grub-install: error: efibootmgr failed to register the boot entry: No such file or directory
+# 在no uefi环境下配置uefi, grub-install会报错, 且此后手动配置grub比较繁琐并容易出错,比如efibootmgr添加启动项后,qemu启动images时仍会进入uefi shell. 因此建议在uefi的环境下配置grub. 不过此种情况可先用
+# uefi shell手动选择启动项登入系统, 再执行`grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=lfs --recheck --debug`修改grub配置, 最后重启即可.
 
 echo -e "--- start qemu-image.sh ---\n\n"
 

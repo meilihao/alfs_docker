@@ -96,15 +96,23 @@ root@401ccde8d881:/# vim $LFS/boot/efi/EFI/lfs/grub.cfg  # set right /boot uuid,
 root@401ccde8d881:/# vim $LFS/boot/grub/grub.cfg         # fix rootfs when generate grub.cfg, see qemu.md
 root@401ccde8d881:/# /mnt/lfs_root/scripts/image/done.sh # umount /dev/nbd0pN
 root@401ccde8d881:/# mount # check mount
-$ tar --zstd -cvf lfs.img.zstd lfs.img # maybe you will move it
 $ sudo qemu-nbd -d /dev/nbd0
+$ tar --zstd -cvf lfs.img.zstd lfs.img # maybe you will move it, `apt install zstd`
+$ tar --zstd -xvf lfs.img.zstd
 $ cp /usr/share/ovmf/OVMF.fd .
 $ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img
 ```
 
 > see [qemu.md](qemu.md), support `bios/gpt` and `efi/gpt`
 
-bootable qcow2 image with efi is [here](https://pan.baidu.com/s/1usXAdzzMk85a7HYbcC2sRg), auth code is `1x3a`.
+bootable qcow2 image v1 with efi is [here](https://pan.baidu.com/s/1usXAdzzMk85a7HYbcC2sRg), auth code is `1x3a`.
+bootable qcow2 image v3 with efi is [here](https://pan.baidu.com/s/1eeJHF6tPKWg9jG7XnPYe2w), auth code is `b2ux`.
+
+**image account: root/root**.
+
+### cmd(maybe to use)
+- `sudo efibootmgr -c -w -L "lfs" -d /dev/nbd0 -p 1 -l \\EFI\\boot\\bootx64.efi`, /dev/nbd0 是EFI分区所在的磁盘, -p是EFI分区位置（默认为1），-l是启动efi文件的路径
+- `sudo blkid`
 
 ## update lfs
 1. downlaod latest lfs from [http://linuxfromscratch.org/lfs/downloads/](http://linuxfromscratch.org/lfs/downloads/)
