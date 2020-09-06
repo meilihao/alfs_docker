@@ -1,6 +1,6 @@
 # changelog
 
-## 3.0 - doing
+## 3.0
 
 1. build lfs = build lfs rootfs + build qemu image
 
