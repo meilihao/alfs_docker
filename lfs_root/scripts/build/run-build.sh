@@ -42,7 +42,7 @@ cp -v /lib/x86_64-linux-gnu/libunwind-ptrace.so.0 $LFS/lib/libunwind-ptrace.so.0
 cp -v /lib/x86_64-linux-gnu/libunwind-x86_64.so.8 $LFS/lib/libunwind-x86_64.so.8
 cp -v /lib/x86_64-linux-gnu/libunwind.so.8 $LFS/lib/libunwind.so.8
 
-# for 优化disk space
+# for next 优化disk space
 cp -v /usr/bin/ncdu $LFS/bin
 cp -v /lib/x86_64-linux-gnu/libtinfo.so.6 $LFS/lib/libtinfo.so.6
 

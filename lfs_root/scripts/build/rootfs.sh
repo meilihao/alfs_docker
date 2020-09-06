@@ -2,8 +2,8 @@
 set -e
 echo -e "--- start rootfs.sh ---\n\n"
 
-umount $LFS/dev{/pts,}
-umount $LFS/{sys,proc,run}
+umount $LFS/dev{/pts,} || true
+umount $LFS/{sys,proc,run} || true
 
 pushd $LFS && \
 if [ -f ${LFSRoot}/lfs-rootfs-${LFSVersion}.tar.xz ]; then
