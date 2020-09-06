@@ -14,6 +14,7 @@ cd ${BuildDir} && \
             --sbindir=/sbin        \
             --sysconfdir=/etc      \
             --disable-efiemu       \
+            --with-platform=efi    \
             --disable-werror          && \
 make                                  && \
 make install                          && \

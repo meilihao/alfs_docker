@@ -366,7 +366,7 @@ qemu在未找到引导磁盘时会尝试PXE（网络）引导，此时可使用`
 ### unicode.pf2
 因为grub使用了unicode.pf2字体, 而lfs构建grub时不构建其grub-mkfont工具(用于生成unicode.pf2). 如需构建该字体可参考[lfs-uefi.txt](http://www.linuxfromscratch.org/hints/downloads/files/lfs-uefi.txt).
 
-最简单的方法是从host拷贝一份放入lfs环境: cp /usr/share/grub/unicode.pf2 $EFI/usr/share/grub
+最简单的方法是从host拷贝一份放入lfs环境: cp /usr/share/grub/unicode.pf2 $LFS/usr/share/grub
 
 ### grub efi支持
 grub构建时其`./configure`启用选项`--with-platform=efi`,即

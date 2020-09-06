@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 set -e
+
+# if machine not support efi, will get error:
+# grub-install: error: efibootmgr failed to register the boot entry: No such file or directory
+
 echo -e "--- start qemu-image.sh ---\n\n"
 
 # Creating the /etc/fstab File
@@ -21,6 +25,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=lfs -
 
 grub-mkconfig -o /boot/grub/grub.cfg
 
+# 7c5e5590-9f32-4882-a6a1-fabb7d91fa4b is /boot's uuid
 cat > /boot/efi/EFI/lfs/grub.cfg << "EOF"
 search.fs_uuid 7c5e5590-9f32-4882-a6a1-fabb7d91fa4b root
 set prefix=($root)'/grub'

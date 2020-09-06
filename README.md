@@ -83,11 +83,11 @@ root@401ccde8d881:/# exit
 
 ### 1. change lfs-rootfs-*.tar.xz -> Bootable qcow2 image
 ```bash
-$ qemu-img create -f qcow2 lfs.img 16G # qemu-img create -f <fmt> <image filename> <size of disk>
+$ qemu-img create -f qcow2 lfs.img 8G # qemu-img create -f <fmt> <image filename> <size of disk>
 $ sudo modprobe -v nbd
 $ sudo qemu-nbd -c /dev/nbd0 lfs.img
-$ sudo scripts/gdisk.sh
-$ sudo docker run --name image --privileged -d -it -v ${PWD}/lfs_root:/mnt --entrypoint /bin/bash lfs_builder
+$ sudo lfs_root/scripts/gdisk.sh
+$ sudo docker run --name image --privileged -d -it -v ${PWD}/lfs_root:/mnt/lfs_root --entrypoint /bin/bash lfs_builder
 root@401ccde8d881:/# /mnt/lfs_root/scripts/mount_lfs.sh       # for partition
 root@401ccde8d881:/# mount                                    # check mount, $LFS{,boot,boot/efi} is ok?
 root@401ccde8d881:/# /mnt/lfs_root/scripts/image/run-image.sh # umount /dev/nbd0pN
@@ -96,6 +96,7 @@ root@401ccde8d881:/# vim $LFS/boot/efi/EFI/lfs/grub.cfg  # set right /boot uuid,
 root@401ccde8d881:/# vim $LFS/boot/grub/grub.cfg         # fix rootfs when generate grub.cfg, see qemu.md
 root@401ccde8d881:/# /mnt/lfs_root/scripts/image/done.sh # umount /dev/nbd0pN
 root@401ccde8d881:/# mount # check mount
+$ tar --zstd -cvf lfs.img.zstd lfs.img # maybe you will move it
 $ sudo qemu-nbd -d /dev/nbd0
 $ cp /usr/share/ovmf/OVMF.fd .
 $ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img

@@ -1,3 +1,4 @@
 /lfs_root/sources/*
 /lfs_root/lfs-*.tar.xz
 /rootfs/*
+/*.img
