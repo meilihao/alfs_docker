@@ -61,6 +61,4 @@ rm -rf ${BuildDir}
 
 unset BuildDir
 
-exit 1
-
 echo -e "+++ done gcc.sh +++\n\n"
