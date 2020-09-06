@@ -60,7 +60,7 @@ set -e
 # )                  = 6
 # ...
 # > getgroups() 用来取得目前用户所属的附加组（supplementary group） ids. 参数size 为list() 所能容纳的gid_t 数目. 如果参数size 值为零, 此函数仅会返回用户所属的组数.
-# 推测是使用docker而引发该错误, 待qemu启动image时再测.
+# 推测是使用docker而引发该错误, in qemu is ok by `chroot --userspec=:99 / id -G`, got "99 0", uid=99 is nobody.
 # --- other error
 # make check TESTS=tests/tail-2/inotify-dir-recreate KEEP=yes VERBOSE=yes
 # see [LFS in docker. Preparation: coreutils check fails.](https://dnsglk.github.io/lfs/2018/06/28/lfs-coreutils-test-issue.html) , use docker volume to avoid it because A volume is a specially-designated directory within one or more containers that bypasses the Union File System. tested.
