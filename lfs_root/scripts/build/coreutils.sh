@@ -26,9 +26,44 @@ set -e
 # test "$(chroot --userspec=:$NON_ROOT_GROUP / id -G)" = \
 #      "$NON_ROOT_GID $(id -G)" || fail=1
 # ...
+# # chroot --userspec=:101 / strace /tmp/tmp.RPNjtKhtUc.coreutils/src/id -G # in docker's chroot
+# ...
+# getuid()                                = 0
+# getegid()                               = 101
+# getgid()                                = 101
+# fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x3), ...}) = 0
+# getgroups(0, NULL)                      = 0
+# getgroups(0, [])                        = 0
+# write(1, "101\n", 4101
+# )                    = 4
+# ...
+# # chroot --userspec=:101 / strace id -G # in dcoker
+# ...
+# getuid()                                = 0
+# getegid()                               = 101
+# getgid()                                = 101
+# fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x4), ...}) = 0
+# getgroups(0, NULL)                      = 0
+# getgroups(0, [])                        = 0
+# write(1, "101\n", 4101
+# )                    = 4
+# ...
+# # chroot --userspec=:101 / strace id -G # in host
+# ...
+# getuid()                                = 0
+# getegid()                               = 101
+# getgid()                                = 101
+# fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x3), ...}) = 0
+# getgroups(0, NULL)                      = 1
+# getgroups(1, [0])                       = 1
+# write(1, "101 0\n", 6101 0
+# )                  = 6
+# ...
+# > getgroups() 用来取得目前用户所属的附加组（supplementary group） ids. 参数size 为list() 所能容纳的gid_t 数目. 如果参数size 值为零, 此函数仅会返回用户所属的组数.
+# 推测是使用docker而引发该错误, 待qemu启动image时再测.
 # --- other error
 # make check TESTS=tests/tail-2/inotify-dir-recreate KEEP=yes VERBOSE=yes
-# see [LFS in docker. Preparation: coreutils check fails.](https://dnsglk.github.io/lfs/2018/06/28/lfs-coreutils-test-issue.html) , use docker volume to avoid it because A volume is a specially-designated directory within one or more containers that bypasses the Union File System.
+# see [LFS in docker. Preparation: coreutils check fails.](https://dnsglk.github.io/lfs/2018/06/28/lfs-coreutils-test-issue.html) , use docker volume to avoid it because A volume is a specially-designated directory within one or more containers that bypasses the Union File System. tested.
 
 
 echo -e "\n\n+++ start coreutils.sh +++\n\n"
