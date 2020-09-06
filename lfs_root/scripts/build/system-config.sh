@@ -98,4 +98,10 @@ cat > /etc/shells << "EOF"
 # End /etc/shells
 EOF
 
+install -v -m755 -d /etc/modprobe.d
+cat > /etc/modprobe.d/blacklist.conf << "EOF"
+# issue #1
+blacklist evbug
+EOF
+
 echo -e "--- done system-config.sh in chroot ---\n\n"
