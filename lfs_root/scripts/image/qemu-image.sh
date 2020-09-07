@@ -12,8 +12,7 @@ echo -e "--- start qemu-image.sh ---\n\n"
 cat > /etc/fstab << "EOF"
 # Begin /etc/fstab
 
-# 文件系统     挂载点       类型     选项                转储  检查
-#                                                              顺序
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
 UUID=D1F7-D179		                     /boot/efi    vfat    rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro    1 2
 UUID=7c5e5590-9f32-4882-a6a1-fabb7d91fa4b    /boot    ext4    noauto,noatime    1 2
 UUID=9767098f-4749-4855-bb5e-8a775e498f1b    /        ext4    noatime	        0 1
