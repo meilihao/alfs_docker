@@ -142,3 +142,37 @@ see [changelog.md](/changelog.md)
 
 ## changelog
 see [changelog.md](/changelog.md)
+
+# sudo su root
+# pwd
+/home/chen/test/uefi/v3
+# ls # lfs.img is connected to /dev/nbd0
+lfs.img  lfs-rootfs-10.0-systemd.tar.xz  OVMF.fd
+# export LFS=/home/chen/test/uefi/v3/lfs
+# export KernelVersion=5.8.7
+# cp -r ~/git/alfs_docker/lfs_root/scripts/image .
+# cp ~/git/alfs_docker/lfs_root/scripts/build/prepare-vkfs-again.sh image
+# image/mount_lfs.sh
+# tar -xpf lfs-rootfs-10.0-systemd.tar.xz -C $LFS
+# rsync -av /usr/lib/grub/x86_64-efi ${LFS}/usr/lib/grub
+# cp /usr/bin/efibootmgr $LFS/usr/bin
+# rsync -av /lib/x86_64-linux-gnu/{libefivar.so.1*,libefiboot.so.1*} $LFS/lib
+# ln -sv $LFS/lib/modules/${KernelVersion}  /lib/modules/${KernelVersion}
+# update-initramfs -c -k ${KernelVersion} -v -b $LFS/boot
+# rm /lib/modules/${KernelVersion}
+# prepare-vkfs-again.sh
+# mkdir -pv ${LFSRoot}
+# rsync -av image/qemu-image.sh ${LFS}
+# rsync -av /usr/share/grub/unicode.pf2 $LFS/usr/share/grub
+# chroot "$LFS" /usr/bin/env -i          \
+    HOME=/root TERM="$TERM"            \
+    PS1='(lfs chroot) \u:\w\$ '        \
+    PATH=/bin:/usr/bin:/sbin:/usr/sbin \
+    /bin/bash --login # --- into chroot
+# qemu-image.sh
+# exit --- exit chroot
+# rm ${LFS}/qemu-image.sh
+# image/done.sh
+# sudo qemu-nbd -d /dev/nbd0
+# exit # --- exit su
+$ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img

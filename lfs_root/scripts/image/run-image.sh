@@ -16,8 +16,10 @@ rsync -av /lib/x86_64-linux-gnu/{libefivar.so.1*,libefiboot.so.1*} $LFS/lib
 # generate initramfs
 KernelVersion=`ls /mnt/lfs_root/sources/linux-*.tar.xz|xargs -n 1 basename |sed 's/linux-\(.*\)\.tar\.xz/\1/g'`
 
-rsync -av $LFS/lib/modules/* /lib/modules
+#rsync -av $LFS/lib/modules/* /lib/modules
+ln -sv $LFS/lib/modules/${KernelVersion}  /lib/modules/${KernelVersion}
 update-initramfs -c -k ${KernelVersion} -v -b $LFS/boot
+rm /lib/modules/${KernelVersion}
 
 # need operate /dev
 /mnt/lfs_root/scripts/build/prepare-vkfs-again.sh
