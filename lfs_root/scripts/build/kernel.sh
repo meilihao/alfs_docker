@@ -3,6 +3,8 @@ set -e
 
 # use `modules_prepare` to support ["Build External Modules"](https://www.kernel.org/doc/Documentation/kbuild/modules.txt)
 # delete invalid link: rm /lib/modules/${KernelVersion}/source
+# [`make prepare` renamed to `make modules_prepare`](https://lore.kernel.org/patchwork/patch/153322/)
+# modules_prepare can see  [5.8.7.arch1-1 PKGBUILD](https://github.com/archlinux/svntogit-packages/blob/packages/linux/trunk/PKGBUILD)
 
 echo -e "\n\n+++ start kernel.sh +++\n\n"
 
