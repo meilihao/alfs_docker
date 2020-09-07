@@ -92,8 +92,8 @@ bootable qcow2 image v3 with efi is [here](https://pan.baidu.com/s/1eeJHF6tPKWg9
 **image account: root/root**.
 
 qemu启动image时, 在显示uefi logo后进入了uefi shell而不直接显示grub:
-    原因: UEFI NVRAM启动项未设置且EFI下没有uefi启动备份用的boot文件夹
-    解决方法: 先通过uefi shell手动选择启动项登入系统, 再执行`grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=lfs --recheck --debug`修改grub配置, 最后重启即可.
+- 原因: UEFI NVRAM启动项未设置且EFI下没有uefi启动备份用的boot文件夹
+- 解决方法: 先通过uefi shell手动选择启动项登入系统, 再执行`grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=lfs --recheck --debug`修正uefi配置, 最后重启即可.
 
 #### use docker
 ```bash
