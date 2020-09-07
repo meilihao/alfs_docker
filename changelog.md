@@ -5,8 +5,8 @@
 1. build lfs = build lfs rootfs + build qemu image
 
     构建优势: 
-    1. 占用空间更小, 因为使用qcow2时占用空间会一直扩容而不会缩容.
-    1. rootfs可更自由的转成bios/uefi, 当前构建image脚步仅支持uefi, bios请看看[qemu.md](/qemu.md)
+    1. 占用空间更小, 因为使用qcow2时占用空间会随构建过程一直扩容而不会缩容.
+    1. rootfs可更自由地转成bios/uefi, 当前构建image脚步仅支持uefi, bios请看看[qemu.md](/qemu.md)
 
 ## 2.0 - failed
 
