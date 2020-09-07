@@ -18,8 +18,8 @@ make mrproper  && \
 cp -fv ${LFSRoot}/sources/.config ${BuildDir} && \
 make           && \
 make modules_install && \
-make O=/usr/src/linux-headers-${KernelVersion} modules_prepare && \
-ln -sfv /usr/src/linux-headers-${KernelVersion} /lib/modules/${KernelVersion}/build && \
+# make O=/usr/src/linux-headers-${KernelVersion} modules_prepare && \
+# ln -sfv /usr/src/linux-headers-${KernelVersion} /lib/modules/${KernelVersion}/build && \
 rm /lib/modules/${KernelVersion}/source || true     && \
 cp -iv arch/x86/boot/bzImage /boot/vmlinuz-${KernelVersion}-lfs-${LFSVersion} && \
 cp -iv System.map /boot/System.map-${KernelVersion} && \
