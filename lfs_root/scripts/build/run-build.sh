@@ -32,6 +32,9 @@ cp -v /lib/x86_64-linux-gnu/libunwind.so.8 $LFS/lib/libunwind.so.8
 cp -v /usr/bin/ncdu $LFS/bin
 cp -v /lib/x86_64-linux-gnu/libtinfo.so.6 $LFS/lib/libtinfo.so.6
 
+# for check link in chroot: symlinks -sr /
+cp -v /usr/bin/symlinks $LFS/bin
+
 if $BackupBeforRealInstall; then
     umount $LFS/dev{/pts,}
     umount $LFS/{sys,proc,run}
