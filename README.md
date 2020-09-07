@@ -90,7 +90,7 @@ $ sudo modprobe -v nbd
 $ sudo qemu-nbd -c /dev/nbd0 lfs.img
 $ sudo lfs_root/scripts/gdisk.sh
 $ sudo docker run --name image --privileged -d -it -v ${PWD}/lfs_root:/mnt/lfs_root --entrypoint /bin/bash lfs_builder
-root@401ccde8d881:/# /mnt/lfs_root/scripts/mount_lfs.sh       # for partition
+root@401ccde8d881:/# /mnt/lfs_root/scripts/image/mount_lfs.sh # for partition
 root@401ccde8d881:/# mount                                    # check mount, $LFS{,boot,boot/efi} is ok?
 root@401ccde8d881:/# /mnt/lfs_root/scripts/image/run-image.sh # umount /dev/nbd0pN
 root@401ccde8d881:/# vim $LFS/etc/fstab                  # set right fstab, see qemu.md
