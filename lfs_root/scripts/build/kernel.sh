@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
+# use `modules_prepare` to support ["Build External Modules"](https://www.kernel.org/doc/Documentation/kbuild/modules.txt)
+# delete invalid link: rm /lib/modules/${KernelVersion}/source
+
 echo -e "\n\n+++ start kernel.sh +++\n\n"
 
 BuildDir=`mktemp -d --suffix ".kernel"`
@@ -15,6 +18,9 @@ make mrproper  && \
 cp -fv ${LFSRoot}/sources/.config ${BuildDir} && \
 make           && \
 make modules_install && \
+make O=/usr/src/linux-headers-${KernelVersion} modules_prepare && \
+ln -sfv /usr/src/linux-headers-${KernelVersion} /lib/modules/${KernelVersion}/build && \
+rm /lib/modules/${KernelVersion}/source || true     && \
 cp -iv arch/x86/boot/bzImage /boot/vmlinuz-${KernelVersion}-lfs-${LFSVersion} && \
 cp -iv System.map /boot/System.map-${KernelVersion} && \
 cp -iv .config /boot/config-${KernelVersion}        && \
