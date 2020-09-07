@@ -91,10 +91,6 @@ bootable qcow2 image v3 with efi is [here](https://pan.baidu.com/s/1eeJHF6tPKWg9
 
 **image account: root/root**.
 
-qemu启动image时, 在显示uefi logo后进入了uefi shell而不直接显示grub:
-- 原因: UEFI NVRAM启动项未设置且EFI下没有uefi启动备份用的boot文件夹
-- 解决方法: 先通过uefi shell手动选择启动项登入系统, 再执行`grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=lfs --recheck --debug`修正uefi配置, 最后重启即可.
-
 #### use docker
 ```bash
 $ qemu-img create -f qcow2 lfs.img 8G # qemu-img create -f <fmt> <image filename> <size of disk>
@@ -176,6 +172,16 @@ offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
 - hold "GCC plugins (GCC_PLUGINS) [Y/n/?] (NEW)" when run `scripts/build/kernel.sh`, and `CONFIG_HAVE_GCC_PLUGINS=n` does not work and make report "Restart config..."
 
     初步排查是`scripts/kconfig/conf.c`提示了`Restart config`, 待查???.
+
+    kernel 5.8.7编译未出现该情况.
+- qemu启动image时, 在显示uefi logo后进入了uefi shell而不直接显示grub:
+
+    原因: UEFI NVRAM启动项未设置且EFI下没有uefi启动备份用的boot文件夹
+    解决方法: 先通过uefi shell手动选择启动项登入系统, 再执行`grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=lfs --recheck --debug`修正uefi配置, 最后重启即可.
+- 使用rootfs在非docker环境下构建lfs, qemu image在grub到出现终端登录界面过程中出现了花屏, 原因未知.
+
+    推测1: kernel 5.8.3正常, kernel 5.8.7后不正常, kernel升级导致.
+- 使用rootfs在非docker环境下构建lfs, qemu image启动进入登入界面后发现, 输入出现卡顿, 延迟情况, 原因未知.
 
 ## roadmap
 see [changelog.md](/changelog.md)
