@@ -84,6 +84,18 @@ root@401ccde8d881:/# exit
 **note**, that extended privileges are required by docker container in order to execute some commands (e.g. mount, `mount -v --bind /dev $LFS/dev`).
 
 ### 1. change lfs-rootfs-*.tar.xz -> Bootable qcow2 image
+> see [qemu.md](qemu.md), support `bios/gpt` and `efi/gpt`
+
+bootable qcow2 image v1 with efi is [here](https://pan.baidu.com/s/1usXAdzzMk85a7HYbcC2sRg), auth code is `1x3a`.
+bootable qcow2 image v3 with efi is [here](https://pan.baidu.com/s/1eeJHF6tPKWg9jG7XnPYe2w), auth code is `b2ux`.
+
+**image account: root/root**.
+
+qemu启动image时, 在显示uefi logo后进入了uefi shell而不直接显示grub:
+    原因: UEFI NVRAM启动项未设置且EFI下没有uefi启动备份用的boot文件夹
+    解决方法: 先通过uefi shell手动选择启动项登入系统, 再执行`grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=lfs --recheck --debug`修改grub配置, 最后重启即可.
+
+#### use docker
 ```bash
 $ qemu-img create -f qcow2 lfs.img 8G # qemu-img create -f <fmt> <image filename> <size of disk>
 $ sudo modprobe -v nbd
@@ -105,44 +117,8 @@ $ cp /usr/share/ovmf/OVMF.fd .
 $ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img
 ```
 
-> see [qemu.md](qemu.md), support `bios/gpt` and `efi/gpt`
-
-bootable qcow2 image v1 with efi is [here](https://pan.baidu.com/s/1usXAdzzMk85a7HYbcC2sRg), auth code is `1x3a`.
-bootable qcow2 image v3 with efi is [here](https://pan.baidu.com/s/1eeJHF6tPKWg9jG7XnPYe2w), auth code is `b2ux`.
-
-**image account: root/root**.
-
-### cmd(maybe to use)
-- `sudo efibootmgr -c -w -L "lfs" -d /dev/nbd0 -p 1 -l \\EFI\\boot\\bootx64.efi`, /dev/nbd0 是EFI分区所在的磁盘, -p是EFI分区位置（默认为1），-l是启动efi文件的路径
-- `sudo blkid`
-
-## update lfs
-1. downlaod latest lfs from [http://linuxfromscratch.org/lfs/downloads/](http://linuxfromscratch.org/lfs/downloads/)
-1. delete content before "Chapter 4. Final Preparations" to reduce interference for compare
-1. compare current version with latest by `Beyond Compare`
-1. update script`
-1. build lfs again for test
-
-## useful tools
-1. `tar -tvf gcc-*.tar.xz` # list files in tar.xz
-1. `watch -n 10 "ps -ef |grep bash"` # watch processing when lost direct log with ssh broken
-
-## log
-offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
-
-> log order not match because may be MAKEFLAGS
-
-## issue
-- hold "GCC plugins (GCC_PLUGINS) [Y/n/?] (NEW)" when run `scripts/build/kernel.sh`, and `CONFIG_HAVE_GCC_PLUGINS=n` does not work and make report "Restart config..."
-
-    初步排查是`scripts/kconfig/conf.c`提示了`Restart config`, 待查???.
-
-## roadmap
-see [changelog.md](/changelog.md)
-
-## changelog
-see [changelog.md](/changelog.md)
-
+#### no docker
+```bash
 # sudo su root
 # pwd
 /home/chen/test/uefi/v3
@@ -176,3 +152,33 @@ lfs.img  lfs-rootfs-10.0-systemd.tar.xz  OVMF.fd
 # sudo qemu-nbd -d /dev/nbd0
 # exit # --- exit su
 $ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img
+```
+
+### cmd(maybe to use)
+- `sudo efibootmgr -c -w -L "lfs" -d /dev/nbd0 -p 1 -l \\EFI\\boot\\bootx64.efi`, /dev/nbd0 是EFI分区所在的磁盘, -p是EFI分区位置（默认为1），-l是启动efi文件的路径
+- `sudo blkid`
+- `tar -tvf gcc-*.tar.xz` # list files in tar.xz
+- `watch -n 10 "ps -ef |grep bash"` # watch processing when lost direct log with ssh broken
+
+## update lfs
+1. downlaod latest lfs from [http://linuxfromscratch.org/lfs/downloads/](http://linuxfromscratch.org/lfs/downloads/)
+1. delete content before "Chapter 4. Final Preparations" to reduce interference for compare
+1. compare current version with latest by `Beyond Compare`
+1. update script`
+1. build lfs again for test
+
+## log
+offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
+
+> log order not match because may be MAKEFLAGS
+
+## issue
+- hold "GCC plugins (GCC_PLUGINS) [Y/n/?] (NEW)" when run `scripts/build/kernel.sh`, and `CONFIG_HAVE_GCC_PLUGINS=n` does not work and make report "Restart config..."
+
+    初步排查是`scripts/kconfig/conf.c`提示了`Restart config`, 待查???.
+
+## roadmap
+see [changelog.md](/changelog.md)
+
+## changelog
+see [changelog.md](/changelog.md)
