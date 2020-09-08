@@ -109,7 +109,7 @@ $ sudo qemu-nbd -d /dev/nbd0
 $ tar --zstd -cvf lfs.img.zstd lfs.img # maybe you will move it, `apt install zstd`
 $ tar --zstd -xvf lfs.img.zstd
 $ cp /usr/share/ovmf/OVMF.fd .
-$ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img
+$ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img -vga qxl
 ```
 
 #### ~~no docker~~(废弃, 问题多, 见issue)
@@ -146,7 +146,7 @@ lfs.img  lfs-rootfs-10.0-systemd.tar.xz  OVMF.fd
 # image/done.sh
 # sudo qemu-nbd -d /dev/nbd0
 # exit # --- exit su
-$ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img
+$ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img -vga qxl
 ```
 
 ### cmd(maybe to use)
@@ -180,6 +180,8 @@ offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
         解决方法: 先通过uefi shell手动选择启动项登入系统, 再执行`grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=lfs --recheck --debug`修正uefi配置, 最后重启即可.
 - 使用rootfs在非docker环境下构建lfs, qemu image在grub到出现终端登录界面过程中出现了花屏, 但显示终端登录界面后花屏消失, 原因未知.
 
+        问题应该出现在grub2引导至终端登录界面出现之间.
+
         推测1: ~~kernel 5.8.3正常, kernel 5.8.7后不正常, kernel升级导致.~~
         推测2: 在非uefi环境下构建忽略了grub-install错误导致
         推测3: 可能是构建rootfs的docker(4.19)和构建lfs的docker(5.4)不是使用同一个版本的kernel导致, 可能性最大, 待定.
@@ -187,6 +189,8 @@ offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
         已验证:
         - 在docker+非uefi环境下构建的lfs不花屏
         - 在docker+uefi环境下构建的lfs也可能花屏, 带查.
+
+        解决方法: qemu追加参数`-vga qxl`, 即qxl时是正常的, 但`-vga cirrus|std`时还是存在花屏.
 
         ps: `qemu-system-x86_64 -enable-kvm -m 512 -kernel vmlinuz-5.8.7-lfs-10.0-systemd -initrd initrd.img-5.8.7` 未出现花屏.
 - 使用rootfs在非docker环境下构建lfs, qemu image启动进入登入界面后发现, 输入出现卡顿, 延迟情况, 原因未知.
