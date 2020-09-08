@@ -1,5 +1,9 @@
 # changelog
 
+## 3.1
+
+    deprecated build lfs with no docker, see [readme.md]'s issue for reason.
+
 ## 3.0
 
 1. build lfs = build lfs rootfs + build qemu image
