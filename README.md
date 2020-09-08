@@ -98,6 +98,7 @@ $ sudo modprobe -v nbd
 $ sudo qemu-nbd -c /dev/nbd0 lfs.img
 $ sudo lfs_root/scripts/gdisk.sh
 $ sudo docker run --name image --privileged -d -it -v ${PWD}/lfs_root:/mnt/lfs_root --entrypoint /bin/bash lfs_builder
+$ sudo docker exec -it image bash
 root@401ccde8d881:/# /mnt/lfs_root/scripts/image/mount_lfs.sh # for partition
 root@401ccde8d881:/# mount                                    # check mount, $LFS{,boot,boot/efi} is ok?
 root@401ccde8d881:/# /mnt/lfs_root/scripts/image/run-image.sh # umount /dev/nbd0pN
@@ -113,7 +114,7 @@ $ cp /usr/share/ovmf/OVMF.fd .
 $ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img
 ```
 
-#### no docker
+#### ~~no docker~~(废弃, 问题多, 见issue)
 ```bash
 # sudo su root
 # pwd
@@ -180,8 +181,15 @@ offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
     解决方法: 先通过uefi shell手动选择启动项登入系统, 再执行`grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=lfs --recheck --debug`修正uefi配置, 最后重启即可.
 - 使用rootfs在非docker环境下构建lfs, qemu image在grub到出现终端登录界面过程中出现了花屏, 原因未知.
 
-    推测1: kernel 5.8.3正常, kernel 5.8.7后不正常, kernel升级导致.
+    推测1: ~~kernel 5.8.3正常, kernel 5.8.7后不正常, kernel升级导致.~~
+    推测2: 在非uefi环境下构建忽略了grub-install错误导致
+
+    验证: 在docker+非uefi环境下构建的lfs不花屏, 因此废弃`no docker`构建方式
 - 使用rootfs在非docker环境下构建lfs, qemu image启动进入登入界面后发现, 输入出现卡顿, 延迟情况, 原因未知.
+
+    原因推测: 同上.
+
+    验证: 在docker+非uefi环境下构建的lfs输入不卡顿, 因此废弃`no docker`构建方式
 
 ## roadmap
 see [changelog.md](/changelog.md)
