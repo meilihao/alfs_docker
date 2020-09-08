@@ -179,12 +179,12 @@ offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
 
     原因: UEFI NVRAM启动项未设置且EFI下没有uefi启动备份用的boot文件夹(但也可能设置了boot文件夹也没用)
     解决方法: 先通过uefi shell手动选择启动项登入系统, 再执行`grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=lfs --recheck --debug`修正uefi配置, 最后重启即可.
-- 使用rootfs在非docker环境下构建lfs, qemu image在grub到出现终端登录界面过程中出现了花屏, 原因未知.
+- 使用rootfs在非docker环境下构建lfs, qemu image在grub到出现终端登录界面过程中出现了花屏, 但显示终端登录界面后花屏消失, 原因未知.
 
     推测1: ~~kernel 5.8.3正常, kernel 5.8.7后不正常, kernel升级导致.~~
     推测2: 在非uefi环境下构建忽略了grub-install错误导致
 
-    验证: 在docker+非uefi环境下构建的lfs不花屏, 因此废弃`no docker`构建方式
+    验证: 在docker+非uefi环境下构建的lfs不花屏, 因此废弃`no docker`构建方式. 今天测试发现在docker+uefi环境下构建的lfs也可能花屏, 带查.
 - 使用rootfs在非docker环境下构建lfs, qemu image启动进入登入界面后发现, 输入出现卡顿, 延迟情况, 原因未知.
 
     原因推测: 同上.
