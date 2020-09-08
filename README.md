@@ -87,7 +87,7 @@ root@401ccde8d881:/# exit
 > see [qemu.md](qemu.md), support `bios/gpt` and `efi/gpt`
 
 bootable qcow2 image v1 with efi is [here](https://pan.baidu.com/s/1usXAdzzMk85a7HYbcC2sRg), auth code is `1x3a`.
-bootable qcow2 image v3 with efi is [here](https://pan.baidu.com/s/1eeJHF6tPKWg9jG7XnPYe2w), auth code is `b2ux`.
+bootable qcow2 image v3 with efi is [here](https://pan.baidu.com/s/15xNyfDAybTBdvqao1gLVcw), auth code is `4xjt`, **recommend**.
 
 **image account: root/root**.
 
