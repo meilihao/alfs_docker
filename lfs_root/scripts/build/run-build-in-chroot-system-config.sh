@@ -7,6 +7,7 @@ ${LFSRoot}/scripts/build/cpio.sh
 ${LFSRoot}/scripts/build/lz4.sh
 ${LFSRoot}/scripts/build/kernel.sh
 ${LFSRoot}/scripts/build/the-end.sh
+${LFSRoot}/scripts/build/the-end-fix.sh
 
 if [[ `ls -l -A /tmp |grep "^d"|grep "tmp." |wc -l` -gt 0 ]]; then
      read
