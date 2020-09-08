@@ -24,6 +24,7 @@ echo -e "--- done /etc/fstab ---\n\n"
 
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=lfs --recheck --debug
 
+# generated grub.cfg is missing initrd
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # 7c5e5590-9f32-4882-a6a1-fabb7d91fa4b is /boot's uuid
