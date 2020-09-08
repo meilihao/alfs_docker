@@ -1,5 +1,7 @@
 /lfs_root/sources/*
 /lfs_root/lfs*
 /lfs_root/OVMF.*
+/lfs_root/initrd*
+/lfs_root/vmlinuz*
 /rootfs/*
 /*.img

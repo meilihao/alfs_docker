@@ -187,6 +187,8 @@ offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
         已验证:
         - 在docker+非uefi环境下构建的lfs不花屏
         - 在docker+uefi环境下构建的lfs也可能花屏, 带查.
+
+        ps: `qemu-system-x86_64 -enable-kvm -m 512 -kernel vmlinuz-5.8.7-lfs-10.0-systemd -initrd initrd.img-5.8.7` 未出现花屏.
 - 使用rootfs在非docker环境下构建lfs, qemu image启动进入登入界面后发现, 输入出现卡顿, 延迟情况, 原因未知.
 
         验证: 在docker+非uefi环境下构建的lfs输入不卡顿, 因此废弃`no docker`构建方式
