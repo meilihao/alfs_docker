@@ -177,7 +177,7 @@ offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
     kernel 5.8.7编译未出现该情况.
 - qemu启动image时, 在显示uefi logo后进入了uefi shell而不直接显示grub:
 
-    原因: UEFI NVRAM启动项未设置且EFI下没有uefi启动备份用的boot文件夹
+    原因: UEFI NVRAM启动项未设置且EFI下没有uefi启动备份用的boot文件夹(但也可能设置了boot文件夹也没用)
     解决方法: 先通过uefi shell手动选择启动项登入系统, 再执行`grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=lfs --recheck --debug`修正uefi配置, 最后重启即可.
 - 使用rootfs在非docker环境下构建lfs, qemu image在grub到出现终端登录界面过程中出现了花屏, 原因未知.
 
