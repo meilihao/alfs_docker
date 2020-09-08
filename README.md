@@ -190,6 +190,16 @@ offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
     原因推测: 同上.
 
     验证: 在docker+非uefi环境下构建的lfs输入不卡顿, 因此废弃`no docker`构建方式
+- kernel modules重复
+
+    ```bash
+    $ ll rootfs/lib/modules/5.8.7
+    total 5.8M
+    drwxr-xr-x  3 root root 4.0K Sep  8 02:34 5.8.7/
+    drwxr-xr-x 13 root root 4.0K Sep  7 03:52 kernel/
+    ```
+
+    估计是某次误操作导致, 待验证
 
 ## roadmap
 see [changelog.md](/changelog.md)
