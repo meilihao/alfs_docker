@@ -24,7 +24,7 @@ make modules_install && \
 # ln -sfv /usr/src/linux-headers-${KernelVersion} /lib/modules/${KernelVersion}/build && \
 rm /lib/modules/${KernelVersion}/build  || true     && \
 rm /lib/modules/${KernelVersion}/source || true     && \
-cp -iv arch/x86/boot/bzImage /boot/vmlinuz-${KernelVersion}-lfs-${LFSVersion} && \
+cp -iv arch/x86/boot/bzImage /boot/vmlinuz-${KernelVersion} && \
 cp -iv System.map /boot/System.map-${KernelVersion} && \
 cp -iv .config /boot/config-${KernelVersion}        && \
 if [ $LFS_DOCS -eq 1 ]; then
