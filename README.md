@@ -197,6 +197,7 @@ offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
         ps:
         - `qemu-system-x86_64 -enable-kvm -m 512 -kernel vmlinuz-5.8.7-lfs-10.0-systemd -initrd initrd.img-5.8.7` 未出现花屏.
         - 通过videoinfo输出所知, grub使用的分辨率由`EFI GOP driver`获取, 可以尝试更新OVMF固件解决(未测试).
+        - 用了能找到的最新[OVMF固件](https://www.kraxel.org/repos/jenkins/edk2/edk2.git-ovmf-x64-0-20200515.1440.gcbccf99592.noarch.rpm), `-vga cirrus|std`时仍然花屏
 
         参考:
         - [How do I safely change grub2 screen resolution?](https://askubuntu.com/questions/54067/how-do-i-safely-change-grub2-screen-resolution)
