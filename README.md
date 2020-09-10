@@ -70,7 +70,7 @@ $ sudo docker exec -it lfs bash
 root@401ccde8d881:/# $LFSRoot/scripts/version-check.sh   # for check env
 root@401ccde8d881:/# vim ~/.bashrc                       # for MAKEFLAGS, LFS_DOCS, LFS_TEST, BackupBeforRealInstall, LFSVersion
 root@401ccde8d881:/# source ~/.bash_profile
-root@401ccde8d881:/# nohup $LFSRoot/scripts/run-all.sh  > ~/build.log 2>&1 &  # start build lfs
+root@401ccde8d881:/# $LFSRoot/scripts/run-all.sh ~/build.log 2>&1 # start build lfs, 可以使用tmux实现nohup效果
 root@401ccde8d881:/# exit
 ```
 
