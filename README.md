@@ -1,6 +1,7 @@
 # alfs_docker - ALFS (Automated Linux From Scratch) with docker
 参考:
 - [reinterpretcat/lfs](https://github.com/reinterpretcat/lfs)
+- [lfs roadmap](http://wiki.linuxfromscratch.org/lfs/roadmap)
 
 alfs_docker is based on [LFS-10.0-systemd](http://www.linuxfromscratch.org/lfs/download.html) for x86_64 only.
 
