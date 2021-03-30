@@ -18,7 +18,7 @@ cd build       && \
              --target=$LFS_TGT          \
              --disable-nls              \
              --disable-werror && \
-make           && \
+make -j1       && \
 make install   && \
 popd           && \
 rm -rf ${BuildDir}

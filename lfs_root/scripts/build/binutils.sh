@@ -85,7 +85,7 @@ cd       build && \
              --disable-werror    \
              --enable-64-bit-bfd \
              --with-system-zlib       && \
-make tooldir=/usr                     && \
+make -j1 tooldir=/usr                 && \
 if [ $LFS_TEST -eq 1 ]; then
     make -k check 2>&1 | tee /logs/test-binutils-`date +%s`.log
 fi                                    && \
