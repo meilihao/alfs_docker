@@ -15,16 +15,17 @@ fi
 
 rm -rf /tmp/*
 
-mountpoint -q $LFS/dev/pts && umount $LFS/dev/pts
-mountpoint -q $LFS/dev && umount $LFS/dev
-mountpoint -q $LFS/sys && umount $LFS/sys
-mountpoint -q $LFS/proc && umount $LFS/proc
-mountpoint -q $LFS/run && umount $LFS/run
+# mountpoint -q $LFS/dev/pts && umount $LFS/dev/pts
+# mountpoint -q $LFS/dev && umount $LFS/dev
+# mountpoint -q $LFS/sys && umount $LFS/sys
+# mountpoint -q $LFS/proc && umount $LFS/proc
+# mountpoint -q $LFS/run && umount $LFS/run
 
-mountpoint -q $LFS/boot/efi && umount $LFS/boot/efi
-mountpoint -q $LFS/boot && umount $LFS/boot
-# maybe need try more times for umount $LFS
-mountpoint -q $LFS && umount $LFS
+# mountpoint -q $LFS/boot/efi && umount $LFS/boot/efi
+# mountpoint -q $LFS/boot && umount $LFS/boot
+# # maybe need try more times for umount $LFS
+# mountpoint -q $LFS && umount $LFS
+umount -Rv $LFS
 
 echo -e "--- clean ${LFS}\n"
 

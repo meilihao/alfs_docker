@@ -12,7 +12,7 @@ echo -e "+++ build path: ${BuildDir}\n"
 tar -xf ${LFSRoot}/sources/bison-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-./configure --prefix=/usr --docdir=/usr/share/doc/bison-3.7.1 && \
+./configure --prefix=/usr --docdir=/usr/share/doc/bison-3.7.5 && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
     make check 2>&1 | tee /logs/test-bison2-`date +%s`.log

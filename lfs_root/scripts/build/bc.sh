@@ -10,7 +10,7 @@ echo -e "+++ build path: ${BuildDir}\n"
 tar -xf ${LFSRoot}/sources/bc-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-PREFIX=/usr CC=gcc CFLAGS="-std=c99" ./configure.sh -G -O3                 && \
+PREFIX=/usr CC=gcc ./configure.sh -G -O3                 && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
     make test 2>&1 | tee /logs/test-bc-`date +%s`.log

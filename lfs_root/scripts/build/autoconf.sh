@@ -10,7 +10,6 @@ echo -e "+++ build path: ${BuildDir}\n"
 tar -xf ${LFSRoot}/sources/autoconf-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-sed -i '361 s/{/\\{/' bin/autoscan.in && \
 ./configure --prefix=/usr             && \
 make                                  && \
 # make check || true                    && \

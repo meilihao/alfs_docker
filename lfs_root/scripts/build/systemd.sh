@@ -12,8 +12,8 @@ pushd ${PWD}   && \
 cd ${BuildDir} && \
 ln -sf /bin/true /usr/bin/xsltproc && \
 tar -xf ${LFSRoot}/sources/systemd-man-pages-*.tar.xz && \
-sed '177,$ d' -i src/resolve/meson.build         && \
-sed -i 's/GROUP="render", //' rules.d/50-udev-default.rules.in && \
+sed '181,$ d' -i src/resolve/meson.build         && \
+sed -i 's/GROUP="render"/GROUP="video"/' rules.d/50-udev-default.rules.in && \
 mkdir -p build && \
 cd       build && \
 LANG=en_US.UTF-8                    \
@@ -39,11 +39,13 @@ meson --prefix=/usr                 \
       -Dhomed=false                 \
       -Duserdb=false                \
       -Dman=true                    \
-      -Ddocdir=/usr/share/doc/systemd-246 \
+      -Dmode=release                \
+      -Ddocdir=/usr/share/doc/systemd-247 \
       ..   && \
 LANG=en_US.UTF-8 ninja                && \
 LANG=en_US.UTF-8 ninja install        && \
 rm -f /usr/bin/xsltproc               && \
+rm -rf /usr/lib/pam.d                 && \
 systemd-machine-id-setup              && \
 systemctl preset-all                  && \
 systemctl disable systemd-time-wait-sync.service && \

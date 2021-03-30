@@ -23,6 +23,7 @@ ln -sv ../../lib/libbz2.so.1.0 /usr/lib/libbz2.so                 && \
 # rm -v /usr/bin/{bunzip2,bzcat,bzip2}  && \
 ln -sfv bzip2 /bin/bunzip2            && \
 ln -sfv bzip2 /bin/bzcat              && \
+rm -fv /usr/lib/libbz2.a              && \
 popd                                  && \
 rm -rf ${BuildDir}
 

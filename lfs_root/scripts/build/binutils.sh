@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+# 已知四项名为 “Run property ...” 的测试会失败
+
 # binutils test on qemu+/dev/nbd0 got error:
 # --- log start
 # ...
@@ -88,6 +90,7 @@ if [ $LFS_TEST -eq 1 ]; then
     make -k check 2>&1 | tee /logs/test-binutils-`date +%s`.log
 fi                                    && \
 make tooldir=/usr install             && \
+rm -fv /usr/lib/lib{bfd,ctf,ctf-nobfd,opcodes}.a && \
 popd                                  && \
 rm -rf ${BuildDir}
 

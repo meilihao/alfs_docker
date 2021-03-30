@@ -10,7 +10,10 @@ echo -e "+++ build path: ${BuildDir}\n"
 tar -xf ${LFSRoot}/sources/elfutils-*.tar.bz2 -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-./configure --prefix=/usr --disable-debuginfod --libdir=/lib && \
+./configure --prefix=/usr                \
+            --disable-debuginfod         \
+            --enable-libdebuginfod=dummy \
+            --libdir=/lib             && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
     make check 2>&1| tee /logs/test-libelf-`date +%s`.log

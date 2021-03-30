@@ -11,9 +11,9 @@ tar -xf ${LFSRoot}/sources/bash-*.tar.gz -C ${BuildDir} --strip-components 1 && 
 chmod 755 ${BuildDir} && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-patch -Np1 -i ${LFSRoot}/sources/bash-5.0-upstream_fixes-1.patch             && \
+sed -i  '/^bashline.o:.*shmbchar.h/a bashline.o: ${DEFDIR}/builtext.h' Makefile.in && \
 ./configure --prefix=/usr                    \
-            --docdir=/usr/share/doc/bash-5.0 \
+            --docdir=/usr/share/doc/bash-5.1 \
             --without-bash-malloc            \
             --with-installed-readline && \
 make                                  && \

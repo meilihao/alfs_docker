@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+# 已知一项名为 m_rootdir_acl 的测试会失败
+
 echo -e "\n\n+++ start e2fsprogs.sh +++\n\n"
 
 BuildDir=`mktemp -d --suffix ".e2fsprogs"`
@@ -25,7 +27,7 @@ if [ $LFS_TEST -eq 1 ]; then
     make check 2>&1 | tee /logs/test-e2fsprogs-`date +%s`.log
 fi                                    && \
 make install                          && \
-chmod -v u+w /usr/lib/{libcom_err,libe2p,libext2fs,libss}.a && \
+rm -fv /usr/lib/{libcom_err,libe2p,libext2fs,libss}.a       && \
 gunzip -v /usr/share/info/libext2fs.info.gz                 && \
 install-info --dir-file=/usr/share/info/dir /usr/share/info/libext2fs.info && \
 if [ $LFS_DOCS -eq 1 ]; then

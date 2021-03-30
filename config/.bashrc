@@ -12,7 +12,8 @@ PATH=/usr/bin:/usr/sbin
 if [ ! -L /bin ]; then PATH=/bin:$PATH; fi
 if [ ! -L /sbin ]; then PATH=/sbin:$PATH; fi
 PATH=$LFS/tools/bin:$PATH
-export LFS LC_ALL LFS_TGT PATH
+CONFIG_SITE=$LFS/usr/share/config.site
+export LFS LC_ALL LFS_TGT PATH CONFIG_SITE
 
 # because "sudo docker exec -it 8916814e8d0db909dc4cc0a96da49a25eee3135c853b9434655fd877a7538a30 bash" is not login shell,
 # only use `.bashrc`

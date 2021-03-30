@@ -3,9 +3,6 @@ set -e
 echo -e "--- start run-build-in-chroot-again in chroot ---\n\n"
 
 ${LFSRoot}/scripts/build/man-pages.sh
-${LFSRoot}/scripts/build/tcl.sh
-${LFSRoot}/scripts/build/expect.sh
-${LFSRoot}/scripts/build/dejagun.sh
 ${LFSRoot}/scripts/build/iana-etc.sh
 ${LFSRoot}/scripts/build/glibc.sh
 ${LFSRoot}/scripts/build/glibc-config.sh
@@ -18,6 +15,9 @@ ${LFSRoot}/scripts/build/readline.sh
 ${LFSRoot}/scripts/build/m4.sh
 ${LFSRoot}/scripts/build/bc.sh
 ${LFSRoot}/scripts/build/flex.sh
+${LFSRoot}/scripts/build/tcl.sh
+${LFSRoot}/scripts/build/expect.sh
+${LFSRoot}/scripts/build/dejagun.sh
 ${LFSRoot}/scripts/build/binutils.sh
 ${LFSRoot}/scripts/build/gmp.sh
 ${LFSRoot}/scripts/build/mpfr.sh

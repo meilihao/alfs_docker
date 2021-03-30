@@ -12,7 +12,7 @@ pushd ${PWD}   && \
 cd ${BuildDir} && \
 sed -i '/find/s@/usr@@' init/systemd/man-db.service.in && \
 ./configure --prefix=/usr                        \
-            --docdir=/usr/share/doc/man-db-2.9.3 \
+            --docdir=/usr/share/doc/man-db-2.9.4 \
             --sysconfdir=/etc                    \
             --disable-setuid                     \
             --enable-cache-owner=bin             \

@@ -10,8 +10,17 @@ echo -e "+++ build path: ${BuildDir}\n"
 tar -xf ${LFSRoot}/sources/file-*.tar.gz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-./configure --prefix=/usr --host=$LFS_TGT && \
+mkdir -v build && \
+pushd build    && \
+../configure --disable-bzlib      \
+               --disable-libseccomp \
+               --disable-xzlib      \
+               --disable-zlib             && \
 make           && \
+popd           && \
+./configure --prefix=/usr --host=$LFS_TGT --build=$(./config.guess) && \
+make           && \
+make FILE_COMPILE=$(pwd)/build/src/file   && \
 make DESTDIR=$LFS install                 && \
 popd           && \
 rm -rf ${BuildDir}

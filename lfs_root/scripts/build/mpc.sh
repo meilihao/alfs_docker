@@ -12,7 +12,7 @@ pushd ${PWD}   && \
 cd ${BuildDir} && \
 ./configure --prefix=/usr    \
             --disable-static \
-            --docdir=/usr/share/doc/mpc-1.1.0                               && \
+            --docdir=/usr/share/doc/mpc-1.2.1                               && \
 make                                  && \
 make html                             && \
 if [ $LFS_TEST -eq 1 ]; then

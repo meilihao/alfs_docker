@@ -3,7 +3,7 @@
 - [reinterpretcat/lfs](https://github.com/reinterpretcat/lfs)
 - [lfs roadmap](http://wiki.linuxfromscratch.org/lfs/roadmap)
 
-alfs_docker is based on [LFS-10.0-systemd](http://www.linuxfromscratch.org/lfs/download.html) for x86_64 only.
+alfs_docker is based on [LFS-10.1-systemd](http://www.linuxfromscratch.org/lfs/download.html) for x86_64 only.
 
 env:
 - ubuntu20.04/deepin v20/debian 10
@@ -24,7 +24,7 @@ download `.config` need match lfs_root/sources/linux-*.tar.xz's version.
 ```bash
 $ export ALFSDockerRoo=~/git/alfs_docker
 $ pushd /tmp
-$ wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.8.7/amd64/linux-headers-5.8.7-050807-generic_5.8.7-050807.202009051031_amd64.deb
+$ wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.10.17/amd64/linux-headers-5.10.17-051017-generic_5.10.17-051017.202102170631_amd64.deb
 $ dpkg -x linux-headers-*.deb tmp
 $ cp tmp/usr/src/linux-headers-*-generic/.config ${ALFSDockerRoo}/config
 ```
@@ -35,18 +35,18 @@ $ cp tmp/usr/src/linux-headers-*-generic/.config ${ALFSDockerRoo}/config
 a tarball of all the needed files can be downloaded from one of the LFS files mirrors listed at [lfs files mirror](http://www.linuxfromscratch.org/mirrors.html#files).
 
 ```bash
-$ wget --continue https://mirror-hk.koddos.net/lfs/lfs-packages/lfs-packages-10.0.tar
+$ wget --continue https://mirror-hk.koddos.net/lfs/lfs-packages/lfs-packages-10.1.tar
 $ wget https://mirror-hk.koddos.net/lfs/lfs-packages/SHA1SUMS
-$ cat SHA1SUMS |grep "lfs-packages-10.0.tar" > lfs-sum
+$ cat SHA1SUMS |grep "lfs-packages-10.1.tar" > lfs-sum
 $ sha1sum -c lfs-sum
-$ tar -xvf lfs-packages-10.0.tar
-$ mv 10.0 ${ALFSDockerRoo}/lfs_root/sources
+$ tar -xvf lfs-packages-10.1.tar
+$ mv 10.1 ${ALFSDockerRoo}/lfs_root/sources
 $ popd
 ```
 
-> or mirror for china: http://mirrors.ustc.edu.cn/lfs/lfs-packages/lfs-packages-10.0.tar
+> or mirror for china: http://mirrors.ustc.edu.cn/lfs/lfs-packages/lfs-packages-10.1.tar
 
-> kernel mirror: `wget https://mirrors.tuna.tsinghua.edu.cn/kernel/v5.x/linux-5.8.7.tar.xz`
+> kernel mirror: `wget https://mirrors.tuna.tsinghua.edu.cn/kernel/v5.x/linux-5.10.17.tar.xz`
 
 ### 4. update args
 1. glibc compatible : use host's glibc version
@@ -165,7 +165,7 @@ $ qemu-system-x86_64 -M q35 -pflash OVMF.fd -enable-kvm -m 1024 -hda lfs.img -vg
 1. build lfs again for test
 
 ## log
-offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.0/
+offical log for compare: http://www.linuxfromscratch.org/lfs/build-logs/10.1/
 
 > log order not match because may be MAKEFLAGS
 

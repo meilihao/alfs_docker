@@ -22,8 +22,8 @@ fi                                    && \
 sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile   && \
 make MANSUFFIX=ssl install            && \
 if [ $LFS_TEST -eq 1 ]; then
-    mv -v /usr/share/doc/openssl /usr/share/doc/openssl-1.1.1g && \
-    cp -vfr doc/* /usr/share/doc/openssl-1.1.1g
+    mv -v /usr/share/doc/openssl /usr/share/doc/openssl-1.1.1j && \
+    cp -vfr doc/* /usr/share/doc/openssl-1.1.1j
 fi                                    && \
 popd                                  && \
 rm -rf ${BuildDir}

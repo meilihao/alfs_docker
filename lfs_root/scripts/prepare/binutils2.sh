@@ -24,6 +24,7 @@ cd build       && \
     --enable-64-bit-bfd     && \
 make           && \
 make DESTDIR=$LFS install   && \
+install -vm755 libctf/.libs/libctf.so.0.0.0 $LFS/usr/lib && \
 popd           && \
 rm -rf ${BuildDir}
 

@@ -27,6 +27,7 @@ cd ${BuildDir} && \
             --sysconfdir=/etc      \
             --with-rootlibdir=/usr/lib   \
             --with-xz              \
+            --with-zstd            \
             --with-zlib               && \
 make                                  && \
 make install

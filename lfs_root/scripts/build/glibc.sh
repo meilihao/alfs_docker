@@ -20,7 +20,9 @@ echo -e "+++ build path: ${BuildDir}\n"
 tar -xf ${LFSRoot}/sources/glibc-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-patch -Np1 -i ${LFSRoot}/sources/glibc-2.32-fhs-1.patch                 && \
+patch -Np1 -i ${LFSRoot}/sources/glibc-2.33-fhs-1.patch                 && \
+sed -e '402a\      *result = local->data.services[database_index];' \
+    -i nss/nss_database.c                                               && \
 mkdir -v build && \
 cd       build && \
 ../configure --prefix=/usr                            \
@@ -30,8 +32,8 @@ cd       build && \
              --with-headers=/usr/include              \
              libc_cv_slibdir=/lib     && \
 make                                  && \
-cp -f $PWD/elf/ld-linux-x86-64.so.2 /lib/elf_ld-linux-x86-64.so.2        && \
-ln -sfnv elf_ld-linux-x86-64.so.2 /lib/ld-linux-x86-64.so.2              && \
+# cp -f $PWD/elf/ld-linux-x86-64.so.2 /lib/elf_ld-linux-x86-64.so.2        && \
+# ln -sfnv elf_ld-linux-x86-64.so.2 /lib/ld-linux-x86-64.so.2              && \
 # ln -sfnv $PWD/elf/ld-linux-x86-64.so.2 /lib && \
 mkdir -pv /usr/lib/locale             && \
 if [ $LFS_TEST -eq 1 ]; then

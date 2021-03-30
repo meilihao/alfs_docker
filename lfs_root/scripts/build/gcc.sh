@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+# glibc-2.33 时会失败：asan_test.C, co-ret-17-void-ret-coro.C, pr95519-05-gro.C, pr80166.c
+
 # /tmp need 1777 because make check will write somethon in /tmp, otherwise `mkdir: cannot create directory '/tmp/dg-combine-results-18903-8450': Permission denied` will lead to `FAIL: gcc.c-torture/execute/builtins/fprintf.c execution,  -O0`
 #
 # follow error is ok, by compare with http://www.linuxfromscratch.org/lfs/build-logs/10.0/i5-6600K/logs/824-gcc-10.2.0
@@ -42,7 +44,6 @@ rm -rf /usr/lib/gcc/$(gcc -dumpmachine)/10.2.0/include-fixed/bits/ && \
 chown -v -R root:root \
     /usr/lib/gcc/*linux-gnu/10.2.0/include{,-fixed} && \
 ln -sv ../bin/cpp /usr/lib             && \
-install -v -dm755 /usr/lib/bfd-plugins && \
 ln -sfv ../../libexec/gcc/$(gcc -dumpmachine)/10.2.0/liblto_plugin.so \
         /usr/lib/bfd-plugins/          && \
 echo 'int main(){}' > dummy.c          && \

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# 已知一项名为 VERSION 的测试可能失败
+
 set -e
 
 echo -e "\n\n+++ start gdbm.sh +++\n\n"
@@ -10,7 +12,6 @@ echo -e "+++ build path: ${BuildDir}\n"
 tar -xf ${LFSRoot}/sources/gdbm-*.tar.gz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-sed -r -i '/^char.*parseopt_program_(doc|args)/d' src/parseopt.c             && \
 ./configure --prefix=/usr    \
             --disable-static \
             --enable-libgdbm-compat   && \

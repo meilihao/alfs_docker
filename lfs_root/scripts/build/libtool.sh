@@ -16,6 +16,7 @@ if [ $LFS_TEST -eq 1 ]; then
     make check 2>&1 | tee /logs/test-libtool-`date +%s`.log || true
 fi                                    && \
 make install                          && \
+rm -fv /usr/lib/libltdl.a             && \
 popd                                  && \
 rm -rf ${BuildDir}
 

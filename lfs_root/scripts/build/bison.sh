@@ -11,7 +11,7 @@ tar -xf ${LFSRoot}/sources/bison-*.tar.xz -C ${BuildDir} --strip-components 1 &&
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 ./configure --prefix=/usr \
-            --docdir=/usr/share/doc/bison-3.7.1 && \
+            --docdir=/usr/share/doc/bison-3.7.5 && \
 make                                  && \
 make install                          && \
 popd                                  && \

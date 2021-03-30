@@ -20,7 +20,7 @@ if [ $LFS_TEST -eq 1 ]; then
     make check 2>&1| tee /logs/test-tar-`date +%s`.log
 fi                                    && \
 make install                          && \
-make -C doc install-html docdir=/usr/share/doc/tar-1.32 && \
+make -C doc install-html docdir=/usr/share/doc/tar-1.34 && \
 popd                                  && \
 rm -rf ${BuildDir}
 

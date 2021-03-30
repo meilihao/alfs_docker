@@ -10,16 +10,18 @@ echo -e "+++ build path: ${BuildDir}\n"
 tar -xf ${LFSRoot}/sources/libcap-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-sed -i '/install -m.*STACAPLIBNAME/d' libcap/Makefile                          && \
-make lib=lib                          && \
+sed -i '/install -m.*STA/d' libcap/Makefile                          && \
+make prefix=/usr lib=lib                          && \
 if [ $LFS_TEST -eq 1 ]; then
     make test 2>&1| tee /logs/test-libcap-`date +%s`.log
 fi                                    && \
-make lib=lib PKGCONFIGDIR=/usr/lib/pkgconfig install                           && \
-chmod -v 755 /lib/libcap.so.2.42      && \
-# mv -v /lib/libpsx.a /usr/lib          && \
-# rm -v /lib/libcap.so                  && \
+make prefix=/usr lib=lib install      && \
+# mv -v /usr/lib/libcap.so.* /lib          && \
+# mv -v /usr/lib/libpsx.so.* /lib          && \
 # ln -sfv ../../lib/libcap.so.2 /usr/lib/libcap.so                               && \
+# ln -sfv ../../lib/libpsx.so.2 /usr/lib/libpsx.so                               && \
+chmod -v 755 /lib/libcap.so.2.48      && \
+chmod -v 755 /lib/libpsx.so.2.48      && \
 popd                                  && \
 rm -rf ${BuildDir}
 

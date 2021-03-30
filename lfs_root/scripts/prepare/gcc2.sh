@@ -15,8 +15,7 @@ mkdir -pv ${BuildDir}/gmp &&  tar -xf ${LFSRoot}/sources/gmp-*.tar.xz -C ${Build
 mkdir -pv ${BuildDir}/mpc &&  tar -xf ${LFSRoot}/sources/mpc-*.tar.gz -C ${BuildDir}/mpc --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-sed -e '/m64=/s/lib64/lib/' \
-        -i.orig gcc/config/i386/t-linux64 && \
+sed -e '/m64=/s/lib64/lib/' -i.orig gcc/config/i386/t-linux64     && \
 mkdir -v build && \
 cd build       && \
 mkdir -pv $LFS_TGT/libgcc   && \

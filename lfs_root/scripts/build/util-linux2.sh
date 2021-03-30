@@ -14,7 +14,7 @@ pushd ${PWD}   && \
 cd ${BuildDir} && \
 mkdir -pv /var/lib/hwclock && \
 ./configure ADJTIME_PATH=/var/lib/hwclock/adjtime   \
-            --docdir=/usr/share/doc/util-linux-2.36 \
+            --docdir=/usr/share/doc/util-linux-2.36.2 \
             --disable-chfn-chsh  \
             --disable-login      \
             --disable-nologin    \
@@ -23,7 +23,8 @@ mkdir -pv /var/lib/hwclock && \
             --disable-runuser    \
             --disable-pylibmount \
             --disable-static     \
-            --without-python          && \
+            --without-python     \
+            runstatedir=/run          && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
     chown -Rv tester .                    && \

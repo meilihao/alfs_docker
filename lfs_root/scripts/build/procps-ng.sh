@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+# 已知五项与 pkill 相关的测试可能失败，这是因为一些测试文件未被及时更
+
 # ./configure get error:
 # configure: error: Package requirements (libsystemd) were not met:
 # No package 'libsystemd' found
@@ -20,7 +22,7 @@ cd ${BuildDir} && \
 ./configure --prefix=/usr                            \
             --exec-prefix=                           \
             --libdir=/usr/lib                        \
-            --docdir=/usr/share/doc/procps-ng-3.3.16 \
+            --docdir=/usr/share/doc/procps-ng-3.3.17 \
             --disable-static                         \
             --disable-kill                           \
             --with-systemd            && \

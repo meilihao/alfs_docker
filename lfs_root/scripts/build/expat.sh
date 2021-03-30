@@ -12,14 +12,14 @@ pushd ${PWD}   && \
 cd ${BuildDir} && \
 ./configure --prefix=/usr    \
             --disable-static \
-            --docdir=/usr/share/doc/expat-2.2.9 && \
+            --docdir=/usr/share/doc/expat-2.2.10 && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
     make check 2>&1| tee /logs/test-expat-`date +%s`.log
 fi                                    && \
 make install                          && \
 if [ $LFS_DOCS -eq 1 ]; then
-    install -v -m644 doc/*.{html,png,css} /usr/share/doc/expat-2.2.9
+    install -v -m644 doc/*.{html,png,css} /usr/share/doc/expat-2.2.10
 fi                                    && \
 popd                                  && \
 rm -rf ${BuildDir}

@@ -10,7 +10,6 @@ echo -e "+++ build path: ${BuildDir}\n"
 tar -xf ${LFSRoot}/sources/ncurses-*.tar.gz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-sed -i '/LIBTOOL_INSTALL/d' c++/Makefile.in && \
 ./configure --prefix=/usr           \
             --mandir=/usr/share/man \
             --with-shared           \
@@ -30,6 +29,7 @@ done
 rm -vf                     /usr/lib/libcursesw.so && \
 echo "INPUT(-lncursesw)" > /usr/lib/libcursesw.so && \
 ln -sfv libncurses.so      /usr/lib/libcurses.so  && \
+rm -fv /usr/lib/libncurses++w.a                   && \
 if [ $LFS_DOCS -eq 1 ]; then
     mkdir -v       /usr/share/doc/ncurses-6.2     && \
     cp -v -R doc/* /usr/share/doc/ncurses-6.2

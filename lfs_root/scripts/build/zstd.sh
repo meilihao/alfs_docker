@@ -11,6 +11,9 @@ tar -xf ${LFSRoot}/sources/zstd-*.tar.gz -C ${BuildDir} --strip-components 1 && 
 pushd ${PWD}   && \
 cd ${BuildDir} && \
 make                                  && \
+if [ $LFS_TEST -eq 1 ]; then
+    make check 2>&1| tee /logs/test-zstd-`date +%s`.log
+fi                                    && \
 make prefix=/usr install              && \
 rm -v /usr/lib/libzstd.a              && \
 # mv -v /usr/lib/libzstd.so.* /lib      && \

@@ -10,7 +10,7 @@ echo -e "+++ build path: ${BuildDir}\n"
 tar -xf ${LFSRoot}/sources/texinfo-*.tar.xz -C ${BuildDir} --strip-components 1 && \
 pushd ${PWD}   && \
 cd ${BuildDir} && \
-./configure --prefix=/usr --disable-static && \
+./configure --prefix=/usr             && \
 make                                  && \
 if [ $LFS_TEST -eq 1 ]; then
     make check 2>&1| tee /logs/test-texinfo2-`date +%s`.log

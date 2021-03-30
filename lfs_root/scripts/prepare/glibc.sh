@@ -15,7 +15,7 @@ pushd ${PWD}   && \
 cd ${BuildDir} && \
 ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64                        && \
 # ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64/ld-lsb-x86-64.so.3     && \
-patch -Np1 -i ${LFSRoot}/sources/glibc-2.32-fhs-1.patch              && \
+patch -Np1 -i ${LFSRoot}/sources/glibc-2.33-fhs-1.patch              && \
 mkdir -v build && \
 cd       build && \
 ../configure                             \
