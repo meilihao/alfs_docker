@@ -3,7 +3,7 @@ set -e
 
 echo -e "\n\n+++ start stripping-again.sh +++\n\n"
 
-save_lib="ld-2.32.so libc-2.32.so libpthread-2.32.so libthread_db-1.0.so"
+save_lib="ld-2.33.so libc-2.33.so libpthread-2.33.so libthread_db-1.0.so"
 
 cd /lib
 
@@ -14,7 +14,7 @@ for LIB in $save_lib; do
 done    
 
 save_usrlib="libquadmath.so.0.0.0 libstdc++.so.6.0.28
-             libitm.so.1.0.0 libatomic.so.1.2.0" 
+             libitm.so.1.0.0 libatomic.so.1.2.0"
 
 cd /usr/lib
 
