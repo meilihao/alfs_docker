@@ -211,3 +211,6 @@ see [changelog.md](/changelog.md)
 
 ## changelog
 see [changelog.md](/changelog.md)
+
+## upgrade lfs version
+1. no forget to update `x.xx. Stripping Again`'s `save_lib` and `save_usrlib` for `issue 1`
